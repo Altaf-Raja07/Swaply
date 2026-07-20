@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Book a Session</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-sink:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .step-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .time-slot.selected {
+            background-color: #a43716;
+            color: white;
+            border-color: #a43716;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shell Suppression: Not suppressed for main flow entry) -->
+<header class="bg-surface border-b border-outline-variant/30 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-gutter">
+<span class="text-headline-md font-headline-md font-bold text-primary">SkillSwap</span>
+<nav class="hidden md:flex gap-stack-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md font-medium" href="#">Discover</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Messages</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps flex items-center gap-1 border border-tertiary/10">
+<span class="material-symbols-outlined text-[14px]">monetization_on</span>
+                    12 Credits
+                </div>
+<button class="material-symbols-outlined text-on-surface-variant">notifications</button>
+<div class="w-8 h-8 rounded-full bg-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly young woman with glasses, smiling warmly. She is outdoors in a sun-drenched park with soft bokeh background. The aesthetic is organic and high-end, using natural light and warm tones consistent with a humanist, communal brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL1azX_Zy49TnSx0VwbAl0dxHM1HUTSc3U8GbLdnS08n0AJP__fBMP9Jq3iSgLuBlNULBnFSsXNaHFMtFwRqCZCujjTSzHzzhHpxetnzPifhp2IuaQSue_BGP9H46lgOeATrSq1zvljWUAviHTFaD6uKWZbylS6PblMrgfwKCntLQ0K9-KcHCjJBIFLNrTGsXAb-SBILd0P_GkVuamXP3hOtF2VC4djS65dnR2wZ82cghuUADU81RYtPREFUvZOLsTlOgyL9cINckQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Booking Progress Header -->
+<div class="mb-stack-lg max-w-2xl mx-auto">
+<div class="flex justify-between items-center mb-4">
+<h1 class="text-headline-md font-headline-md text-on-surface">Book a Session</h1>
+<span class="text-label-caps text-on-surface-variant uppercase tracking-widest" id="step-counter">Step 1 of 3</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500 ease-out" id="progress-bar" style="width: 33.33%"></div>
+</div>
+</div>
+<!-- Step 1: Calendar/Slot Picker -->
+<section class="step-transition opacity-100 max-w-4xl mx-auto" id="step-1">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Expert Quick Card -->
+<div class="md:col-span-4">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow sticky top-24">
+<div class="aspect-square rounded-lg overflow-hidden mb-stack-md">
+<img class="w-full h-full object-cover" data-alt="A close-up of a potter's hands covered in clay, skillfully shaping a bowl on a spinning pottery wheel in a sunlit, earthy workshop studio. The image captures tactile textures and a warm, organic atmosphere with soft morning light, following a minimalist-editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUeBjdxGO3mZD3AOMD2KrAohDVIcArU9Pg2qkXicO7TzfyH_iOaSh7GPmOyCHU2noXL202tntfAwvL6NZq5skJcmOMSpI1oEW0xwku_sJ-aUDPNXtPYUPXnUci_sppFOrXvciev74V1pmS0e4QsY-SmjkgEB6PvQWt9vrn8PhdL5MUt0uLci_d1d2K8VH6EAivX2OCqEK7uIGmmLk7R105lRHX3crePk8yVt-WfQRsbyRHxdsAjteSu0kAkAhr9CSxKFX5pnKaRhtk"/>
+</div>
+<h2 class="text-headline-md font-headline-md mb-1">Wheel Throwing</h2>
+<p class="text-label-caps text-secondary font-bold uppercase mb-4">With Elias Thorne</p>
+<div class="flex items-center gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+<span>60 Minute Session</span>
+</div>
+<div class="flex items-center gap-2 text-body-md text-on-surface-variant mt-2">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span>3 Credits</span>
+</div>
+</div>
+</div>
+<!-- Calendar Content -->
+<div class="md:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-lg whisper-shadow">
+<div class="flex items-center justify-between mb-stack-lg">
+<h3 class="text-body-lg font-bold">Select Date &amp; Time</h3>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<!-- Weekly Strip -->
+<div class="grid grid-cols-7 gap-2 mb-stack-lg">
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">MON</p>
+<button class="w-full py-3 rounded-lg border border-outline-variant hover:border-primary transition-all">14</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">TUE</p>
+<button class="w-full py-3 rounded-lg border-2 border-primary bg-primary/5 text-primary font-bold">15</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">WED</p>
+<button class="w-full py-3 rounded-lg border border-outline-variant hover:border-primary transition-all">16</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">THU</p>
+<button class="w-full py-3 rounded-lg border border-outline-variant hover:border-primary transition-all">17</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">FRI</p>
+<button class="w-full py-3 rounded-lg border border-outline-variant hover:border-primary transition-all">18</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">SAT</p>
+<button class="w-full py-3 rounded-lg bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed">19</button>
+</div>
+<div class="text-center">
+<p class="text-label-caps text-on-surface-variant mb-2">SUN</p>
+<button class="w-full py-3 rounded-lg bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed">20</button>
+</div>
+</div>
+<!-- Slot Grid -->
+<div class="space-y-stack-md">
+<p class="text-label-caps text-on-surface-variant uppercase tracking-widest">Available Slots (Tue, Oct 15)</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<button class="time-slot active-sink py-3 border border-outline-variant rounded-lg text-body-md hover:border-primary transition-all" onclick="selectSlot(this)">09:00 AM</button>
+<button class="time-slot active-sink py-3 border border-outline-variant rounded-lg text-body-md hover:border-primary transition-all" onclick="selectSlot(this)">10:30 AM</button>
+<button class="time-slot active-sink py-3 border border-outline-variant rounded-lg text-body-md hover:border-primary transition-all" onclick="selectSlot(this)">01:00 PM</button>
+<button class="time-slot active-sink py-3 border border-outline-variant rounded-lg text-body-md hover:border-primary transition-all" onclick="selectSlot(this)">02:30 PM</button>
+<button class="py-3 border border-outline-variant/30 bg-surface-container-high text-on-surface-variant/40 rounded-lg text-body-md cursor-not-allowed line-through">04:00 PM</button>
+<button class="time-slot active-sink py-3 border border-outline-variant rounded-lg text-body-md hover:border-primary transition-all" onclick="selectSlot(this)">05:30 PM</button>
+</div>
+</div>
+<div class="mt-stack-lg pt-stack-md border-t border-outline-variant/20 flex justify-end">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-button active-sink whisper-shadow opacity-50 cursor-not-allowed transition-all" disabled="" id="next-btn" onclick="goToStep(2)">
+                                Continue to Confirmation
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Confirmation -->
+<section class="step-transition hidden opacity-0 translate-y-4 max-w-2xl mx-auto" id="step-2">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-lg whisper-shadow">
+<h3 class="text-headline-md font-headline-md mb-stack-lg">Review &amp; Confirm</h3>
+<div class="space-y-gutter">
+<!-- Session Details -->
+<div class="flex items-start gap-gutter p-4 rounded-lg bg-surface-container">
+<div class="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up of artisanal pottery tools laid out on a rustic wooden table with scattered clay dust. The aesthetic is organic and grounded, with earthy colors and a focus on craftsmanship and community learning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQe2fetVPNBODXJd9vDVFtf1zmXSHD0A41G4x7sBwrydsGtVTHLrTlaoFAlBZ2SUeUavfe3IdZ1DrHa-wUrzFpZv9nr5a4WAO6vu3eZ3sNMMEqhhTPL6ENclLvR1KcfRRtsv-_6Xndm8a6XfhnU1pTFrxZ5ZYem4H8ZaNTpEb8RPPeDuGsqC3IMFCQzFP4GVbDfMSKg6EhO7dFrJTVX3IVPKEjH2xuV0bVIGnTrN_Hyb_T-Q6dU_h1uJxAW2mt7Pndn6VkUag9v59T"/>
+</div>
+<div>
+<p class="text-label-caps text-primary font-bold uppercase mb-1">Workshop</p>
+<h4 class="text-body-lg font-bold">Wheel Throwing with Elias Thorne</h4>
+<p class="text-on-surface-variant">Tuesday, October 15 • 10:30 AM — 11:30 AM</p>
+</div>
+</div>
+<!-- Cost Breakdown -->
+<div class="border-t border-outline-variant/30 pt-stack-md">
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md text-on-surface-variant">Session Cost</span>
+<span class="text-body-lg font-bold">3 Credits</span>
+</div>
+<div class="flex justify-between items-center text-secondary">
+<span class="text-body-md">Your Current Balance</span>
+<span class="text-body-md">12 Credits</span>
+</div>
+<div class="mt-4 p-3 bg-secondary/5 rounded-lg flex justify-between items-center">
+<span class="text-label-caps font-bold">REMAINING AFTER BOOKING</span>
+<span class="text-body-lg font-bold text-secondary">9 Credits</span>
+</div>
+</div>
+<div class="bg-surface-container-high/50 p-4 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                            Cancellations made less than 24 hours before the session start time are non-refundable.
+                        </p>
+</div>
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="w-full py-3 border border-secondary text-secondary rounded-lg font-button active-sink" onclick="goToStep(1)">
+                            Back to Calendar
+                        </button>
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-button active-sink shadow-md" onclick="goToStep(3)">
+                            Confirm Booking
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 3: Success State -->
+<section class="step-transition hidden opacity-0 translate-y-4 max-w-lg mx-auto text-center" id="step-3">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-lg whisper-shadow overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-2 bg-secondary"></div>
+<div class="w-20 h-20 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-stack-lg">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h3 class="text-display-lg-mobile md:text-headline-md font-headline-md mb-stack-sm">Booking Confirmed!</h3>
+<p class="text-body-lg text-on-surface-variant mb-stack-lg">
+                    You're all set to learn Wheel Throwing with Elias. We've sent the details to your inbox.
+                </p>
+<div class="space-y-stack-md text-left bg-surface-container p-6 rounded-xl mb-stack-lg">
+<h4 class="text-label-caps font-bold text-on-surface mb-2">NEXT STEPS</h4>
+<div class="flex gap-4">
+<div class="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">1</div>
+<p class="text-body-md">Check your <b>Messages</b> for the studio access code.</p>
+</div>
+<div class="flex gap-4 mt-4">
+<div class="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">2</div>
+<p class="text-body-md">Complete the <b>Safety Intro</b> video in your dashboard.</p>
+</div>
+<div class="flex gap-4 mt-4">
+<div class="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">3</div>
+<p class="text-body-md">Bring comfortable clothes that you don't mind getting a bit of clay on!</p>
+</div>
+</div>
+<div class="space-y-3">
+<a class="block w-full py-3 bg-primary text-on-primary rounded-lg font-button active-sink shadow-md" href="#">
+                        Go to Dashboard
+                    </a>
+<button class="w-full py-3 text-secondary font-button hover:underline">
+                        Add to Calendar
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<span class="text-headline-md font-headline-md text-primary-fixed-dim">SkillSwap</span>
+<div class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-label-caps uppercase text-[11px]" href="#">Community Guidelines</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-label-caps uppercase text-[11px]" href="#">Terms of Service</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-label-caps uppercase text-[11px]" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors font-label-caps uppercase text-[11px]" href="#">Support</a>
+</div>
+<p class="text-surface-variant text-body-md opacity-60">© 2024 SkillSwap. Built for the community.</p>
+</div>
+</footer>
+<script>
+        function selectSlot(element) {
+            // Unselect others
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected', 'bg-primary', 'text-on-primary');
+            });
+            // Select current
+            element.classList.add('selected', 'bg-primary', 'text-on-primary');
+            
+            // Enable next button
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function goToStep(step) {
+            const steps = [1, 2, 3];
+            const progressBar = document.getElementById('progress-bar');
+            const stepCounter = document.getElementById('step-counter');
+
+            steps.forEach(s => {
+                const stepEl = document.getElementById(`step-${s}`);
+                if (s === step) {
+                    stepEl.classList.remove('hidden');
+                    setTimeout(() => {
+                        stepEl.classList.remove('opacity-0', 'translate-y-4');
+                        stepEl.classList.add('opacity-100', 'translate-y-0');
+                    }, 50);
+                } else {
+                    stepEl.classList.add('hidden', 'opacity-0', 'translate-y-4');
+                }
+            });
+
+            // Update Header
+            const percentage = (step / 3) * 100;
+            progressBar.style.width = `${percentage}%`;
+            stepCounter.textContent = `Step ${step} of 3`;
+
+            // Scroll to top of main
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body></html>

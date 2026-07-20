@@ -1,9 +1,10 @@
 import { Footer } from "@/components/layout/footer";
+import { Button } from "@/components/ui/button";
 
 export default function OnboardingTeachPage() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
-      <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg">
+      <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
         <div className="max-w-[800px] w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
           {/* Branding/Identity Anchor */}
           <div className="md:col-span-12 mb-stack-lg">
@@ -119,21 +120,15 @@ export default function OnboardingTeachPage() {
 
               {/* Call to Action Footer */}
               <div className="flex items-center justify-between mt-stack-md border-t border-outline-variant/20 pt-stack-lg">
-                <button
-                  className="text-secondary font-button py-3 px-6 hover:bg-secondary-container rounded-lg transition-colors active-sink"
-                  type="button"
-                >
+                <Button type="button" variant="ghost">
                   Back
-                </button>
-                <button
-                  className="bg-primary text-on-primary font-button py-3 px-8 rounded-lg whisper-shadow active-sink hover:bg-primary-container transition-all flex items-center gap-stack-sm"
-                  type="submit"
-                >
+                </Button>
+                <Button type="submit">
                   Next Step
                   <span className="material-symbols-outlined text-[18px]">
                     arrow_forward
                   </span>
-                </button>
+                </Button>
               </div>
             </form>
 

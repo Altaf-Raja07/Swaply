@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Teach &amp; Learn Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-press:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .coin-bevel {
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .asymmetric-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #dfc0b7 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "tertiary": "#735c00",
+                        "primary-fixed": "#ffdbd1",
+                        "surface": "#faf9f5",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-bright": "#faf9f5",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#a73918",
+                        "outline-variant": "#dfc0b7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#8b716a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-secondary-fixed-variant": "#394b3d",
+                        "tertiary-container": "#c7a84a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed": "#0e1f13",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#b7ccb9",
+                        "on-primary-fixed": "#3b0900",
+                        "on-surface-variant": "#58423c",
+                        "surface-dim": "#dbdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#546758",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#c54f2c",
+                        "background": "#faf9f5",
+                        "secondary": "#506354",
+                        "tertiary-fixed": "#ffe089",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "tertiary-fixed-dim": "#e4c363",
+                        "inverse-primary": "#ffb5a0",
+                        "secondary-fixed": "#d3e8d5",
+                        "inverse-surface": "#2f312e",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#862201",
+                        "on-surface": "#1b1c1a",
+                        "primary": "#a43716",
+                        "surface-container": "#efeeea",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#d0e5d2",
+                        "surface-container-highest": "#e3e2df",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-variant": "#e3e2df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "8px",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1200px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Literata"],
+                        "display-lg": ["Literata"],
+                        "label-caps": ["Karla"],
+                        "button": ["Karla"],
+                        "body-lg": ["Karla"],
+                        "display-lg-mobile": ["Literata"],
+                        "body-md": ["Karla"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen selection:bg-primary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant/30 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-stack-lg">
+<span class="text-headline-md font-headline-md font-bold text-primary">SkillSwap</span>
+<div class="hidden md:flex gap-stack-md ml-stack-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps hover:text-primary transition-colors duration-200" href="#">Discover</a>
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps hover:text-primary transition-colors duration-200" href="#">Messages</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-label-caps font-label-caps coin-bevel flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">toll</span>
+                    12 Credits
+                </div>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A profile portrait of a young creative professional with a friendly smile, set against a warm, sun-drenched studio background with soft bokeh. The aesthetic is clean and modern-minimalist, featuring natural lighting and earthy tones consistent with a humanist-editorial brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdUvIXID5LEXtP5nczP13NHuqbVwLPpdaf-hcbQ5gQ0c3bkkqt17oeBQUGr1y4_GX-Avt7b_O6xQCTo749z-TAS_Rg-94S6VG-EC90_Pb21DdNyMPLXljb7csHx0QYxm1xPIecqe1rIadmuAHQ0HX33APxOj9FmGwkqMstBIqe9md48C4343z6ysagOaOwgsjXzTgiVL6EE9vRTsO6uVf1BXUW5HQd7f1RNwObs2PuyoFXxNZmIw_zCEiO6BbxiR1mPygoMt99cIYR"/>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-12 md:pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
+<div class="z-10">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface mb-stack-md">
+                        Teach what you know.<br/>
+<span class="text-primary">Learn what you don't.</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-stack-lg max-w-[500px]">
+                        Join a local community of creators, experts, and lifelong learners. Exchange skills directly through our credit-based bulletin, moving beyond digital noise into tactile learning.
+                    </p>
+<div class="flex flex-wrap gap-stack-md">
+<button class="bg-primary text-on-primary px-8 h-[48px] rounded-lg font-button text-button whisper-shadow active-press transition-all">
+                            Start swapping skills
+                        </button>
+<button class="border-2 border-secondary text-secondary px-8 h-[48px] rounded-lg font-button text-button active-press transition-all">
+                            How it works
+                        </button>
+</div>
+</div>
+<div class="relative flex justify-center items-center h-[400px] md:h-[500px]">
+<div class="absolute inset-0 asymmetric-pattern opacity-30 pointer-events-none"></div>
+<!-- Custom Illustration Placeholder for "The Exchange Loop" -->
+<div class="relative w-full h-full flex items-center justify-center">
+<img class="w-full h-full object-contain drop-shadow-xl" data-alt="A stylized, editorial-style illustration of a hand passing a glowing orange music note to another hand, while simultaneously receiving a green coding bracket in return. The artwork features textured, paper-like finishes and organic shapes, set against a warm cream background with terracotta and forest green accents, symbolizing the communal spirit of SkillSwap." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOErODJ6GoSE4xca1opE9CLij2t-RW_Xv7ldbaWzJiNGnE3LxGvkfPZg-_Myt-QlqCgMd25F-Ao50hx0NqVmxgtPuGobdA5BDLf_QtObI0XIRQCvpCTm45D29glayNyViccsPD2ogH2I6W9Fxm-NuN67wwYY6WgOcoYcI1LTQpQ1e-OsZk_v4zT12WRRdCM6aaja65dDOQi04wF_7aOawJnKXgKb-G3fitXen7UofpT8hSpoJunlFpb-a9IV7jf6n4JmCWCDI6L_J-"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Categories -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-stack-lg flex justify-between items-end">
+<div>
+<span class="text-label-caps font-label-caps text-secondary tracking-widest">CURATED SKILLS</span>
+<h2 class="text-headline-md font-headline-md mt-2">Explore the Bulletin</h2>
+</div>
+<a class="text-primary font-button text-button flex items-center gap-1 group" href="#">
+                    View all categories
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-gutter">
+<!-- Coding: Big Card -->
+<div class="col-span-2 row-span-1 md:row-span-2 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden active-press whisper-shadow">
+<div class="h-48 md:h-80 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end editorial photograph of a minimalist mahogany desk with a glowing laptop screen displaying elegant code. Soft shadows from a nearby window plant fall across the wooden surface. The mood is calm and focused, with a warm color palette of deep browns and amber light, reflecting a sophisticated learner's environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnrKL7tqTOyQforUErd3Cg_BMxPM0EzKb3LRanD76wFMySfISeyA2rT-vGhyEdx-YvriFiEN7XU41FIbiNhPlYCe9-Vd49FXJNTAa_dJPeVr-S0ag-Jx2QUUaTrFlEAc81jF4b9DUnKX8bZbUSombQGZZnVA-Eww_mT-NX7rSmT_8p7Gfz-7tVN8xZDM032ufz2R5z4OWUhRhTgO8Ibd2vP4ldazimDaIDJtnNq2-ol-7_PdIaOEPDrejpC189TKLsrxKBTeVkTpWZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<div class="bg-secondary/80 text-white text-[10px] px-2 py-0.5 rounded-full font-label-caps inline-block mb-2">HOT SKILL</div>
+<h3 class="text-headline-md font-headline-md">Software Engineering</h3>
+</div>
+</div>
+<div class="p-6">
+<p class="text-body-md text-on-surface-variant line-clamp-2">Master Python, React, or System Design through peer-to-peer code reviews and pair programming sessions.</p>
+</div>
+</div>
+<!-- Music -->
+<div class="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden active-press whisper-shadow">
+<div class="h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up, tactile photo of weathered acoustic guitar strings and a wooden fretboard. The lighting is soft and golden, highlighting the grain of the wood and the copper texture of the strings. The overall aesthetic is intimate and editorial, suggesting a soulful music lesson in a lived-in apartment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0u1y77AWldZyJ5qULOKLumK75XgEcKO58Jj1h0OUXaPunichgaELqQ89VktAm7reGTvDENz9C3geMsPUaVLPn0x2SLi-PzcAj5fwSqMu-7C-UzLUSCVt1zX-b5xYRBkeA4Ai7eZX3VVdropSLhHWFIN52-KVgUjIMCeCn54I_rfHLAJsE_bGJZT7Yn0B05w6ltWAa4qVdWZNwNuLTLSL5o0kxgVZvYWoFUTReaMP5izPmTgD5Oh5puouQbVabweGKaXiAqdGof4PL"/>
+</div>
+<div class="p-6">
+<h3 class="text-body-lg font-headline-md mb-2">Music</h3>
+<div class="flex gap-2 flex-wrap">
+<span class="bg-secondary/10 text-secondary text-[11px] px-3 py-1 rounded-full font-bold">Guitar</span>
+<span class="bg-secondary/10 text-secondary text-[11px] px-3 py-1 rounded-full font-bold">Theory</span>
+</div>
+</div>
+</div>
+<!-- Languages -->
+<div class="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden active-press whisper-shadow">
+<div class="h-32 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stack of hand-bound notebooks and a fountain pen on a linen tablecloth. The composition is asymmetrical and artistic, with muted tones of charcoal and off-white. The vibe is scholarly and traditional, perfect for a humanist-editorial brand focused on language learning and cultural exchange." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiKdsl6xdOqKhOEMqrusy6sHyoAax87kZy80d4nDQ_OvpbZPBcx5J7GqIHY-PWym4egrI_esULbw1xFbVWxQbBe-gx5gCi1EsB7otRAs2APAYu7EpDNIB-8z1w2uQQ6e9JHHao5UH0gyAq6FaWSFCXpinr5GuReC9gJ-oy7axL6Mu3oeDgNpIMs3yn84GcK7EUtVJQPe2Br5uuvZ6eBEzBNMMS9P2_3hnvjRJ4fWNWrNTUY9fPYAJ8CAfnqpNSoniuemtuOgx88_Vv"/>
+</div>
+<div class="p-6">
+<h3 class="text-body-lg font-headline-md mb-2">Languages</h3>
+<div class="flex gap-2 flex-wrap">
+<span class="bg-secondary/10 text-secondary text-[11px] px-3 py-1 rounded-full font-bold">French</span>
+<span class="bg-secondary/10 text-secondary text-[11px] px-3 py-1 rounded-full font-bold">Japanese</span>
+</div>
+</div>
+</div>
+<!-- Design -->
+<div class="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden active-press whisper-shadow">
+<div class="p-6 h-full flex flex-col justify-between">
+<div>
+<h3 class="text-body-lg font-headline-md mb-2">Creative Design</h3>
+<p class="text-body-md text-on-surface-variant">UX, Branding, and Hand-lettering.</p>
+</div>
+<div class="mt-4 flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-tertiary-fixed"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-secondary-fixed flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+</div>
+</div>
+<!-- Fitness & Cooking -->
+<div class="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden active-press whisper-shadow">
+<div class="h-full flex items-center justify-center p-6 bg-primary-container/10">
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">restaurant</span>
+<h3 class="text-body-lg font-headline-md">Culinary Arts</h3>
+<span class="text-label-caps font-label-caps text-primary mt-1 block">84 Active Swaps</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Section -->
+<section class="bg-surface-container-low py-24">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center mb-16">
+<span class="text-label-caps font-label-caps text-secondary">COMMUNITY VOICES</span>
+<h2 class="text-display-lg-mobile md:text-headline-md font-display-lg mt-4 max-w-2xl mx-auto">Connecting creators through mutual growth.</h2>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Quote 1 -->
+<div class="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
+<div class="text-primary flex gap-0.5 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-lg font-headline-md italic text-on-surface mb-6">"I traded two hours of UI design coaching for a weekend of sourdough bread workshops. Best trade I've ever made."</p>
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed"></div>
+<div>
+<p class="font-bold text-body-md">Elena Rivera</p>
+<p class="text-label-caps font-label-caps text-on-surface-variant">PRODUCT DESIGNER</p>
+</div>
+</div>
+</div>
+<!-- Quote 2 -->
+<div class="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10 md:mt-12">
+<div class="text-primary flex gap-0.5 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<p class="text-body-lg font-headline-md italic text-on-surface mb-6">"SkillSwap feels like the old internet—no ads, just people helping people learn Spanish and Python."</p>
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed"></div>
+<div>
+<p class="font-bold text-body-md">Marcus Thorne</p>
+<p class="text-label-caps font-label-caps text-on-surface-variant">LANGUAGES ENTHUSIAST</p>
+</div>
+</div>
+</div>
+<!-- Quote 3 -->
+<div class="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
+<div class="text-primary flex gap-0.5 mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-body-lg font-headline-md italic text-on-surface mb-6">"The credit system makes it so easy. I helped fix a leaky faucet and now I'm learning Jazz Piano."</p>
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed"></div>
+<div>
+<p class="font-bold text-body-md">James Chen</p>
+<p class="text-label-caps font-label-caps text-on-surface-variant">CONSTRUCTION LEAD</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop text-center">
+<div class="max-w-3xl mx-auto border-t border-outline-variant pt-24">
+<h2 class="text-display-lg-mobile md:text-display-lg font-display-lg mb-8">Ready to grow together?</h2>
+<button class="bg-primary text-on-primary px-12 py-4 rounded-lg font-button text-button whisper-shadow active-press transition-all inline-flex items-center gap-2">
+                    Start swapping skills
+                    <span class="material-symbols-outlined">bolt</span>
+</button>
+<p class="mt-6 text-on-surface-variant font-label-caps text-label-caps">JOIN 2,400+ SWAPPERS IN YOUR AREA</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-surface-variant">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="text-headline-md font-headline-md text-primary-fixed-dim">SkillSwap</span>
+<p class="text-body-md font-body-md max-w-xs text-center md:text-left opacity-80">© 2024 SkillSwap. Built for the community. A tactile space for human knowledge.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-stack-lg">
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Community Guidelines</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200 text-primary-fixed-dim" href="#">Support</a>
+</div>
+<div class="flex gap-4">
+<a class="text-surface-variant hover:text-primary-fixed transition-all" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="text-surface-variant hover:text-primary-fixed transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-98');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-98');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-98');
+            });
+        });
+
+        // Simple intersection observer for reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('translate-y-4');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section > div').forEach(div => {
+            div.classList.add('transition-all', 'duration-700', 'ease-out', 'translate-y-4', 'opacity-0');
+            observer.observe(div);
+        });
+    </script>
+</body></html>

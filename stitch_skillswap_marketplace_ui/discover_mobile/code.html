@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Discover Teachers | SkillSwap</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-pill {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .scale-press:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden pb-24">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant/30 sticky top-0 z-50 shadow-sm h-16 flex items-center px-5">
+<div class="flex justify-between items-center w-full max-w-container-max mx-auto">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">SkillSwap</span>
+<div class="flex items-center gap-4">
+<div class="bg-tertiary-container px-3 py-1 rounded-full flex items-center gap-1 border border-tertiary/10">
+<span class="text-label-caps font-label-caps text-on-tertiary-container">12 Credits</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a friendly-looking mentor with a warm smile, wearing modern glasses and casual academic attire. The lighting is soft and natural, emphasizing a professional yet approachable personality. The background is a blurred home office with bookshelves, maintaining a cozy, humanist editorial aesthetic with warm cream tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEWb-LD1JiD1j026yI_J63LB-ytU4X0HWIRHltgqtaQ_xtIYQkXdJe9hMZ0M1PmttekNkpG55E5kEpoqVWXOJnOeUatB-OK3-kQSsJ73WDpkisnMcRX87GEdrJuLooI24vhVOf_9XQjfAvXTBFQQmcu3a2h3kIlTlFckMKhGiVHhWb09E6O3ksa1nBkBLHQN1YtWPedEdkLk55Clpwodlpp_ZBfBaxJD3U_WsAtIOe5hIFCYrqT2jrPq-IY_VouowZr_wFDqO4T9_M"/>
+</div>
+</div>
+</div>
+</header>
+<main class="px-5 mt-stack-lg space-y-stack-lg">
+<!-- Semantic Search Header -->
+<section class="space-y-4">
+<h1 class="text-display-lg-mobile font-display-lg-mobile text-on-surface">Find your next <br/><span class="text-primary italic">breakthrough</span>.</h1>
+<!-- Semantic Search Box -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all text-body-lg font-body-lg placeholder-on-surface-variant/40 rounded-t-lg" placeholder="I want to learn acoustic guitar theory..." type="text"/>
+<button class="absolute right-2 top-2 h-10 px-4 bg-primary text-on-primary rounded-lg text-label-caps font-label-caps scale-press">ASK AI</button>
+</div>
+<!-- Chips / Filters -->
+<div class="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 no-scrollbar">
+<button class="flex-shrink-0 px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full text-label-caps font-label-caps active-pill border border-secondary/10">All Skills</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps border border-outline-variant/30">Gardening</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps border border-outline-variant/30">Pottery</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps border border-outline-variant/30">Web Design</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-label-caps font-label-caps border border-outline-variant/30">Baking</button>
+</div>
+</section>
+<!-- Teacher Discovery List -->
+<section class="space-y-stack-md">
+<div class="flex justify-between items-end">
+<h2 class="text-headline-md font-headline-md text-on-surface">Recommended for you</h2>
+<button class="text-label-caps font-label-caps text-secondary underline">View Maps</button>
+</div>
+<!-- Teacher Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col gap-4 scale-press">
+<div class="flex gap-4">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a creative professional woman in a bright, sun-drenched pottery studio. She is smiling warmly at the camera, wearing an earth-toned apron covered in light clay dust. The composition is artistic and editorial, with a palette of warm terracotta, soft greens, and natural wooden textures, creating a tactile and organic feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV6rbD-RwWIYs4CHCNZ8OOr1p7RQylgBCu1_n2UOEKEpUw6ErdI8-i_ctrjXhrK37JDXt0w2g1feJ3sIt9IePEbIe4IQb0LZVZaTy4Um31TGLxqM-8G0r4uqoRWdFhThRJTSmbM9sqnSbW4nId8_7e1rAQ_osP_gJ1p-GTBZIlNV7nFTD54Y_Folq4dBkB8JQKyWyf-1KfjgyBXRgp_tJeuKzMGkeSXk9bJfp5PpaHni_KdtwYX63rYBYm2J_UVT4t959it28CraAD"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-headline-md font-headline-md text-on-surface leading-tight">Elena Moretti</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-caps font-label-caps">4.9</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Master Potter &amp; Ceramicist</p>
+<div class="mt-2 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider">Pottery</span>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider">Sculpting</span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4 flex justify-between items-center">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="text-label-caps font-label-caps">Florence, Italy</span>
+</div>
+<div class="text-right">
+<span class="block text-label-caps font-label-caps text-on-surface-variant">Exchange Rate</span>
+<span class="text-primary font-bold">1 Credit / hr</span>
+</div>
+</div>
+</div>
+<!-- Teacher Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col gap-4 scale-press">
+<div class="flex gap-4">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-end editorial headshot of a distinguished elderly man with silver hair, standing in a library filled with leather-bound books. He has a kind, intelligent expression. The lighting is dramatic yet warm, emphasizing texture and history. The color scheme is deep forest green and rich mahogany, aligning with a premium minimalist academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCq8_tY0-ceAGrnkkm7W9PodjHJhe_okKwVDmIPiaQIZcne0z_2ibK8hRAJgvm6F1ZGNufD-8eAIqnwmLVilab5IMkt4WVVOKTyUJBlyVb2oIlUs7ZLAmhVDE30xog7T5XY8elTn86PyNXvorwwZ62U73tZd_tFtlT2igUMUwjW-0KIkBsL4ZDDbPnQHBPFdZD9F6trhQ5AnUONdi_C-Mrp12aCTaCeIhMgfrTMQvbvtmE1fDpzPuuoZNNaBqqxyJO0SH3XsiC5MZG"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-headline-md font-headline-md text-on-surface leading-tight">Arthur Vance</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-caps font-label-caps">5.0</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Creative Writing &amp; Philology</p>
+<div class="mt-2 flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider">Writing</span>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider">Latin</span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4 flex justify-between items-center">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+<span class="text-label-caps font-label-caps">Oxford, UK</span>
+</div>
+<div class="text-right">
+<span class="block text-label-caps font-label-caps text-on-surface-variant">Exchange Rate</span>
+<span class="text-primary font-bold">2 Credits / hr</span>
+</div>
+</div>
+</div>
+<!-- Teacher Card 3 (Featured/Asymmetric Layout) -->
+<div class="relative bg-inverse-surface rounded-2xl p-6 text-white overflow-hidden whisper-shadow scale-press">
+<div class="relative z-10 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-label-caps font-label-caps text-primary-fixed-dim bg-primary/20 px-2 py-1 rounded">MASTERCLASS</span>
+<h3 class="text-headline-md font-headline-md mt-2">Organic Gardening with Marcus</h3>
+</div>
+<div class="bg-tertiary w-10 h-10 rounded-full flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-white" data-icon="local_florist">local_florist</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-outline-variant line-clamp-2">Learn the secrets of soil health and seasonal rotations in this intensive 1-on-1 series.</p>
+<button class="w-full py-3 bg-primary text-white rounded-lg font-button text-button shadow-lg">Request Session</button>
+</div>
+<!-- Artistic texture overlay -->
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
+<div class="w-full h-full bg-gradient-to-l from-primary to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- Skill Grid (Bento style) -->
+<section class="space-y-stack-md">
+<h2 class="text-headline-md font-headline-md text-on-surface">Popular Topics</h2>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container h-32 rounded-2xl p-4 flex flex-col justify-between border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="restaurant">restaurant</span>
+<span class="text-label-caps font-label-caps text-on-surface">Culinary Arts</span>
+</div>
+<div class="bg-tertiary-fixed h-32 rounded-2xl p-4 flex flex-col justify-between border border-tertiary/10">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-3xl" data-icon="brush">brush</span>
+<span class="text-label-caps font-label-caps text-on-tertiary-fixed">Fine Painting</span>
+</div>
+<div class="bg-primary-fixed h-32 rounded-2xl p-4 flex flex-col justify-between border border-primary/10">
+<span class="material-symbols-outlined text-on-primary-fixed text-3xl" data-icon="code">code</span>
+<span class="text-label-caps font-label-caps text-on-primary-fixed">Web Dev</span>
+</div>
+<div class="bg-surface-container-high h-32 rounded-2xl p-4 flex flex-col justify-between border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl" data-icon="psychology">psychology</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Philosophy</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Shell) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] h-16 md:hidden px-6 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1">
+<span class="material-symbols-outlined" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Discover</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Board</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Chat</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-surface-variant dark:text-outline-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+<!-- Micro-interactions Script -->
+<script>
+        // Simple touch feedback and animation
+        document.querySelectorAll('.scale-press').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.style.transform = 'scale(0.98)';
+                el.style.transition = 'transform 0.1s ease';
+            });
+            el.addEventListener('touchend', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

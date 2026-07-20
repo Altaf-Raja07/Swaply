@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-tap:active {
+            transform: scale(0.98);
+        }
+        .card-border {
+            border: 0.5px solid rgba(139, 113, 106, 0.15);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #efeeea;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dfc0b7;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant/30 shadow-sm w-full h-16">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-stack-lg">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">SkillSwap</span>
+<div class="hidden md:flex items-center gap-stack-md ml-stack-lg">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Discover</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Messages</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden sm:flex bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-label-caps text-label-caps border border-tertiary/20">
+                    12 Credits
+                </div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary active-tap transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A warm, professional headshot of a middle-aged woman with a friendly smile, photographed in soft, natural morning light within a cozy, plant-filled home studio. The aesthetic is clean and organic, reflecting a communal and humanist brand identity with soft earth tones and a minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg5pmZ71u4uFQWzcjO7M4cZ0l8VzGoJxgnsLFUZrUHVcN59qx9eAKKKQ84QjLj-VcInM7PoB1yhmFrYvbwsQuM37NywP8v5g4E9BhN2ozlPo5cNq7LZGVOAsNXAbpINsqrdy0bj3hRAylzHkXENnVwjUxRVDNMwDltOBOtfxHSFtdFShroNwDZ3TvRkr3saQdaP_RaW6wYTxErzMDVhRHErcrxWkoaUuka3g5MiRfCiD5tI_YMvC65EAVPsjSS2JtBh2xLo56jrvRt"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Header Section -->
+<div class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+<div>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">Account Settings</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Manage your community presence and learning preferences.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="bg-surface border border-secondary text-secondary px-6 py-2 rounded-lg font-button active-tap hover:bg-secondary-container transition-all">Cancel</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-button whisper-shadow active-tap hover:opacity-90 transition-all">Save Changes</button>
+</div>
+</div>
+<!-- Settings Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Identity & Bio -->
+<div class="lg:col-span-4 space-y-stack-lg">
+<section class="bg-white rounded-xl p-6 card-border whisper-shadow">
+<div class="flex flex-col items-center mb-stack-lg">
+<div class="relative group cursor-pointer">
+<div class="w-32 h-32 rounded-full overflow-hidden border-2 border-primary-fixed-dim">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up portrait of a creative individual in a modern, light-filled workshop environment. The lighting is soft and editorial, highlighting a sense of authenticity and lived-in warmth. The color palette is restricted to natural terracottas, creams, and deep greens, consistent with a humanist-organic minimalist brand style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB83nwWeMvd0eKdAPVIQjV_lcLYLCPGS9O5NEQii-WyBLvFw7o87qDIjjoy3kiU59UqhLijlNgbRpbPO1MkXoNDX-R5fXfpQ6hoH7tZxnjEezTGpQxsXyGsoEfWBBJkw8RRVPghLhriaPISRoCxijaynBzW1-KuBDqRn7_1aG1HYlGfyIjt421CBqTulPU9mV9qOtNXGTnYLPKz2_rweulEhVaW6CvpPdoUx3CQEAZr3LHDfn1V-1JuaAjUXhDvolwnnwDj1GSGZSDK"/>
+</div>
+<div class="absolute inset-0 bg-black/20 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<h2 class="text-headline-md font-headline-md mt-4 text-on-surface">Elena Rossi</h2>
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-widest mt-1">Pottery &amp; Design</span>
+</div>
+<div class="space-y-stack-md">
+<div>
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-2">BIO</label>
+<textarea class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md transition-colors resize-none py-2" placeholder="Tell the community about yourself..." rows="4">Lover of clay, traditional Italian cooking, and architectural sketching. I've been teaching pottery for 5 years and want to learn more about UI design to help with my studio's website.</textarea>
+</div>
+<div>
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-2">TIMEZONE</label>
+<select class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md py-2">
+<option>Europe/Rome (GMT+1)</option>
+<option>Europe/London (GMT+0)</option>
+<option>America/New_York (GMT-5)</option>
+<option>Asia/Tokyo (GMT+9)</option>
+</select>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Skills & Availability -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Skill Management Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Teaching -->
+<section class="bg-white rounded-xl p-6 card-border whisper-shadow">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-headline-md font-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                                Skills to Teach
+                            </h3>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add_circle</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-body-md font-medium">
+                                Wheel Throwing <button class="material-symbols-outlined text-[16px]">close</button>
+</span>
+<span class="inline-flex items-center gap-1 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-body-md font-medium">
+                                Glaze Chemistry <button class="material-symbols-outlined text-[16px]">close</button>
+</span>
+<span class="inline-flex items-center gap-1 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-body-md font-medium">
+                                Hand Building <button class="material-symbols-outlined text-[16px]">close</button>
+</span>
+</div>
+</section>
+<!-- Learning -->
+<section class="bg-white rounded-xl p-6 card-border whisper-shadow">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-headline-md font-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">rocket_launch</span>
+                                Learning Goals
+                            </h3>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add_circle</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1.5 rounded-full text-body-md font-medium">
+                                UI Design <button class="material-symbols-outlined text-[16px]">close</button>
+</span>
+<span class="inline-flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1.5 rounded-full text-body-md font-medium">
+                                Photography <button class="material-symbols-outlined text-[16px]">close</button>
+</span>
+</div>
+</section>
+</div>
+<!-- Availability Editor -->
+<section class="bg-white rounded-xl p-6 card-border whisper-shadow">
+<div class="flex items-center justify-between mb-stack-lg">
+<h3 class="text-headline-md font-headline-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">calendar_month</span>
+                            Weekly Availability
+                        </h3>
+<div class="flex items-center gap-2 text-label-caps font-label-caps text-on-surface-variant">
+<div class="w-3 h-3 bg-primary rounded-sm"></div> Available
+                        </div>
+</div>
+<div class="overflow-x-auto custom-scrollbar pb-4">
+<div class="grid grid-cols-8 gap-1 min-w-[600px]">
+<!-- Time Column -->
+<div class="col-span-1 space-y-4 pt-8">
+<div class="h-10 flex items-center justify-end pr-4 text-label-caps font-label-caps text-on-surface-variant">08:00</div>
+<div class="h-10 flex items-center justify-end pr-4 text-label-caps font-label-caps text-on-surface-variant">10:00</div>
+<div class="h-10 flex items-center justify-end pr-4 text-label-caps font-label-caps text-on-surface-variant">12:00</div>
+<div class="h-10 flex items-center justify-end pr-4 text-label-caps font-label-caps text-on-surface-variant">14:00</div>
+<div class="h-10 flex items-center justify-end pr-4 text-label-caps font-label-caps text-on-surface-variant">16:00</div>
+</div>
+<!-- Days Columns -->
+<div class="col-span-7 grid grid-cols-7 gap-1">
+<!-- Day Headers -->
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">MON</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">TUE</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">WED</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">THU</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">FRI</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">SAT</div>
+<div class="text-center font-label-caps text-label-caps text-on-surface-variant mb-2">SUN</div>
+<!-- Grid Slots (Mock) -->
+<!-- Generated with simple JS logic for interactivity below -->
+<div class="col-span-7 grid grid-cols-7 grid-rows-5 gap-1" id="availability-grid">
+<!-- Slots will be injected here -->
+</div>
+</div>
+</div>
+</div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mt-4 italic">Click blocks to toggle your available meeting hours. All times are synced to your current timezone.</p>
+</section>
+<!-- Danger Zone / Account Deletion -->
+<section class="bg-surface-container-low rounded-xl p-6 border border-error/10">
+<h3 class="text-headline-md font-headline-md text-error flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined">warning</span>
+                        Account Privacy
+                    </h3>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<p class="text-body-md text-on-surface-variant">Your profile is currently public. You can switch to private mode to hide your profile from search.</p>
+<button class="bg-error text-on-error px-6 py-2 rounded-lg font-button active-tap hover:opacity-90">Deactivate Account</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter mt-stack-lg bg-inverse-surface dark:bg-black">
+<span class="text-headline-md font-headline-md text-primary-fixed dark:text-primary-fixed-dim">SkillSwap</span>
+<div class="flex gap-stack-md">
+<a class="text-surface-variant dark:text-outline-variant font-label-caps text-label-caps hover:text-primary-fixed transition-colors" href="#">Community Guidelines</a>
+<a class="text-surface-variant dark:text-outline-variant font-label-caps text-label-caps hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="text-surface-variant dark:text-outline-variant font-label-caps text-label-caps hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant dark:text-outline-variant font-label-caps text-label-caps hover:text-primary-fixed transition-colors" href="#">Support</a>
+</div>
+<p class="text-surface-variant dark:text-outline-variant font-body-md text-sm">© 2024 SkillSwap. Built for the community.</p>
+</footer>
+<script>
+        // Simple script to generate the availability grid and handle toggling
+        const grid = document.getElementById('availability-grid');
+        const totalSlots = 7 * 5; // 7 days * 5 time blocks
+        const preSelected = [0, 1, 2, 8, 15, 16, 23, 30, 31, 32]; // Mock active slots
+
+        for (let i = 0; i < totalSlots; i++) {
+            const slot = document.createElement('div');
+            slot.className = `h-10 rounded-sm cursor-pointer transition-all active-tap border border-outline-variant/10 ${preSelected.includes(i) ? 'bg-primary' : 'bg-surface-container-high'}`;
+            slot.onclick = () => {
+                slot.classList.toggle('bg-primary');
+                slot.classList.toggle('bg-surface-container-high');
+            };
+            grid.appendChild(slot);
+        }
+
+        // Dropdown toggle mock
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Micro-interaction sound or animation could go here
+            });
+        });
+    </script>
+</body></html>

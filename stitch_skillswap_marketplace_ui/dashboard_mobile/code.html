@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@600;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-pill {
+            transform: scale(0.98);
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        body {
+            background-color: #faf9f5;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-outline-variant/30 h-16 flex items-center px-margin-mobile shadow-sm">
+<div class="flex justify-between items-center w-full max-w-container-max mx-auto">
+<span class="text-headline-md font-headline-md font-bold text-primary">SkillSwap</span>
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional and friendly headshot of a creative person with a warm smile, set against a soft, blurred studio background. The lighting is natural and high-key, aligning with a modern-organic minimalism aesthetic. The colors are muted and earthy, complementing the terracotta and forest green brand palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFyjCPSH8nX2xig_pNLAYzjQjnXJxyQI2i5gPK4z0FPzaIDzWCYoIlvDSb0yyd98C0MAW65m-9cUUNZC5zgCI94t0fLFX3cFarwR-I61CVHbMC9WMltdbtUnQoS5nLrpp81_zROGTMw-_rgHHinooBwpwc1u0Nilt_tTQhPSvWDuESuV5W8mBE6uun2aJ9PEstdmtCyb9ePbSNZ5jbILvWoVi4gKVLoI-aivcHBTcvwHmlUegIS06Ewdlf7VzW4ycSFRhDrtt_s2-q"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-margin-mobile max-w-container-max mx-auto space-y-stack-lg">
+<!-- Welcome & Credit Highlight Section -->
+<section class="space-y-stack-md">
+<div class="flex flex-col gap-1">
+<span class="text-label-caps font-label-caps text-on-surface-variant">WELCOME BACK</span>
+<h1 class="text-display-lg-mobile font-display-lg-mobile text-on-surface">Hi, Alex</h1>
+</div>
+<!-- Credit Balance Card -->
+<div class="relative overflow-hidden bg-primary-container rounded-xl p-stack-lg text-on-primary-container whisper-shadow">
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps opacity-90 uppercase">Current Balance</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-4xl font-bold font-headline-md">12</span>
+<span class="text-lg font-medium opacity-90">Credits</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center border border-tertiary shadow-inner">
+<span class="material-symbols-outlined text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">generating_tokens</span>
+</div>
+</div>
+<button class="w-full bg-surface-bright text-primary font-button py-3 rounded-lg hover:opacity-90 transition-all active:scale-[0.98]">
+                        Top Up Credits
+                    </button>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-on-primary-container/10 rounded-full blur-2xl"></div>
+</div>
+</section>
+<!-- Upcoming Sessions -->
+<section class="space-y-stack-md">
+<div class="flex justify-between items-center">
+<h2 class="text-headline-md font-headline-md">Next Sessions</h2>
+<a class="text-label-caps font-label-caps text-primary" href="#">VIEW ALL</a>
+</div>
+<!-- Bento-style Session Cards -->
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Session 1: Highlighted -->
+<div class="bg-surface border border-outline-variant/30 rounded-xl p-gutter whisper-shadow flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">palette</span>
+</div>
+<div>
+<h3 class="font-bold text-lg leading-tight">Advanced Watercolor</h3>
+<p class="text-on-surface-variant text-sm">with Elena Rossi</p>
+</div>
+</div>
+<span class="bg-tertiary-container/20 text-on-tertiary-container text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Today</span>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="text-sm font-medium">18:30 - 20:00</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-sm">video_chat</span>
+<span class="text-sm font-medium">Zoom</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-button py-3 rounded-lg hover:opacity-90 active:scale-98 transition-all">
+                        Join Meeting
+                    </button>
+</div>
+<!-- Session 2: Secondary -->
+<div class="bg-surface border border-outline-variant/30 rounded-xl p-gutter whisper-shadow flex items-center gap-4">
+<div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cozy indoor setting with warm lighting, featuring professional baking tools and artisanal bread. The scene is shot with a shallow depth of field, highlighting the textures of flour and wood, fitting an editorial food photography style. The colors are warm browns and creams with a touch of sage green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGHg8rFvfOqSlMY06Q3E__AQLFYvFTVJ-eGmhwklZky6F3_bpHjiIxNl0X2bpVXDhNOau46NtUOKUIr8uEDDis9dInq7DsmjJpQFXAD1GhYNzuCC1b5ypHajJOMedxp7wtDllcYrVrJy75LWYfJu1cLmzgq8ZELDqAV4PbdjaCITtlL4XK2XMfu_S9hOCS8iz2upg6VZxIdweGUXLomMEI8kI9hSjmN88w-c32kkxFLZxVcISey4G7F8andY9H4AHbPRuvkP4Yz6px"/>
+</div>
+<div class="flex-grow">
+<h3 class="font-bold text-md leading-tight">Sourdough Mastery</h3>
+<p class="text-on-surface-variant text-xs">Tomorrow at 10:00 AM</p>
+<div class="mt-2 flex gap-1">
+<span class="text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded-full font-bold uppercase">1 Credit</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Skill Stats / Progress -->
+<section class="space-y-stack-md">
+<h2 class="text-headline-md font-headline-md">Your Growth</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-gutter rounded-xl border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary mb-2">school</span>
+<p class="text-2xl font-bold font-headline-md">8</p>
+<p class="text-label-caps font-label-caps text-on-surface-variant">SKILLS LEARNED</p>
+</div>
+<div class="bg-surface-container-low p-gutter rounded-xl border border-outline-variant/20">
+<span class="material-symbols-outlined text-tertiary mb-2">stars</span>
+<p class="text-2xl font-bold font-headline-md">14</p>
+<p class="text-label-caps font-label-caps text-on-surface-variant">SESSIONS GIVEN</p>
+</div>
+</div>
+</section>
+<!-- Skill Chips (Tags) -->
+<section class="space-y-stack-md">
+<h2 class="text-headline-md font-headline-md">Interests</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium">Pottery</span>
+<span class="px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium">UI Design</span>
+<span class="px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium">Urban Gardening</span>
+<span class="px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium">Coffee Roasting</span>
+<span class="px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium">+ Add New</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (Mobile Optimized) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:hidden">
+<div class="flex justify-around items-center h-20 px-margin-mobile">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-label-caps font-label-caps">Discover</span>
+</a>
+<!-- Active State Dashboard -->
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-label-caps font-label-caps border-b-2 border-primary pb-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-label-caps font-label-caps">Messages</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps font-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Contextual FAB -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('touchstart', () => {
+                el.classList.add('opacity-80', 'scale-98');
+            });
+            el.addEventListener('touchend', () => {
+                el.classList.remove('opacity-80', 'scale-98');
+            });
+        });
+
+        // Atmospheric Scroll Effect for Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-white/90', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('bg-white/90', 'backdrop-blur-md');
+            }
+        });
+    </script>
+</body></html>

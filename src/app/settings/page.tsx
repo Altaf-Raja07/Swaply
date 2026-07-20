@@ -62,7 +62,7 @@ export default function SettingsPage() {
 
   return (
     <>
-      <Navbar activeTab="dashboard" />
+      <Navbar />
       <main className="pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
         {/* Header */}
         <div className="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
@@ -84,7 +84,7 @@ export default function SettingsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
           {/* Left Column: Identity & Bio */}
           <div className="lg:col-span-4 space-y-stack-lg">
-            <section className="bg-white rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
+            <section className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
               <div className="flex flex-col items-center mb-stack-lg">
                 <div className="relative group cursor-pointer">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-primary-fixed-dim">
@@ -136,7 +136,7 @@ export default function SettingsPage() {
             {/* Skill Management Bento */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
               {/* Teaching Skills */}
-              <section className="bg-white rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
+              <section className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-headline-md font-headline-md flex items-center gap-2">
                     <span className="material-symbols-outlined text-primary">
@@ -164,7 +164,7 @@ export default function SettingsPage() {
               </section>
 
               {/* Learning Goals */}
-              <section className="bg-white rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
+              <section className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-headline-md font-headline-md flex items-center gap-2">
                     <span className="material-symbols-outlined text-tertiary">
@@ -193,7 +193,7 @@ export default function SettingsPage() {
             </div>
 
             {/* Weekly Availability */}
-            <section className="bg-white rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
+            <section className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/20 whisper-shadow">
               <div className="flex items-center justify-between mb-stack-lg">
                 <h3 className="text-headline-md font-headline-md flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary">

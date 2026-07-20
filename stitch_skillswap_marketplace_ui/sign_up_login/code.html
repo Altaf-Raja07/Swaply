@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Join SkillSwap - Learn &amp; Teach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400..700;1,400..700&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .auth-card-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-press:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .input-focus-effect:focus {
+            outline: none;
+            border-bottom-color: #a43716; /* Primary Terracotta */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "tertiary": "#735c00",
+                      "primary-fixed": "#ffdbd1",
+                      "surface": "#faf9f5",
+                      "surface-container-low": "#f4f4f0",
+                      "surface-bright": "#faf9f5",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "error-container": "#ffdad6",
+                      "surface-tint": "#a73918",
+                      "outline-variant": "#dfc0b7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#8b716a",
+                      "inverse-on-surface": "#f2f1ed",
+                      "on-secondary-fixed-variant": "#394b3d",
+                      "tertiary-container": "#c7a84a",
+                      "on-background": "#1b1c1a",
+                      "on-secondary-fixed": "#0e1f13",
+                      "surface-container-high": "#e9e8e4",
+                      "secondary-fixed-dim": "#b7ccb9",
+                      "on-primary-fixed": "#3b0900",
+                      "on-surface-variant": "#58423c",
+                      "surface-dim": "#dbdad6",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#546758",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#c54f2c",
+                      "background": "#faf9f5",
+                      "secondary": "#506354",
+                      "tertiary-fixed": "#ffe089",
+                      "primary-fixed-dim": "#ffb5a0",
+                      "tertiary-fixed-dim": "#e4c363",
+                      "inverse-primary": "#ffb5a0",
+                      "secondary-fixed": "#d3e8d5",
+                      "inverse-surface": "#2f312e",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#862201",
+                      "on-surface": "#1b1c1a",
+                      "primary": "#a43716",
+                      "surface-container": "#efeeea",
+                      "on-primary-container": "#fffbff",
+                      "secondary-container": "#d0e5d2",
+                      "surface-container-highest": "#e3e2df",
+                      "on-tertiary-container": "#4e3d00",
+                      "on-tertiary-fixed": "#241a00",
+                      "surface-variant": "#e3e2df"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "container-max": "1200px",
+                      "stack-md": "16px",
+                      "unit": "4px",
+                      "gutter": "24px",
+                      "stack-sm": "8px",
+                      "stack-lg": "32px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Literata"],
+                      "display-lg": ["Literata"],
+                      "label-caps": ["Karla"],
+                      "button": ["Karla"],
+                      "body-lg": ["Karla"],
+                      "display-lg-mobile": ["Literata"],
+                      "body-md": ["Karla"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Placeholder (Simplified for Auth) -->
+<header class="w-full h-16 flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<a class="text-headline-md font-headline-md font-bold text-primary" href="/">SkillSwap</a>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile">
+<div class="w-full max-w-[480px] space-y-stack-lg">
+<!-- Branding/Illustration Section -->
+<div class="text-center space-y-stack-sm">
+<div class="inline-flex items-center justify-center bg-tertiary-fixed p-stack-md rounded-xl mb-stack-md auth-card-shadow">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[40px]" data-icon="diversity_3">diversity_3</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Welcome back to the collective</h1>
+<p class="font-body-md text-on-surface-variant max-w-sm mx-auto">Where every lesson is a trade and every hobby is a masterclass. Join the community today.</p>
+</div>
+<!-- Login/Signup Card -->
+<div class="bg-surface border-[0.5px] border-outline-variant/40 rounded-xl p-8 auth-card-shadow space-y-stack-lg">
+<!-- Social Auth -->
+<button class="w-full h-[48px] flex items-center justify-center gap-stack-sm border border-outline rounded-lg bg-white text-on-surface font-button hover:bg-surface-container-low transition-colors active-press">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                    Continue with Google
+                </button>
+<div class="relative flex items-center py-stack-sm">
+<div class="flex-grow border-t border-outline-variant/30"></div>
+<span class="flex-shrink mx-4 text-label-caps font-label-caps text-on-surface-variant uppercase">Or use email</span>
+<div class="flex-grow border-t border-outline-variant/30"></div>
+</div>
+<!-- Form -->
+<form class="space-y-stack-md" onsubmit="event.preventDefault();">
+<div class="space-y-unit">
+<label class="block text-label-caps font-label-caps text-on-surface-variant" for="email">EMAIL ADDRESS</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-2 font-body-md input-focus-effect transition-all" id="email" placeholder="name@domain.com" type="email"/>
+</div>
+<div class="space-y-unit">
+<label class="block text-label-caps font-label-caps text-on-surface-variant" for="password">PASSWORD</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-2 font-body-md input-focus-effect transition-all" id="password" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex items-center justify-between pt-stack-sm">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant">Remember me</span>
+</label>
+<a class="text-body-md text-primary font-medium hover:underline" href="#">Forgot?</a>
+</div>
+<button class="w-full h-[48px] bg-primary text-on-primary font-button rounded-lg auth-card-shadow active-press hover:bg-primary-container transition-colors mt-stack-lg" type="submit">
+                        Sign In
+                    </button>
+</form>
+</div>
+<!-- Footer for Auth -->
+<p class="text-center text-body-md text-on-surface-variant">
+                New to the community? 
+                <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+<!-- Illustrated Concepts (The "Lived-In" Visual) -->
+<div class="grid grid-cols-2 gap-gutter pt-stack-lg">
+<div class="bg-surface-container-low p-stack-md rounded-xl space-y-stack-sm border border-outline-variant/20">
+<img class="w-full h-32 object-cover rounded-lg" data-alt="A warm, tactile photo of hands passing a worn ceramic bowl between each other in a sun-drenched studio. The lighting is golden and natural, emphasizing the organic textures of clay and skin. The mood is communal and editorial, fitting a high-end craft magazine." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEZxDbT0SNz7T3CuTZng55IjK0q60FfUMIq4y3D-YYurfZ3Cqj2VsXag685b1ggX8olV-kN7uw9o5BpoygrTK5W7TerrLtk30yurDPJbeW8_PbT33RQHSd5lYr7ZMExwOIwfgHQS3BSNbNkwpar3XCFr-AUFJGOP7sDXLrP9rw9vKLUu6ZcuCWgJ1BsZMNpZIP_XDIWjkDOID68HzoVyc6Z2puulxfw8jA6DM4x_-Ygn2IQOKgQ85BqQn3MiBT2I7LEz3H8fnEFCp9"/>
+<div class="space-y-unit">
+<p class="font-label-caps text-label-caps text-secondary uppercase">Learn</p>
+<h3 class="font-headline-md text-[18px]">Pottery Basics</h3>
+</div>
+</div>
+<div class="bg-surface-container-low p-stack-md rounded-xl space-y-stack-sm border border-outline-variant/20">
+<img class="w-full h-32 object-cover rounded-lg" data-alt="A macro shot of a hand sketching intricate architectural diagrams on a thick, creamy paper notebook. Warm wood desk background with soft focus on a vintage drafting pen. The lighting is soft and side-lit, creating a serene, intellectual atmosphere with earthy tones of forest green and ochre." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrZvTVYWtryl0hzRwbE4GNMAGkST4cGcsXOMVZvraFDl0VXW2M5RAfB3kXRf0ISq7CMiBhG2Swrb3JwBtNFgmXqWsVaE76dAmZ2ZzYE4ScbDuQZKYGhgqIeEGwUicM4aQK9Mgh5LVbcKgPVLdS-k3SX5ftaDh5XkxISFeve9rzqzlyr6fFT3xZeNEZyRPCVTbC08VstNn7P6ypyRdlC9wKv5UIJe84DvSuCECd4vD779Ij5Wxphqtyswo0z8CsiP96HfWn-PHDe89Y"/>
+<div class="space-y-unit">
+<p class="font-label-caps text-label-caps text-secondary uppercase">Teach</p>
+<h3 class="font-headline-md text-[18px]">Drafting 101</h3>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="bg-inverse-surface dark:bg-black w-full mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-stack-sm">
+<span class="text-headline-md font-headline-md text-primary-fixed dark:text-primary-fixed-dim">SkillSwap</span>
+<p class="text-body-md font-body-md text-surface-variant dark:text-outline-variant">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-label-caps font-label-caps text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Community Guidelines</a>
+<a class="text-label-caps font-label-caps text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-label-caps font-label-caps text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-label-caps font-label-caps text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Support</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the "Remember Me" checkbox
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                if(e.target.checked) {
+                    e.target.parentElement.classList.add('text-primary');
+                } else {
+                    e.target.parentElement.classList.remove('text-primary');
+                }
+            });
+        });
+
+        // Atmospheric fade-in for the main card
+        document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('main');
+            main.style.opacity = '0';
+            main.style.transform = 'translateY(10px)';
+            main.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            
+            requestAnimationFrame(() => {
+                main.style.opacity = '1';
+                main.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,9 +1,10 @@
 import { Footer } from "@/components/layout/footer";
+import { Button } from "@/components/ui/button";
 
 export default function OnboardingLearnPage() {
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
-      <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg">
+      <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
         <div className="w-full max-w-container-max flex flex-col md:flex-row items-center gap-gutter lg:gap-32">
           {/* Left Column: Context & Intent */}
           <div className="w-full md:w-1/2 space-y-stack-md order-2 md:order-1">
@@ -88,12 +89,12 @@ export default function OnboardingLearnPage() {
                       +12
                     </div>
                   </div>
-                  <button className="bg-primary text-on-primary px-stack-lg py-3 rounded-lg font-button text-button whisper-shadow hover:brightness-110 transition-all active-sink flex items-center gap-stack-sm">
+                  <Button>
                     Continue
                     <span className="material-symbols-outlined text-sm">
                       arrow_forward
                     </span>
-                  </button>
+                  </Button>
                 </div>
               </div>
 

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Profile | SkillSwap</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .whisper-shadow { box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05); }
+        .active-sink:active { transform: scale(0.98); box-shadow: none; }
+        .stamped-badge { box-shadow: inset 0 1px 1px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); }
+        .editorial-border { border: 0.5px solid rgba(139, 113, 106, 0.15); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant/30 shadow-sm sticky top-0 z-50 h-16">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-stack-lg">
+<span class="text-headline-md font-headline-md font-bold text-primary">SkillSwap</span>
+<div class="hidden md:flex gap-stack-md items-center ml-stack-lg">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Discover</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200" href="#">Messages</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-label-caps stamped-badge flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">monetization_on</span>
+                    12 Credits
+                </div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-2">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly educator in a bright, light-filled home office with shelves of books in the background. The aesthetic is warm, humanist, and editorial, with soft natural lighting and a high-end photography feel using a muted, organic color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy1VRBCsw9OLp_9_jd-LLh1KhVDcKQjZbd-KA1KDDjKnbtnBGG31Ed71r6GazxdXBK-SNi_MwodONPC4BCUu8SWfMVE5aW6WmYdRK7APPsfhdacpvL4I-OIDy6EKcSQq0rJuQzYjjcfG-UOQOh6MXO9frwKjNUJbotPMnM2rB2q5uEfaF80aPrIM0Zo2wtU8RbZ8N_gGacmypvI9BBJjij24nr0wKGO-T7MzcuiFTeacHQ_3g42w29pkfSgYGxpk0gU3ySShWlL_RH"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
+<!-- Header / Bio Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="md:col-span-8 flex flex-col md:flex-row gap-stack-lg items-start">
+<div class="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden editorial-border whisper-shadow flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a mentor with a kind expression, wearing a forest green linen shirt. The setting is a sun-drenched studio with organic textures of wood and clay. The photography is minimalist and professional, emphasizing a communal and authentic brand personality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqGftLOC1kYLYgGAqCgejpPWh_uL8Q89ei4CbRBrYg0qe-p4BIFifWWwC0nvXkf2OnR1d7MGMrDvUl2lEDzv8kmHZZZjYs0CRRUBS0TUfqWXPtB2EpQRVzLn01LAo2YdgAEiyXs6IQ3ZW1aJOsq0to1jWU_UQyA-wsNvuHvMOg2UqV-gFoDHW-G3RjF2c92k0z0AZv3qVF8z5WpnCBlEZnG81BLQJjjm9sGx11zM_gWnLfxA3dPtfF_6iHsvgi3TST3wFNKFeyntQt"/>
+</div>
+<div class="flex flex-col gap-unit">
+<div class="flex items-center gap-stack-sm mb-unit">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">Elena Vance</h1>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mb-stack-md">
+                        Digital Product Designer and Potter. I help creators bridge the gap between physical craft and digital systems. Over 10 years of experience in editorial design and brand identity.
+                    </p>
+<div class="flex flex-wrap gap-stack-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-label-caps">GMT+2 (Berlin)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">4.9</span>
+<span class="text-label-caps">(124 Reviews)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-stack-md items-end justify-start">
+<button class="w-full md:w-auto px-stack-lg py-3 bg-primary text-on-primary font-button rounded-lg whisper-shadow active-sink transition-all hover:opacity-90">
+                    Book a session
+                </button>
+<button class="w-full md:w-auto px-stack-lg py-3 border border-secondary text-secondary font-button rounded-lg active-sink transition-all hover:bg-secondary-container/20">
+                    Message Elena
+                </button>
+</div>
+</section>
+<!-- Skill Bento Grid -->
+<section class="mb-stack-lg">
+<div class="flex items-center justify-between mb-stack-md">
+<h2 class="text-headline-md font-headline-md text-on-surface">Skills to Learn</h2>
+<span class="text-label-caps text-primary cursor-pointer hover:underline">View All Curriculum</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Skill Card 1 -->
+<div class="group p-stack-lg bg-surface-container-low rounded-xl editorial-border whisper-shadow cursor-pointer transition-all hover:bg-surface-container duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">brush</span>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:rotate-45">arrow_outward</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-stack-sm">Editorial Layouts</h3>
+<p class="text-body-md text-on-surface-variant mb-stack-md">Master the grid systems and typography used in high-end digital and print magazines.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">Typography</span>
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">InDesign</span>
+</div>
+</div>
+<!-- Skill Card 2 -->
+<div class="group p-stack-lg bg-surface-container-low rounded-xl editorial-border whisper-shadow cursor-pointer transition-all hover:bg-surface-container duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="p-2 bg-tertiary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">data_object</span>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:rotate-45">arrow_outward</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-stack-sm">Design Systems</h3>
+<p class="text-body-md text-on-surface-variant mb-stack-md">Building scalable components, tokenization, and documentation for growing teams.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">Figma</span>
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">Architecture</span>
+</div>
+</div>
+<!-- Skill Card 3 -->
+<div class="group p-stack-lg bg-surface-container-low rounded-xl editorial-border whisper-shadow cursor-pointer transition-all hover:bg-surface-container duration-300">
+<div class="flex justify-between items-start mb-stack-md">
+<div class="p-2 bg-primary-container/20 rounded-lg">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+</div>
+<span class="material-symbols-outlined text-outline transition-transform group-hover:rotate-45">arrow_outward</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-stack-sm">Ceramic Forms</h3>
+<p class="text-body-md text-on-surface-variant mb-stack-md">Basics of wheel-throwing and hand-building. Understanding clay as a creative medium.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">Tactile Craft</span>
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-label-caps">Art</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Availability & Reviews Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Calendar Preview -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl editorial-border whisper-shadow p-stack-lg overflow-hidden">
+<div class="flex justify-between items-center mb-stack-lg">
+<h2 class="text-headline-md font-headline-md text-on-surface">Weekly Availability</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center mb-stack-sm">
+<div class="text-label-caps text-outline">Mon</div>
+<div class="text-label-caps text-outline">Tue</div>
+<div class="text-label-caps text-outline">Wed</div>
+<div class="text-label-caps text-outline">Thu</div>
+<div class="text-label-caps text-outline">Fri</div>
+<div class="text-label-caps text-outline">Sat</div>
+<div class="text-label-caps text-outline">Sun</div>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<!-- Placeholder days -->
+<div class="h-24 bg-surface-container rounded-lg opacity-50 flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-on-surface-variant">12</span>
+</div>
+<div class="h-24 bg-primary-container/5 rounded-lg border border-primary/20 flex flex-col items-center justify-center gap-1 relative overflow-hidden group">
+<div class="absolute inset-x-0 bottom-0 h-1 bg-primary"></div>
+<span class="text-label-caps text-on-surface">13</span>
+<div class="px-1 py-0.5 bg-primary text-[10px] text-on-primary rounded font-bold uppercase">2 Slots</div>
+</div>
+<div class="h-24 bg-surface-container rounded-lg opacity-50 flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-on-surface-variant">14</span>
+</div>
+<div class="h-24 bg-primary-container/5 rounded-lg border border-primary/20 flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-on-surface">15</span>
+<div class="px-1 py-0.5 bg-primary text-[10px] text-on-primary rounded font-bold uppercase">1 Slot</div>
+</div>
+<div class="h-24 bg-surface-container rounded-lg opacity-50 flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-on-surface-variant">16</span>
+</div>
+<div class="h-24 bg-surface-container-highest/20 rounded-lg flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-outline-variant">17</span>
+</div>
+<div class="h-24 bg-surface-container-highest/20 rounded-lg flex flex-col items-center justify-center gap-1">
+<span class="text-label-caps text-outline-variant">18</span>
+</div>
+</div>
+<p class="mt-stack-md text-label-caps text-on-surface-variant italic text-center">Next available session: Tomorrow at 14:00 (GMT+2)</p>
+</div>
+<!-- Reviews -->
+<div class="lg:col-span-5 flex flex-col gap-stack-md">
+<h2 class="text-headline-md font-headline-md text-on-surface">Recent Reviews</h2>
+<!-- Review Card 1 -->
+<div class="bg-surface-container-low p-stack-md rounded-xl editorial-border whisper-shadow">
+<div class="flex items-center gap-stack-sm mb-stack-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A profile photo of a young professional woman with glasses, smiling warmly. The image has a soft focus background of a modern creative office with plants and warm lighting, following the humanist-editorial style guide." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkUvVj-QSpTryyFROJ7J0OPirC1ACOmccNcU672RrMWRr0PCHCCZOMXtx1bhs2bvZ4gkf_WPHVGw_Nyd4Azaz0SUzfyx_VUsUjoQ8dUA4Sd9JTr88pviukiDl189DGdOhobI9ooLDSuP3-9kSdV8TbBkkPDLtH0OXzEIICPEIoNKUZ91QduhclFxRqommCof6NYbZzHYmFl_SInlzMxeebY_vXAX9bUm0KCcUG9nRYyD0L09fiMX80FUloLhw3n-AwxgrOFekTBOnq"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Marcus Thorne</p>
+<div class="flex gap-0.5 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant italic">"Elena's approach to grid systems completely changed how I think about layout. She doesn't just teach tools; she teaches the philosophy behind the design."</p>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-surface-container-low p-stack-md rounded-xl editorial-border whisper-shadow">
+<div class="flex items-center gap-stack-sm mb-stack-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male student in his late 20s with a thoughtful expression, set against a backdrop of a minimal art studio. The lighting is clean and natural, reflecting the organic minimalism aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLNRiNLxjkZX4TOIXrDFXtVjunosHfV-9Cttv02445n1l6GPp905ez7LuDcMyfb0egdpBuOe4UodlICvvBLExkQ0bTvNJWPHyDRpDGBQM1UQzS8lihHJyujBmjiZ-33XRgkknUFDfotZsCiPHZ1WpC3XB5RJPi86MjITPk-3_xGREHR9sqF99vpOxDbx580xhgZzybUKPAxY4tR3W-QTuzxNd6Z8yiqMKiK9FDTJOQyrKjW6vDyyzCOJwm34rRUaeDLuWG_ffd_Gwg"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sarah Chen</p>
+<div class="flex gap-0.5 text-tertiary">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+</div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant italic">"Highly recommend for anyone wanting to mix digital design with physical craft. Super patient and insightful!"</p>
+</div>
+<button class="w-full text-label-caps text-secondary font-bold hover:text-primary transition-colors py-2 border-b border-outline-variant/30">Read all 124 reviews</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col gap-unit items-center md:items-start">
+<span class="text-headline-md font-headline-md text-primary-fixed">SkillSwap</span>
+<p class="text-surface-variant text-body-md">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<div class="flex flex-wrap gap-stack-md justify-center">
+<a class="text-label-caps text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Community Guidelines</a>
+<a class="text-label-caps text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-label-caps text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-label-caps text-outline-variant hover:text-primary-fixed transition-colors duration-200" href="#">Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for skill cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.classList.add('scale-[0.98]');
+            });
+            card.addEventListener('mouseup', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[0.98]');
+            });
+        });
+
+        // Simple visibility observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

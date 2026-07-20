@@ -18,11 +18,11 @@ export default function SessionDetailPage() {
       {/* Mobile Header */}
       <header className="md:hidden flex items-center justify-between h-16 px-4 bg-surface border-b border-outline-variant/30 z-20">
         <div className="flex items-center gap-3">
-          <button className="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+          <Button variant="ghost" className="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
             <Link href="/dashboard">
               <span className="material-symbols-outlined">arrow_back</span>
             </Link>
-          </button>
+          </Button>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden bg-surface-container" />
             <div>
@@ -30,7 +30,7 @@ export default function SessionDetailPage() {
                 Elena Woodworking
               </h1>
               <span className="text-label-caps text-secondary font-label-caps mt-1 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-green-500" /> Online
+                <span className="w-2 h-2 rounded-full bg-secondary" /> Online
               </span>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function SessionDetailPage() {
             Session: Today at 4:00 PM
           </span>
         </div>
-        <button className="text-primary font-bold text-label-caps">RESCHEDULE</button>
+        <Button variant="secondary" className="text-primary font-bold text-label-caps">RESCHEDULE</Button>
       </div>
 
       <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
@@ -165,14 +165,14 @@ export default function SessionDetailPage() {
 
             {/* Action List */}
             <div className="flex flex-col gap-2">
-              <button className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-error-container/10 transition-all text-error">
+              <Button variant="danger" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-error-container/10 transition-all text-error w-full">
                 <span className="font-bold text-label-caps">Cancel Session</span>
                 <span className="material-symbols-outlined">block</span>
-              </button>
-              <button className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-surface-container-high transition-all text-on-surface-variant">
+              </Button>
+              <Button variant="ghost" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-surface-container-high transition-all text-on-surface-variant w-full">
                 <span className="font-bold text-label-caps">Report an Issue</span>
                 <span className="material-symbols-outlined">flag</span>
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -180,16 +180,16 @@ export default function SessionDetailPage() {
           <div className="lg:col-span-8 h-[600px] flex flex-col bg-surface-container-lowest rounded-xl editorial-border whisper-shadow overflow-hidden">
             <div className="px-stack-lg py-4 border-b border-outline-variant/30 flex items-center justify-between bg-surface-container">
               <div className="flex items-center gap-stack-md">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <div className="w-2 h-2 rounded-full bg-secondary" />
                 <h3 className="font-bold text-on-surface">Chat with Elena</h3>
               </div>
               <div className="flex gap-stack-sm">
-                <button className="p-2 hover:bg-white rounded-full transition-colors">
+                <Button variant="secondary" className="p-2 hover:bg-white rounded-full transition-colors">
                   <span className="material-symbols-outlined">videocam</span>
-                </button>
-                <button className="p-2 hover:bg-white rounded-full transition-colors">
+                </Button>
+                <Button variant="ghost" className="p-2 hover:bg-white rounded-full transition-colors">
                   <span className="material-symbols-outlined">more_vert</span>
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -247,17 +247,17 @@ export default function SessionDetailPage() {
 
             <div className="p-stack-lg border-t border-outline-variant/30 bg-white">
               <div className="flex items-end gap-stack-md bg-surface rounded-xl p-2 border border-outline-variant/20 focus-within:border-primary transition-all">
-                <button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+                <Button variant="ghost" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
                   <span className="material-symbols-outlined">add_circle</span>
-                </button>
+                </Button>
                 <textarea
                   className="flex-grow bg-transparent border-none focus:ring-0 resize-none py-2 px-1 text-body-md"
                   placeholder="Type a message..."
                   rows={1}
                 />
-                <button className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center hover:opacity-90">
+                <Button variant="ghost" className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center hover:opacity-90">
                   <span className="material-symbols-outlined">send</span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -303,10 +303,10 @@ export default function SessionDetailPage() {
                 <p className="text-label-caps text-on-surface-variant mt-0.5">
                   2.4 MB &bull; Syllabus
                 </p>
-                <button className="mt-3 text-secondary font-bold text-label-caps flex items-center gap-1">
+                <Button variant="ghost" className="mt-3 text-secondary font-bold text-label-caps flex items-center gap-1">
                   <span className="material-symbols-outlined text-[16px]">download</span>
                   DOWNLOAD
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -366,9 +366,9 @@ export default function SessionDetailPage() {
         {/* Mobile Chat Input */}
         <div className="md:hidden p-4 bg-surface border-t border-outline-variant/20">
           <div className="flex items-end gap-2">
-            <button className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
               <span className="material-symbols-outlined">add_circle</span>
-            </button>
+            </Button>
             <div className="flex-1 bg-surface-container-low border border-outline-variant/40 rounded-2xl min-h-[48px] py-2 px-4 flex items-center">
               <textarea
                 className="w-full bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50 resize-none max-h-32 overflow-y-auto"
@@ -376,9 +376,9 @@ export default function SessionDetailPage() {
                 rows={1}
               />
             </div>
-            <button className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-lg transition-transform">
+            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-lg transition-transform">
               <span className="material-symbols-outlined">send</span>
-            </button>
+            </Button>
           </div>
           <div className="mt-4 h-1 w-1/3 bg-on-surface/10 mx-auto rounded-full" />
         </div>

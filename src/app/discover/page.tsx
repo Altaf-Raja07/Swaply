@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { TeacherCard } from "@/components/shared/teacher-card";
 import { CreditBadge } from "@/components/shared/credit-badge";
+import { Button } from "@/components/ui/button";
 
 const teachers = [
   {
@@ -103,9 +104,9 @@ export default function DiscoverPage() {
                 placeholder="I want to learn sourdough baking..."
                 type="text"
               />
-              <button className="bg-primary text-white px-6 py-2 rounded-lg font-button active-press whisper-shadow">
+              <Button variant="primary">
                 Search
-              </button>
+              </Button>
             </div>
           </div>
         </section>
@@ -125,24 +126,25 @@ export default function DiscoverPage() {
               placeholder="I want to learn acoustic guitar theory..."
               type="text"
             />
-            <button className="absolute right-2 top-2 h-10 px-4 bg-primary text-on-primary rounded-lg text-label-caps font-label-caps">
+            <Button variant="secondary" size="sm" className="absolute right-2 top-2">
               ASK AI
-            </button>
+            </Button>
           </div>
           {/* Mobile Filter Chips */}
           <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 scroll-hide">
             {["All Skills", "Gardening", "Pottery", "Web Design", "Baking"].map(
               (chip) => (
-                <button
+                <Button
                   key={chip}
-                  className={`flex-shrink-0 px-4 py-2 rounded-full text-label-caps font-label-caps border ${
+                  variant={chip === "All Skills" ? "secondary-container" : "ghost"}
+                  className={`flex-shrink-0 rounded-full border text-label-caps font-label-caps ${
                     chip === "All Skills"
-                      ? "bg-secondary-container text-on-secondary-container border-secondary/10"
-                      : "bg-surface-container-high text-on-surface-variant border-outline-variant/30"
+                      ? "border-secondary/10"
+                      : "border-outline-variant/30 bg-surface-container-high"
                   }`}
                 >
                   {chip}
-                </button>
+                </Button>
               )
             )}
           </div>
@@ -156,43 +158,42 @@ export default function DiscoverPage() {
             </span>
             {["Skill: All", "Rating", "Credits", "Availability"].map(
               (filter) => (
-                <button
+                <Button
                   key={filter}
-                  className={`px-4 py-2 rounded-full text-label-caps flex items-center gap-1 active-press ${
+                  variant={filter === "Skill: All" ? "secondary-container" : "ghost"}
+                  className={`rounded-full text-label-caps flex items-center gap-1 ${
                     filter === "Skill: All"
-                      ? "bg-secondary-container text-on-secondary-container"
-                      : "bg-surface-container-high text-on-surface-variant"
+                      ? ""
+                      : "bg-surface-container-high"
                   }`}
                 >
                   {filter}{" "}
                   <span className="material-symbols-outlined text-[16px]">
                     expand_more
                   </span>
-                </button>
+                </Button>
               )
             )}
           </div>
           <div className="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30 self-end md:self-auto">
-            <button
-              className={`p-2 rounded-md ${
-                gridView
-                  ? "bg-white shadow-sm text-primary"
-                  : "text-on-surface-variant"
-              } material-symbols-outlined`}
+            <Button
+              variant={gridView ? "primary" : "ghost"}
+              className={`p-2 rounded-md material-symbols-outlined ${
+                gridView ? "bg-white shadow-sm text-primary" : ""
+              }`}
               onClick={() => setGridView(true)}
             >
               grid_view
-            </button>
-            <button
-              className={`p-2 rounded-md ${
-                !gridView
-                  ? "bg-white shadow-sm text-primary"
-                  : "text-on-surface-variant"
-              } material-symbols-outlined`}
+            </Button>
+            <Button
+              variant={!gridView ? "primary" : "ghost"}
+              className={`p-2 rounded-md material-symbols-outlined ${
+                !gridView ? "bg-white shadow-sm text-primary" : ""
+              }`}
               onClick={() => setGridView(false)}
             >
               view_list
-            </button>
+            </Button>
           </div>
         </section>
 
@@ -215,9 +216,9 @@ export default function DiscoverPage() {
             <h2 className="text-headline-md font-headline-md text-on-surface">
               Recommended for you
             </h2>
-            <button className="text-label-caps font-label-caps text-secondary underline">
+            <Button variant="secondary" size="sm" className="underline">
               View Maps
-            </button>
+            </Button>
           </div>
 
           {mobileTeachers.map((t) => (
@@ -294,9 +295,9 @@ export default function DiscoverPage() {
                 Learn the secrets of soil health and seasonal rotations in this
                 intensive 1-on-1 series.
               </p>
-              <button className="w-full py-3 bg-primary text-white rounded-lg font-button text-button shadow-lg">
+              <Button variant="primary" className="w-full shadow-lg">
                 Request Session
-              </button>
+              </Button>
             </div>
             <div className="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
               <div className="w-full h-full bg-gradient-to-l from-primary to-transparent" />
@@ -330,9 +331,9 @@ export default function DiscoverPage() {
 
         {/* Load More - Desktop */}
         <div className="mt-stack-lg flex justify-center hidden md:flex">
-          <button className="px-8 py-3 rounded-lg border border-secondary text-secondary font-button active-press hover:bg-secondary/5 transition-colors">
+          <Button variant="ghost" className="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/5">
             Load More Mentors
-          </button>
+          </Button>
         </div>
       </main>
       <BottomNav activeTab="discover" />

@@ -25,7 +25,7 @@ export default function BookSessionPage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar activeTab="discover" />
       <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
         {/* Booking Progress Header */}
         <div className="mb-stack-lg max-w-2xl mx-auto">
@@ -78,12 +78,12 @@ export default function BookSessionPage() {
                       Select Date &amp; Time
                     </h3>
                     <div className="flex gap-2">
-                      <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors">
+                      <Button variant="ghost" size="sm">
                         <span className="material-symbols-outlined">chevron_left</span>
-                      </button>
-                      <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors">
+                      </Button>
+                      <Button variant="ghost" size="sm">
                         <span className="material-symbols-outlined">chevron_right</span>
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
@@ -95,20 +95,17 @@ export default function BookSessionPage() {
                           {day}
                         </p>
                         {day === "SAT" || day === "SUN" ? (
-                          <button className="w-full py-3 rounded-lg bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed">
+                          <Button variant="ghost" className="w-full opacity-40" disabled>
                             {dates[i]}
-                          </button>
+                          </Button>
                         ) : (
-                          <button
-                            className={`w-full py-3 rounded-lg border transition-all ${
-                              selectedDate === dates[i]
-                                ? "border-2 border-primary bg-primary/5 text-primary font-bold"
-                                : "border-outline-variant hover:border-primary"
-                            }`}
+                          <Button
+                            variant={selectedDate === dates[i] ? "primary" : "ghost"}
+                            className="w-full"
                             onClick={() => setSelectedDate(dates[i])}
                           >
                             {dates[i]}
-                          </button>
+                          </Button>
                         )}
                       </div>
                     ))}
@@ -123,20 +120,15 @@ export default function BookSessionPage() {
                       {timeSlots.map((slot) => {
                         const isUnavailable = slot === "04:00 PM";
                         return (
-                          <button
+                          <Button
                             key={slot}
+                            variant={isUnavailable ? "ghost" : selectedSlot === slot ? "primary" : "ghost"}
+                            className="w-full"
                             disabled={isUnavailable}
-                            className={`py-3 border rounded-lg text-body-md transition-all ${
-                              isUnavailable
-                                ? "border-outline-variant/30 bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed line-through"
-                                : selectedSlot === slot
-                                ? "bg-primary text-on-primary border-primary"
-                                : "border-outline-variant hover:border-primary active-sink"
-                            }`}
                             onClick={() => !isUnavailable && setSelectedSlot(slot)}
                           >
                             {slot}
-                          </button>
+                          </Button>
                         );
                       })}
                     </div>
@@ -236,7 +228,7 @@ export default function BookSessionPage() {
                   check_circle
                 </span>
               </div>
-              <h3 className="text-display-lg-mobile md:text-headline-md font-headline-md mb-stack-sm">
+              <h3 className="text-display-lg-mobile md:text-display-lg font-headline-md mb-stack-sm">
                 Booking Confirmed!
               </h3>
               <p className="text-body-lg text-on-surface-variant mb-stack-lg">
@@ -264,9 +256,9 @@ export default function BookSessionPage() {
                 <Button variant="primary" className="w-full">
                   Go to Dashboard
                 </Button>
-                <button className="w-full py-3 text-secondary font-button hover:underline">
+                <Button variant="secondary" className="w-full">
                   Add to Calendar
-                </button>
+                </Button>
               </div>
             </div>
           </section>

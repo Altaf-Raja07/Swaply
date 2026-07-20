@@ -96,9 +96,9 @@ export default function DashboardPage() {
                   Upcoming Sessions
                 </h2>
               </div>
-              <button className="text-label-caps font-label-caps text-secondary hover:underline transition-all">
+              <Button variant="ghost" className="text-label-caps font-label-caps text-secondary hover:underline transition-all">
                 VIEW CALENDAR
-              </button>
+              </Button>
             </header>
             <div className="space-y-stack-md">
               <SessionCard
@@ -169,9 +169,9 @@ export default function DashboardPage() {
                     </a>
                   ))}
                 </div>
-                <button className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">
+                <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">
                   VIEW ALL MESSAGES
-                </button>
+                </Button>
               </div>
             </section>
 
@@ -231,9 +231,9 @@ export default function DashboardPage() {
                   </span>
                 </div>
               </div>
-              <button className="w-full bg-surface-bright text-primary font-button py-3 rounded-lg hover:opacity-90 transition-all">
+              <Button variant="primary" className="w-full bg-surface-bright text-primary font-button py-3 rounded-lg hover:opacity-90 transition-all">
                 Top Up Credits
-              </button>
+              </Button>
             </div>
             <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-on-primary-container/10 rounded-full blur-2xl" />
           </section>
@@ -277,9 +277,9 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium">Zoom</span>
                   </div>
                 </div>
-                <button className="w-full bg-primary text-on-primary font-button py-3 rounded-lg">
+                <Button variant="primary" className="w-full bg-primary text-on-primary font-button py-3 rounded-lg">
                   Join Meeting
-                </button>
+                </Button>
               </div>
 
               {/* Session 2 */}
@@ -348,9 +348,9 @@ export default function DashboardPage() {
       </main>
 
       {/* Mobile FAB */}
-      <button className="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40 md:bottom-8">
+      <Button variant="primary" className="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40 md:bottom-8">
         <span className="material-symbols-outlined text-2xl">add</span>
-      </button>
+      </Button>
 
       <BottomNav activeTab="dashboard" />
       <div className="hidden md:block">

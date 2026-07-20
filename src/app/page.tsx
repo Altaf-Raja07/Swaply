@@ -66,7 +66,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-gutter">
             {/* Coding: Big Card */}
-            <div className="col-span-2 row-span-1 md:row-span-2 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
+            <div className="col-span-2 row-span-1 md:row-span-2 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-48 md:h-80 relative overflow-hidden">
                 {/* TODO: Replace with actual image */}
                 <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
 
             {/* Music */}
-            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
+            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-32 relative overflow-hidden">
                 {/* TODO: Replace with actual image */}
                 <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
@@ -108,7 +108,7 @@ export default function Home() {
             </div>
 
             {/* Languages */}
-            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
+            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-32 relative overflow-hidden">
                 {/* TODO: Replace with actual image */}
                 <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
@@ -129,7 +129,7 @@ export default function Home() {
             </div>
 
             {/* Design */}
-            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
+            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="p-6 h-full flex flex-col justify-between">
                 <div>
                   <h3 className="text-body-lg font-headline-md mb-2">
@@ -150,7 +150,7 @@ export default function Home() {
             </div>
 
             {/* Fitness & Cooking */}
-            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-white border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
+            <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-full flex items-center justify-center p-6 bg-primary-container/10">
                 <div className="text-center">
                   <span className="material-symbols-outlined text-primary text-4xl mb-2">
@@ -180,7 +180,7 @@ export default function Home() {
           </div>
           <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {/* Quote 1 */}
-            <div className="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
+            <div className="bg-surface-container-lowest p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
               <div className="text-primary flex gap-0.5 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <span
@@ -209,7 +209,7 @@ export default function Home() {
             </div>
 
             {/* Quote 2 */}
-            <div className="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10 md:mt-12">
+            <div className="bg-surface-container-lowest p-8 rounded-xl whisper-shadow relative border border-outline-variant/10 md:mt-12">
               <div className="text-primary flex gap-0.5 mb-4">
                 {[...Array(4)].map((_, i) => (
                   <span
@@ -238,7 +238,7 @@ export default function Home() {
             </div>
 
             {/* Quote 3 */}
-            <div className="bg-white p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
+            <div className="bg-surface-container-lowest p-8 rounded-xl whisper-shadow relative border border-outline-variant/10">
               <div className="text-primary flex gap-0.5 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <span
@@ -268,7 +268,7 @@ export default function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-32 px-margin-mobile md:px-margin-desktop text-center">
+        <section className="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
           <div className="max-w-3xl mx-auto border-t border-outline-variant pt-24">
             <h2 className="text-display-lg-mobile md:text-display-lg font-display-lg mb-8">
               Ready to grow together?

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Footer } from "@/components/layout/footer";
+import { Button } from "@/components/ui/button";
 
 export default function SignupPage() {
   return (
@@ -11,7 +13,7 @@ export default function SignupPage() {
           SkillSwap
         </Link>
       </header>
-      <main className="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile">
+      <main className="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile max-w-container-max mx-auto">
         <div className="w-full max-w-[480px] space-y-stack-lg">
           {/* Branding/Illustration Section */}
           <div className="text-center space-y-stack-sm">
@@ -34,7 +36,7 @@ export default function SignupPage() {
           {/* Sign Up Card */}
           <div className="bg-surface border-[0.5px] border-outline-variant/40 rounded-xl p-8 whisper-shadow space-y-stack-lg">
             {/* Social Auth */}
-            <button className="w-full h-[48px] flex items-center justify-center gap-stack-sm border border-outline rounded-lg bg-white text-on-surface font-button hover:bg-surface-container-low transition-colors active-press">
+            <Button variant="secondary" className="w-full">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -54,7 +56,7 @@ export default function SignupPage() {
                 />
               </svg>
               Continue with Google
-            </button>
+            </Button>
 
             <div className="relative flex items-center py-stack-sm">
               <div className="flex-grow border-t border-outline-variant/30" />
@@ -96,12 +98,9 @@ export default function SignupPage() {
                   type="password"
                 />
               </div>
-              <button
-                className="w-full h-[48px] bg-primary text-on-primary font-button rounded-lg whisper-shadow active-press hover:bg-primary-container transition-colors mt-stack-lg"
-                type="submit"
-              >
+              <Button variant="primary" type="submit" className="w-full mt-stack-lg">
                 Create Account
-              </button>
+              </Button>
             </form>
           </div>
 
@@ -144,45 +143,7 @@ export default function SignupPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-inverse-surface w-full mt-stack-lg">
-        <div className="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
-          <div className="flex flex-col items-center md:items-start gap-stack-sm">
-            <span className="text-headline-md font-headline-md text-primary-fixed-dim">
-              SkillSwap
-            </span>
-            <p className="text-body-md font-body-md text-surface-variant">
-              &copy; 2024 SkillSwap. Built for the community.
-            </p>
-          </div>
-          <nav className="flex flex-wrap justify-center gap-stack-md">
-            <a
-              href="#"
-              className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
-            >
-              Community Guidelines
-            </a>
-            <a
-              href="#"
-              className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#"
-              className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
-            >
-              Support
-            </a>
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

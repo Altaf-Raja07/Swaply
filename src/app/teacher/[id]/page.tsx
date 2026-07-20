@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/footer";
 import { StarRating } from "@/components/shared/star-rating";
 import { SkillChip } from "@/components/shared/skill-chip";
 import { ReviewCard } from "@/components/shared/review-card";
+import { Button } from "@/components/ui/button";
 
 const skillsToLearn = [
   {
@@ -50,7 +51,7 @@ const reviews = [
 export default function TeacherProfilePage() {
   return (
     <>
-      <Navbar />
+      <Navbar activeTab="discover" />
       <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
         {/* Header / Bio Section */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
@@ -85,12 +86,12 @@ export default function TeacherProfilePage() {
             </div>
           </div>
           <div className="md:col-span-4 flex flex-col gap-stack-md items-end justify-start">
-            <button className="w-full md:w-auto px-stack-lg py-3 bg-primary text-on-primary font-button rounded-lg whisper-shadow active-sink transition-all hover:opacity-90">
+            <Button variant="primary" className="w-full md:w-auto">
               Book a session
-            </button>
-            <button className="w-full md:w-auto px-stack-lg py-3 border border-secondary text-secondary font-button rounded-lg active-sink transition-all hover:bg-secondary-container/20">
+            </Button>
+            <Button variant="secondary" className="w-full md:w-auto">
               Message Elena
-            </button>
+            </Button>
           </div>
         </section>
 
@@ -149,12 +150,12 @@ export default function TeacherProfilePage() {
                 Weekly Availability
               </h2>
               <div className="flex gap-2">
-                <button className="p-2 rounded-full hover:bg-surface-container transition-colors">
+                <Button variant="ghost" size="sm" className="rounded-full">
                   <span className="material-symbols-outlined">chevron_left</span>
-                </button>
-                <button className="p-2 rounded-full hover:bg-surface-container transition-colors">
+                </Button>
+                <Button variant="ghost" size="sm" className="rounded-full">
                   <span className="material-symbols-outlined">chevron_right</span>
-                </button>
+                </Button>
               </div>
             </div>
             <div className="grid grid-cols-7 gap-2 text-center mb-stack-sm">
@@ -209,9 +210,9 @@ export default function TeacherProfilePage() {
             {reviews.map((review) => (
               <ReviewCard key={review.authorName} {...review} />
             ))}
-            <button className="w-full text-label-caps text-secondary font-bold hover:text-primary transition-colors py-2 border-b border-outline-variant/30">
+            <Button variant="ghost" className="w-full">
               Read all 124 reviews
-            </button>
+            </Button>
           </div>
         </section>
       </main>

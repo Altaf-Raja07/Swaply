@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Session Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Karla:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@100..900&family=Literata:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+
+        .active-press:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        /* Custom Scrollbar for Chat */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .message-bubble-in {
+            border-radius: 16px 16px 16px 4px;
+        }
+        .message-bubble-out {
+            border-radius: 16px 16px 4px 16px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation Bar - Contextual Back Button -->
+<!-- Suppressed the standard TopNavBar for a focused "Task-Focused" session detail view -->
+<header class="flex items-center justify-between h-16 px-4 bg-surface border-b border-outline-variant/30 z-20">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active-press" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a friendly artisan mentor in their thirties, captured in soft natural morning light. The setting is a cozy, tactile workshop with wood textures and warm ambient tones. The lighting is editorial and high-key, emphasizing a communal and authentic humanist-editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKMygPM3ZhrDzQHUlO70RD6JcCT8upmBgCpse7a1A7rmk5jFtYE-M-JlmjGSn6bRfHKebY593pHg_mLg9hl6-nKTE9Aergo5ufBLJYtlf5vb_raEHax_E4j4MBZPrejyugjuOKm3wFeIiQuQcRNSMSExUEtp_UPhWgQJN8d1siQb6DnQb_GVpyXSssHQJQtAThqwVDk-7X3coRA0rlwol3s7dqb4UwVdwmvRiLHtFp3cCZkGAHywUTsSzy9SGYs8BEL4rFj1CGXQ-V"/>
+</div>
+<div>
+<h1 class="text-body-md font-bold text-on-surface leading-none">Elena Woodworking</h1>
+<span class="text-label-caps text-secondary font-label-caps mt-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Online
+                    </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="bg-tertiary-container px-3 py-1 rounded-full border border-tertiary/20 flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-label-caps text-on-tertiary-container font-label-caps">12 Credits</span>
+</div>
+</div>
+</header>
+<!-- Session Status Strip -->
+<div class="bg-primary-container/10 px-4 py-2 border-b border-primary/10 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">event_upcoming</span>
+<span class="text-label-caps text-on-surface-variant font-medium">Session: Today at 4:00 PM</span>
+</div>
+<button class="text-primary font-bold text-label-caps active-press">RESCHEDULE</button>
+</div>
+<!-- Main Chat Canvas -->
+<main class="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-6 bg-surface hide-scrollbar" id="chat-container">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="px-4 py-1 rounded-full bg-surface-container-high text-label-caps text-on-surface-variant/70 uppercase tracking-widest">Today</span>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col gap-1 max-w-[85%] self-start">
+<div class="bg-surface-container-high text-on-surface p-4 message-bubble-in whisper-shadow border border-outline-variant/10">
+<p class="text-body-md">Hi there! I've prepared the syllabus for our session today. We'll start with wood grain identification and then move to basic joinery techniques. Does that sound good?</p>
+</div>
+<span class="text-[10px] text-on-surface-variant/60 font-medium ml-1">09:42 AM</span>
+</div>
+<!-- System Notification / Card -->
+<div class="bg-white border border-outline-variant/30 rounded-xl p-4 whisper-shadow flex items-start gap-4 active-press">
+<div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-md font-bold text-on-surface">Intro_to_Joinery.pdf</h3>
+<p class="text-label-caps text-on-surface-variant mt-0.5">2.4 MB • Syllabus</p>
+<button class="mt-3 text-secondary font-bold text-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">download</span> DOWNLOAD
+                </button>
+</div>
+</div>
+<!-- Outgoing Message -->
+<div class="flex flex-col gap-1 max-w-[85%] self-end">
+<div class="bg-primary text-on-primary p-4 message-bubble-out whisper-shadow">
+<p class="text-body-md">That sounds perfect! I've got my kit ready. Should I also bring the cedar blocks I bought last week?</p>
+</div>
+<div class="flex items-center justify-end gap-1 mt-0.5 mr-1">
+<span class="text-[10px] text-on-surface-variant/60 font-medium">10:15 AM</span>
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+</div>
+</div>
+<!-- Incoming Message -->
+<div class="flex flex-col gap-1 max-w-[85%] self-start">
+<div class="bg-surface-container-high text-on-surface p-4 message-bubble-in whisper-shadow border border-outline-variant/10">
+<p class="text-body-md">Yes, please! Cedar is great for practicing dovetails because of its softness. I'm looking forward to it!</p>
+</div>
+<span class="text-[10px] text-on-surface-variant/60 font-medium ml-1">10:18 AM</span>
+</div>
+<!-- Interactive Reminder Card -->
+<div class="bg-surface-container-lowest border-2 border-dashed border-tertiary/30 rounded-2xl p-5 text-center flex flex-col items-center gap-3">
+<div class="w-10 h-10 bg-tertiary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">timer</span>
+</div>
+<div>
+<h4 class="text-headline-md font-headline-md text-on-surface">Session starts in 2 hours</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Ensure you have a stable internet connection and your camera is set up.</p>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-button text-button active-press whisper-shadow">
+                JOIN VIRTUAL ROOM
+            </button>
+</div>
+<div class="h-4"></div> <!-- Spacer -->
+</main>
+<!-- Floating Chat Input Area -->
+<div class="p-4 bg-surface border-t border-outline-variant/20">
+<div class="flex items-end gap-2">
+<button class="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active-press">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<div class="flex-1 bg-surface-container-low border border-outline-variant/40 rounded-2xl min-h-[48px] py-2 px-4 flex items-center">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50 resize-none max-h-32 overflow-y-auto" placeholder="Type a message..." rows="1"></textarea>
+</div>
+<button class="mb-1 w-10 h-10 shrink-0 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-lg active-press transition-transform" id="send-btn">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="mt-4 h-1 w-1/3 bg-on-surface/10 mx-auto rounded-full"></div> <!-- iOS Indicator Metaphor -->
+</div>
+<!-- Hidden Interaction Scripts -->
+<script>
+        // Micro-interaction for text area resizing
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        }
+
+        // Scroll to bottom on load
+        window.onload = () => {
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        };
+
+        // Simple scale effect for send button
+        const sendBtn = document.getElementById('send-btn');
+        sendBtn.addEventListener('click', () => {
+            sendBtn.classList.add('scale-90');
+            setTimeout(() => sendBtn.classList.remove('scale-90'), 100);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Session Detail</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shadow-whisper {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-sink:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .border-subtle {
+            border: 0.5px solid rgba(139, 113, 106, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant/30 shadow-sm sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-stack-lg">
+<a class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed" href="#">SkillSwap</a>
+<div class="hidden md:flex gap-gutter">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Discover</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 text-label-caps font-label-caps" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Messages</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden sm:flex items-center gap-stack-sm bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full border border-tertiary/10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="text-label-caps font-label-caps">12 Credits</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly community member with soft natural lighting, set against a warm minimalist background that aligns with a humanist-editorial design aesthetic. The style is clean and high-end, utilizing a naturalistic color palette of creams and subtle earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDn2r5JiM7Z9i-Tnwa7rfGEcPckDMlzBVdzvAiQ9V9SePgQBNFRuA4_CpuMGwG2nKipW9Yd92RvzgyugEPBi8W07rI_1Y0RK3V24tXbXfAU_LMjsqj8okU6tpt3f7KMJshwfbSTucJHoCmNKR5aiNTa9SyHU07Ck1AKdGCS3o6v7aL8wsxsoHbSqyP383429TKS1fW88dmXgVzumakZP1R70BLEER_ub63wqJL5hbPjL1k_WalpDPG9YN-1W8cWgjGpeMjKyy_SpaD"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Session Header Section -->
+<section class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter">
+<div class="flex flex-col gap-2">
+<nav class="flex items-center gap-2 text-on-surface-variant mb-2">
+<a class="text-label-caps font-label-caps hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-label-caps font-label-caps">Session Details</span>
+</nav>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">Pottery Wheel Basics</h1>
+<p class="text-on-surface-variant font-body-md">Session with <span class="font-bold text-on-surface">Elena Moretti</span> • Oct 24, 2:00 PM</p>
+</div>
+<!-- Status Badge & Quick Actions -->
+<div class="flex flex-col items-end gap-stack-md">
+<div class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full border border-secondary/10">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-caps font-label-caps">Confirmed</span>
+</div>
+<div class="flex gap-stack-sm">
+<button class="h-12 px-6 rounded-lg border-2 border-secondary text-secondary font-button text-button hover:bg-secondary/5 transition-all active-sink">
+                        Reschedule
+                    </button>
+<button class="h-12 px-6 rounded-lg bg-primary text-on-primary font-button text-button shadow-whisper hover:opacity-90 transition-all active-sink">
+                        Join Call
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Layout: Details & Chat -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Details Column -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Session Info Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border-subtle shadow-whisper">
+<h2 class="text-headline-md font-headline-md mb-stack-md">The Exchange</h2>
+<div class="space-y-stack-md">
+<div class="flex items-start gap-stack-md p-3 rounded-lg bg-surface">
+<div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up artistic photograph of wet clay being shaped on a pottery wheel. The lighting is warm and tactile, highlighting the organic texture of the clay and the hand-crafted nature of the skill being taught. The color palette is earthy with soft terracotta and cream tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoWirmT3QzUK3MoTpYTdoEMRGBLclI8Ur7Qxws3Veg1EwWrn9Sg6mypZ6dOANTPHCym6cC1widulnXjrbrvOTL02eFC6JkEx3bxbDpVAamUvdRE2fJhBj2KJaKNUmz7L2t6d0oSYIzpeWiFmTseC_3xAOnR-jgo5CEKnRMogyeHPyYsvQn1RqOOmbOXnCeqTIYLJ2y9IlbDYSsiU9fKX_F_mdhNmL9TI3_GBzbbTbtku8RavfsRuYI6jQgxZJtE61Uxn1BTWfCozr2"/>
+</div>
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant">Skill Offered</p>
+<p class="font-bold text-on-surface">Pottery Wheel Basics</p>
+</div>
+</div>
+<div class="flex items-start gap-stack-md p-3 rounded-lg bg-surface">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">swap_horiz</span>
+</div>
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant">In Exchange For</p>
+<p class="font-bold text-on-surface">Digital Marketing 101</p>
+</div>
+</div>
+<hr class="border-outline-variant/30"/>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Duration</span>
+<span class="font-bold">90 Minutes</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Location</span>
+<span class="font-bold">Studio 4B, Arts District</span>
+</div>
+</div>
+</div>
+<!-- Instructor Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl border-subtle shadow-whisper">
+<div class="flex items-center gap-stack-md mb-stack-md">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A warm, candid portrait of a woman in her 30s with a creative and approachable appearance. She is wearing a simple linen apron, suggesting a tactile, artisan lifestyle. The image is captured with shallow depth of field, set in a sun-drenched pottery studio with a soft-focus background of shelves filled with ceramic wares." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgL1lfgAU3wS3J0H1Wdw3wxJiQQ_HDRy_lhBz3H7sOGQNZkR_mwPlYFXyjCEV1FKovoWNVaG-HfqTKZA573QRxEt3rBPjvPzUMB_FzEBstopzUPngr4fPeoEFncwp-VjLSt8hbxO5DkUy-DwP-BBlsqkBsNO0jsT-OxAPgKinUeqSCasiDd3Gnx7kdyRlgYz5L0nAyHwgwoCo-RwO9wBy8jihDdZzS8lpxu4PHMM_YomY3M_YRmOY3M6KiRy_PkbT0_XXmtq0qlIZx"/>
+<div>
+<p class="font-bold text-on-surface">Elena Moretti</p>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-caps font-label-caps">4.9 (124 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant mb-stack-md">"Excited to show you the ropes! Please bring an apron or clothes you don't mind getting a bit dusty."</p>
+<button class="w-full h-10 border border-secondary text-secondary font-button text-label-caps rounded-lg hover:bg-secondary/5 transition-all">
+                        View Profile
+                    </button>
+</div>
+<!-- Action List -->
+<div class="flex flex-col gap-2">
+<button class="flex items-center justify-between p-4 rounded-xl border-subtle bg-white hover:bg-error-container/10 transition-all text-error">
+<span class="font-bold text-label-caps">Cancel Session</span>
+<span class="material-symbols-outlined">block</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-xl border-subtle bg-white hover:bg-surface-container-high transition-all text-on-surface-variant">
+<span class="font-bold text-label-caps">Report an Issue</span>
+<span class="material-symbols-outlined">flag</span>
+</button>
+</div>
+</div>
+<!-- Chat Panel Column -->
+<div class="lg:col-span-8 h-[600px] flex flex-col bg-surface-container-lowest rounded-xl border-subtle shadow-whisper overflow-hidden">
+<!-- Chat Header -->
+<div class="px-stack-lg py-4 border-b border-outline-variant/30 flex items-center justify-between bg-surface-container">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<h3 class="font-bold text-on-surface">Chat with Elena</h3>
+</div>
+<div class="flex gap-stack-sm">
+<button class="p-2 hover:bg-white rounded-full transition-colors">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 hover:bg-white rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Chat Messages Area -->
+<div class="flex-grow overflow-y-auto p-stack-lg flex flex-col gap-stack-md bg-surface/50" id="chat-messages">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="text-label-caps font-label-caps bg-surface-container-high px-3 py-1 rounded-full text-on-surface-variant">Today</span>
+</div>
+<!-- Message Elena -->
+<div class="flex gap-stack-md max-w-[80%]">
+<img class="w-8 h-8 rounded-full flex-shrink-0 mt-1" data-alt="A high-quality avatar of a woman with a warm, friendly expression. The visual style matches a premium digital product with clean lines and soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqw4Znr9pq9lQORK2C44sFk6G2BFF6jr3cU95Obzifd0ibr1RJ1CfJsJ8mIhtxwBYElsX1GGFeBh1kRsFwJ0u-JiQC45VNGC4vFnzUbne38VsOHvkIb0u4HyoWTVWBoTJ2jjHHL6GFu5v5axGo3i5CizC8NuDFXd8tj2DMDjxlg_BhZnVbwX0kRqkjRQMF-MrroQk_h50Uq7mf7Rm_JjhP9quB7sGUxoonIdkiR735PjrYgER72rUOGoRPoSHiG4H-dz7e7_tqzET"/>
+<div class="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+<p class="text-body-md text-on-surface">Hi! I just confirmed our session. Really looking forward to learning some digital marketing from you.</p>
+<span class="text-[10px] text-on-surface-variant/70 mt-1 block">10:42 AM</span>
+</div>
+</div>
+<!-- Message Me -->
+<div class="flex flex-row-reverse gap-stack-md max-w-[80%] self-end">
+<div class="bg-primary p-4 rounded-2xl rounded-tr-none text-on-primary">
+<p class="text-body-md">Me too! I've prepped a few slides to walk you through the basics. Should I bring a laptop or do you have one available?</p>
+<span class="text-[10px] text-white/70 mt-1 block">10:45 AM</span>
+</div>
+</div>
+<!-- Message Elena -->
+<div class="flex gap-stack-md max-w-[80%]">
+<img class="w-8 h-8 rounded-full flex-shrink-0 mt-1" data-alt="A portrait of Elena, showing her in a bright, modern studio. The mood is professional yet warm and creative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIuV4P3z-hXJw47Ggtc4xCndLXi6jQGzL0qwlhdSMn-acHyZ4pNnQFz6pMyJngflzu0_cAx8KFXm2aGv_PtsMHxHR5goJmSEupLsG5X3hLAZd3STK4c3OYJJhABkVm1u_bXCm7mdtyjvXbVUtmdqToaFqUhyQYMqqCFpDudXKVXthWXJykaesov0pq6HJv-LWj1rDh2UA0Y5zf8m2KbWva_Be3VKOPS0vVUXUzI5XEZG9po-B70N_2a8uzFkvNC8k_LVCtVG_FFFOu"/>
+<div class="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+<p class="text-body-md text-on-surface">A laptop would be great. I have a projector we can use if that helps!</p>
+<span class="text-[10px] text-on-surface-variant/70 mt-1 block">10:47 AM</span>
+</div>
+</div>
+<!-- System Notification -->
+<div class="flex justify-center my-2">
+<div class="flex items-center gap-2 text-label-caps font-label-caps text-on-surface-variant/60 italic">
+<span class="material-symbols-outlined text-sm">lock</span>
+                            End-to-end encrypted
+                        </div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-stack-lg border-t border-outline-variant/30 bg-white">
+<div class="flex items-end gap-stack-md bg-surface rounded-xl p-2 border border-outline-variant/20 focus-within:border-primary transition-all">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<textarea class="flex-grow bg-transparent border-none focus:ring-0 resize-none py-2 px-1 text-body-md" id="chat-input" placeholder="Type a message..." rows="1"></textarea>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center active-sink hover:opacity-90">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-black mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-headline-md font-headline-md text-primary-fixed dark:text-primary-fixed-dim">SkillSwap</span>
+<p class="text-surface-variant dark:text-outline-variant text-body-md">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="text-surface-variant dark:text-outline-variant text-label-caps font-label-caps hover:text-primary-fixed transition-colors" href="#">Community Guidelines</a>
+<a class="text-surface-variant dark:text-outline-variant text-label-caps font-label-caps hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="text-surface-variant dark:text-outline-variant text-label-caps font-label-caps hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-surface-variant dark:text-outline-variant text-label-caps font-label-caps hover:text-primary-fixed transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for the chat input
+        const chatInput = document.getElementById('chat-input');
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if (this.scrollHeight > 150) {
+                this.style.overflowY = 'scroll';
+                this.style.height = '150px';
+            } else {
+                this.style.overflowY = 'hidden';
+            }
+        });
+
+        // Scroll chat to bottom on load
+        const chatMessages = document.getElementById('chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Auto-focus logic simulation (visual only)
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.add('scale-95');
+                setTimeout(() => btn.classList.remove('scale-95'), 100);
+            });
+        });
+    </script>
+</body></html>

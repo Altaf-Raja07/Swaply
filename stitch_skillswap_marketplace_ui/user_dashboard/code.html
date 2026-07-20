@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap | Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-link {
+            transition: all 0.2s ease;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .pressed-state:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .coin-bevel {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant/30 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<!-- Brand Logo -->
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">SkillSwap</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-gutter h-full">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 h-full flex items-center" href="#">Discover</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-medium h-full flex items-center translate-y-[1px]" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 h-full flex items-center" href="#">Messages</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<div class="hidden sm:flex items-center bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full coin-bevel">
+<span class="material-symbols-outlined text-[18px] mr-1" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="text-label-caps font-label-caps">12 Credits</span>
+</div>
+<button class="relative p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A warm, editorial-style portrait of a creative professional woman in her 30s with soft natural lighting. She has a friendly, authentic expression and is set against a blurred background of a minimalist home studio filled with books and plants. The aesthetic is humanist and tactile with a restricted natural color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcoCuH3eWaCoG4SELrbqeC5Snz8t1Ll__Vst_ZpLnAw1TyAh9d40smYbzE7Ka3N1I4IsTQRZ9Xd-kvVdYhVPrEnslCyWy0H84G6Vx5yr_ltcJLfQIJ5eQai3_mg_1YXCa8ZFewEE2L2fdf3eFabOl7E8O4qeVtFa_fPL-K1yKUUiPoquQrG_vnJ7imy9pEq_7pvKqxc-5nz16NbXg0uCKUZJT0fRnlMu5JtNpI0Yzos7DUXTuIKbdZBk8_AsWmvYWydneOjP6Lbk86"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Dashboard Header & Summary Bar -->
+<section class="mb-stack-lg">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface mb-stack-md">Welcome back, Elara.</h1>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Summary Card: Credits -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary-fixed-dim border border-tertiary/20 coin-bevel">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">CREDIT BALANCE</p>
+<p class="text-headline-md font-headline-md text-on-surface">12 <span class="text-body-md font-normal text-on-surface-variant">Available</span></p>
+</div>
+</div>
+<!-- Summary Card: Sessions -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">calendar_today</span>
+</div>
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">UPCOMING SESSIONS</p>
+<p class="text-headline-md font-headline-md text-on-surface">3 <span class="text-body-md font-normal text-on-surface-variant">This Week</span></p>
+</div>
+</div>
+<!-- Summary Card: Rating -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex items-center gap-stack-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-1">AVG. INSTRUCTOR RATING</p>
+<p class="text-headline-md font-headline-md text-on-surface">4.9 <span class="text-body-md font-normal text-on-surface-variant">/ 5.0</span></p>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Upcoming Sessions -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<header class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-primary mb-1">SCHEDULE</p>
+<h2 class="text-headline-md font-headline-md text-on-surface">Upcoming Sessions</h2>
+</div>
+<button class="text-label-caps font-label-caps text-secondary hover:underline transition-all">VIEW CALENDAR</button>
+</header>
+<div class="space-y-stack-md">
+<!-- Session Card: Teaching (Terracotta border) -->
+<div class="group bg-surface-container-lowest border-l-4 border-l-primary border-t border-r border-b border-outline-variant/20 rounded-lg p-stack-md flex flex-col md:flex-row items-center gap-stack-md whisper-shadow hover:bg-surface-container-low transition-all duration-200 pressed-state cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 rounded-xl bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed closeup of artisan ceramic tools and moist clay on a wooden workbench, captured with a soft editorial lens. The lighting is warm and natural, creating a communal and tactile atmosphere. Muted earth tones of terracotta and brown dominate the scene, reflecting a humanist-editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRyQdq1mbDJ1nfmwPHlst4hN2IBV_sGG_khOF5q1VgTLoMqiUMbB8fGzUT-U2KyBtLqDTd_c0PbPrLayMUY0nfEQOwRBIZZNVZmFx-v1EHbwvw4ZOp8UZpw-p_OvTW-0J66Rbc1m92r4nlS5DahQQ9Pzhu3XaRWBLV8xSzneGmlPUHuSpR2hpPPAy-Das1FeexrMvo8dMLFihkUoJj5DG6Pm3WldhR_Gdy9KtylpwMVjrZFS_ksCdxpqh4gR2-KKg0Eya14SZ3PGbI"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Teaching</span>
+<span class="text-on-surface-variant text-label-caps font-label-caps">Pottery Basics</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Advanced Wheel Throwing</h3>
+<p class="text-on-surface-variant font-body-md">with Liam K. • Tomorrow, 10:00 AM</p>
+</div>
+<div class="flex-shrink-0 flex gap-2">
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-button text-button hover:opacity-90 transition-opacity">Launch Zoom</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Session Card: Learning (Green border) -->
+<div class="group bg-surface-container-lowest border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/20 rounded-lg p-stack-md flex flex-col md:flex-row items-center gap-stack-md whisper-shadow hover:bg-surface-container-low transition-all duration-200 pressed-state cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 rounded-xl bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A top-down view of a modern desk featuring a high-end laptop, a cup of matcha tea, and neat code snippets written in a tactile leather-bound notebook. The scene is illuminated by crisp morning sunlight, creating a bright and minimalist environment. The palette is dominated by off-white and forest green, embodying an indie digital marketplace style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKWRcWNNA60d_FyNZwdNPz0CzpnOYuD4aAlZ1a-3aZRxWZd4pLmD6hXhqw1U1jRCKcu-1txj0RRE70jVn9st7TlXPYhJ9LwIAoq3MaVKdQmFyc7k-1VmV7upI7tH89fgAgCOwuQOaguddOA6lNtZDCxG0JhaNvol0rvkIjRPkkaWGit9YyjlW2uCnFgylqOjMwBla9XDuX5FTIF4Wxh0XRq-eesKsDBxe-_J5est8tRZvOlRQ_88KU6lWo9kn94h5vxqGRBFkplHE1"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Learning</span>
+<span class="text-on-surface-variant text-label-caps font-label-caps">Development</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">React Hooks Mastery</h3>
+<p class="text-on-surface-variant font-body-md">with Sarah J. • Thu, Oct 24, 2:00 PM</p>
+</div>
+<div class="flex-shrink-0 flex gap-2">
+<button class="border border-secondary text-secondary px-4 py-2 rounded-lg font-button text-button hover:bg-secondary/5 transition-colors">Details</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Session Card: Learning (Green border) -->
+<div class="group bg-surface-container-lowest border-l-4 border-l-secondary border-t border-r border-b border-outline-variant/20 rounded-lg p-stack-md flex flex-col md:flex-row items-center gap-stack-md whisper-shadow hover:bg-surface-container-low transition-all duration-200 pressed-state cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 rounded-xl bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A lush greenhouse interior with varied plants including monsteras and ferns, captured with a soft editorial focus. The lighting is diffused and natural, highlighting textures of wood and leaf. The aesthetic is communal and organic, using a naturalistic color palette of forest greens and warm wood tones to create a lived-in, digital sanctuary feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNXtOdQGmW4kdOnckPGtirH_3TSZGcIXX5cHtjsTW4KhngTQhnE20FPk3ZVrNTRogMMSSbXVEl9jTr4_hv4nXawQXBLCnWe3pe-rUvpxElRRnP27Blztip3t4PO5kiwRxOB343capnAFR32s7JCh5bxZRq73rp-RrgDtDVfUmOdyHcissu4MNZbyLyLEFVL0VuBhRPNXUJtylMt2kNlbh5gwtV5LDuzf8vbPV9qjkVbhvaVfZgr1Uvn94C_jVOk6xtVywDfS1p79Wa"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Learning</span>
+<span class="text-on-surface-variant text-label-caps font-label-caps">Gardening</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Indoor Jungle Care</h3>
+<p class="text-on-surface-variant font-body-md">with Mark R. • Sat, Oct 26, 11:30 AM</p>
+</div>
+<div class="flex-shrink-0 flex gap-2">
+<button class="border border-secondary text-secondary px-4 py-2 rounded-lg font-button text-button hover:bg-secondary/5 transition-colors">Details</button>
+<button class="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Quick Chat & Credit History -->
+<div class="lg:col-span-4 space-y-stack-lg">
+<!-- Quick Chat Links -->
+<section>
+<h2 class="text-label-caps font-label-caps text-on-surface-variant mb-stack-md">QUICK MESSAGES</h2>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow">
+<div class="divide-y divide-outline-variant/30">
+<a class="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors" href="#">
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up, editorial-style headshot of a friendly young man with glasses and a soft beard, smiling authentically. The lighting is bright and natural, coming from a side window. The background is a clean, minimalist workspace with a single green plant. Humanist-editorial style with organic minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd3nrH4XeMjmsQScL7cD9XNcqTL3wI1Mb3Qh1C0uW5blDocP4effCOYWh0hsf8Qx3HTuFsmOBMolTQsdFQQ0fsxcueqTygwx-1cdxw13PG_C-xa30gE7CjdTHhPNU8mEG0njgLtHe0w4rkrx1XzeUDXnx2HnlTOS5KfXvJ8g_tnXv2LYIE0GOh2YJqAhvOCSat5uKvWPgz_rU5yDd_pdSE7Xv1wjgKlqmNbM5tpbLKdhJ8L-Ft9TM5iuqerCI6xF6OWRfykhE41rfF"/>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Liam K.</p>
+<p class="text-label-caps text-on-surface-variant truncate">"See you at the wheel tomorrow!"</p>
+</div>
+<span class="text-[10px] text-on-surface-variant">2m</span>
+</a>
+<a class="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors" href="#">
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a serene woman with braided hair, wearing a linen shirt, looking directly into the camera with a calm, capable expression. Soft, warm natural light creates a tactile, premium magazine feel. The background is a warm cream-colored wall. The aesthetic is humanistic, grounded, and modern-organic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmnGdZzbyllotbpfQbzHFbZYaed2VcG7PFxquIIc0oNJddQCU4GklefNhYj9IJVXsQDMHLvh7kM8CeEAKt5_H8136jBAqsv1HsoneC0XxT8D1vfWFdqJQ6fLXkfLc_OmnOgTjPpvEAkMW-kePudVoRKiTyfaDSnPQ_Z941zvWhZDqCucprnd0KIhMZW2dBLRgWsibXIqFXY-7Eu9ZVtMLoE8lPGHp24DkTB3sjOvvXoPY5WQFSo5Bt25xhWXvln2Nu7byCSKdqxPvh"/>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-outline-variant rounded-full border-2 border-white"></div>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface">Sarah J.</p>
+<p class="text-label-caps text-on-surface-variant truncate">"Did you get the React repo?"</p>
+</div>
+<span class="text-[10px] text-on-surface-variant">1h</span>
+</a>
+</div>
+<button class="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">VIEW ALL MESSAGES</button>
+</div>
+</section>
+<!-- Credit Activity List -->
+<section>
+<h2 class="text-label-caps font-label-caps text-on-surface-variant mb-stack-md">CREDIT ACTIVITY</h2>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow">
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold text-on-surface">Teaching: Clay Basics</p>
+<p class="text-[11px] text-on-surface-variant">Oct 20, 2024</p>
+</div>
+<span class="text-secondary font-bold">+3.0</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold text-on-surface">Booked: React Hooks</p>
+<p class="text-[11px] text-on-surface-variant">Oct 18, 2024</p>
+</div>
+<span class="text-primary font-bold">-2.0</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold text-on-surface">Teaching: Wheel Throwing</p>
+<p class="text-[11px] text-on-surface-variant">Oct 15, 2024</p>
+</div>
+<span class="text-secondary font-bold">+3.0</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold text-on-surface">Referral Bonus</p>
+<p class="text-[11px] text-on-surface-variant">Oct 12, 2024</p>
+</div>
+<span class="text-tertiary font-bold">+5.0</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/30">
+<button class="w-full py-2 border border-secondary text-secondary rounded-lg font-button text-button hover:bg-secondary/5 transition-colors">GET MORE CREDITS</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-black mt-auto">
+<div class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-stack-sm">
+<div class="text-headline-md font-headline-md text-primary-fixed dark:text-primary-fixed-dim">SkillSwap</div>
+<p class="text-surface-variant dark:text-outline-variant text-body-md font-body-md">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Community Guidelines</a>
+<a class="text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Terms of Service</a>
+<a class="text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Privacy Policy</a>
+<a class="text-surface-variant dark:text-outline-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps font-label-caps" href="#">Support</a>
+</nav>
+</div>
+</footer>
+<!-- FAB (Suppressed on Dashboard as per logic, but usually for Home) -->
+<!-- Determined FAB logic: Dashboard doesn't need FAB if it's primary hub, but let's add one for "Create Session" as a common dashboard action -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-40 group">
+<span class="material-symbols-outlined text-[24px]">add</span>
+<span class="absolute right-full mr-4 bg-inverse-surface text-on-primary px-3 py-1 rounded text-label-caps font-label-caps whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Schedule Session</span>
+</button>
+</body></html>

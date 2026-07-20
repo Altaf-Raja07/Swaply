@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap Onboarding - Step 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-sink:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .coin-badge {
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        /* Custom scrollbar for friendly editorial feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #faf9f5; }
+        ::-webkit-scrollbar-thumb { background: #dfc0b7; border-radius: 4px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "tertiary": "#735c00",
+                        "primary-fixed": "#ffdbd1",
+                        "surface": "#faf9f5",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-bright": "#faf9f5",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#a73918",
+                        "outline-variant": "#dfc0b7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#8b716a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-secondary-fixed-variant": "#394b3d",
+                        "tertiary-container": "#c7a84a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed": "#0e1f13",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#b7ccb9",
+                        "on-primary-fixed": "#3b0900",
+                        "on-surface-variant": "#58423c",
+                        "surface-dim": "#dbdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#546758",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#c54f2c",
+                        "background": "#faf9f5",
+                        "secondary": "#506354",
+                        "tertiary-fixed": "#ffe089",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "tertiary-fixed-dim": "#e4c363",
+                        "inverse-primary": "#ffb5a0",
+                        "secondary-fixed": "#d3e8d5",
+                        "inverse-surface": "#2f312e",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#862201",
+                        "on-surface": "#1b1c1a",
+                        "primary": "#a43716",
+                        "surface-container": "#efeeea",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#d0e5d2",
+                        "surface-container-highest": "#e3e2df",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-variant": "#e3e2df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1200px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Literata"],
+                        "display-lg": ["Literata"],
+                        "label-caps": ["Karla"],
+                        "button": ["Karla"],
+                        "body-lg": ["Karla"],
+                        "display-lg-mobile": ["Literata"],
+                        "body-md": ["Karla"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Suppression Check: Onboarding is transactional, Nav is hidden to prioritize Canvas -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="max-w-[800px] w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<!-- Branding/Identity Anchor -->
+<div class="md:col-span-12 mb-stack-lg">
+<div class="flex items-center gap-stack-sm mb-stack-md">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<span class="text-headline-md font-headline-md font-bold text-primary">SkillSwap</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/4 transition-all duration-700 ease-out"></div>
+</div>
+<p class="mt-stack-sm text-label-caps font-label-caps text-on-surface-variant">Step 1 of 4: The Teacher's Journey</p>
+</div>
+<!-- Left Editorial Column (Desktop only) -->
+<div class="hidden md:flex md:col-span-4 flex-col gap-stack-md sticky top-stack-lg">
+<h1 class="text-display-lg font-display-lg text-on-surface leading-tight">What can you teach?</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Your expertise is a gift. Whether it's heirloom gardening or architectural drafting, there's someone in our community waiting to learn from you.</p>
+<div class="mt-stack-lg p-stack-md bg-secondary-container rounded-xl border border-outline-variant/20">
+<div class="flex items-start gap-stack-sm">
+<span class="material-symbols-outlined text-on-secondary-container">tips_and_updates</span>
+<div>
+<p class="text-label-caps font-label-caps text-on-secondary-container mb-unit">PRO TIP</p>
+<p class="text-body-md font-body-md text-on-secondary-container">Be specific! Instead of just "Cooking," try "Traditional Sourdough Baking."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Content Canvas (The Onboarding Card) -->
+<div class="md:col-span-8 w-full">
+<form class="bg-white p-stack-lg rounded-[16px] border border-outline-variant/30 whisper-shadow flex flex-col gap-stack-lg">
+<!-- Mobile Header (Visible only on small screens) -->
+<div class="md:hidden">
+<h1 class="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-stack-sm">What can you teach?</h1>
+</div>
+<!-- Input: Skill Name -->
+<div class="flex flex-col gap-unit">
+<label class="text-label-caps font-label-caps text-on-surface-variant" for="skill-name">SKILL NAME</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-stack-sm px-0 text-headline-md font-headline-md focus:ring-0 focus:border-primary transition-colors placeholder:text-surface-variant" id="skill-name" name="skill-name" placeholder="e.g., Landscape Photography" type="text"/>
+</div>
+<!-- Segmented Control: Proficiency -->
+<div class="flex flex-col gap-stack-md">
+<label class="text-label-caps font-label-caps text-on-surface-variant">PROFICIENCY LEVEL</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-sm bg-surface-container-low p-unit rounded-lg">
+<label class="relative flex items-center justify-center cursor-pointer group">
+<input checked="" class="peer sr-only" name="proficiency" type="radio" value="beginner"/>
+<div class="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+                                    Beginner
+                                </div>
+</label>
+<label class="relative flex items-center justify-center cursor-pointer group">
+<input class="peer sr-only" name="proficiency" type="radio" value="intermediate"/>
+<div class="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+                                    Intermediate
+                                </div>
+</label>
+<label class="relative flex items-center justify-center cursor-pointer group">
+<input class="peer sr-only" name="proficiency" type="radio" value="advanced"/>
+<div class="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+                                    Advanced
+                                </div>
+</label>
+<label class="relative flex items-center justify-center cursor-pointer group">
+<input class="peer sr-only" name="proficiency" type="radio" value="expert"/>
+<div class="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+                                    Expert
+                                </div>
+</label>
+</div>
+</div>
+<!-- Free Text Description -->
+<div class="flex flex-col gap-unit">
+<label class="text-label-caps font-label-caps text-on-surface-variant" for="description">TELL US MORE</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-stack-md text-body-md font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:italic placeholder:opacity-50" id="description" name="description" placeholder="Example: I've been a nature photographer for 10 years. I can teach you how to master manual settings, frame the perfect sunrise, and edit RAW files using Lightroom. I'm patient and love teaching outdoors." rows="5"></textarea>
+</div>
+<!-- Call to Action Footer -->
+<div class="flex items-center justify-between mt-stack-md border-t border-outline-variant/20 pt-stack-lg">
+<button class="text-secondary font-button py-3 px-6 hover:bg-secondary-container rounded-lg transition-colors active-sink" type="button">
+                            Back
+                        </button>
+<button class="bg-primary text-on-primary font-button py-3 px-8 rounded-lg whisper-shadow active-sink hover:bg-primary-container transition-all flex items-center gap-stack-sm" type="submit">
+                            Next Step
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Decorative Asset: High-end Editorial Image -->
+<div class="mt-stack-lg w-full aspect-[21/9] rounded-[16px] overflow-hidden grayscale-[50%] hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover" data-alt="A warm, atmospheric photo of a communal workshop space. Soft sunlight streams through large windows, illuminating wooden tables covered with creative tools like charcoal pencils, architectural blueprints, and a vintage typewriter. The scene is quiet, scholarly, and communal, using a natural palette of terracotta, forest green, and cream. The lighting is soft and editorial, suggesting a space of shared knowledge and lifelong learning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChhE1SKmTqaA0eySEH6Ay_IVkLJr2Xg6KNzl-tNIgTaeE2eJmHEXsqE8BHljA7IpwEeWYtLf4DHHV0l3PZa5iEJ-TJFzYNY9FQTuZ5zVuxhIQSy0qWi8lPpXDLauSoypJ6-Xx3ceeFSYMIgj7n98klUpJE_4nw8G7ICab_-5g6Z1MpdWyGsjTYLrT_n_cqIwX77_ju-unkvb2_md_JltWls3b4Ij-A-KYBxBLDDZk6Ek7Q6snOM68Y0AlnqLxsBEy1nybA_kxWFqGg"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer: Styled for Community Guidelines/Support as per JSON -->
+<footer class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop bg-inverse-surface text-surface-variant">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-unit">
+<span class="text-headline-md font-headline-md text-primary-fixed-dim">SkillSwap</span>
+<p class="text-body-md font-body-md opacity-70">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<div class="flex gap-gutter flex-wrap justify-center">
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Community Guidelines</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for form focus
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label')?.classList.add('text-primary');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label')?.classList.remove('text-primary');
+            });
+        });
+
+        // Simple form validation visual feedback
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const skillInput = document.getElementById('skill-name');
+            if(!skillInput.value) {
+                skillInput.classList.add('border-error');
+                setTimeout(() => skillInput.classList.remove('border-error'), 2000);
+            } else {
+                // Logic to go to next step would go here
+                console.log("Proceeding to Step 2...");
+            }
+        });
+    </script>
+</body></html>

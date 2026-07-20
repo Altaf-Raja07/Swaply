@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSwap Onboarding | Step 2</title>
+<!-- Google Fonts: Literata (Headline) & Karla (Body/Labels) -->
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Karla:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "tertiary": "#735c00",
+                    "primary-fixed": "#ffdbd1",
+                    "surface": "#faf9f5",
+                    "surface-container-low": "#f4f4f0",
+                    "surface-bright": "#faf9f5",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a73918",
+                    "outline-variant": "#dfc0b7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8b716a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-secondary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#c7a84a",
+                    "on-background": "#1b1c1a",
+                    "on-secondary-fixed": "#0e1f13",
+                    "surface-container-high": "#e9e8e4",
+                    "secondary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed": "#3b0900",
+                    "on-surface-variant": "#58423c",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#546758",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#c54f2c",
+                    "background": "#faf9f5",
+                    "secondary": "#506354",
+                    "tertiary-fixed": "#ffe089",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#e4c363",
+                    "inverse-primary": "#ffb5a0",
+                    "secondary-fixed": "#d3e8d5",
+                    "inverse-surface": "#2f312e",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#862201",
+                    "on-surface": "#1b1c1a",
+                    "primary": "#a43716",
+                    "surface-container": "#efeeea",
+                    "on-primary-container": "#fffbff",
+                    "secondary-container": "#d0e5d2",
+                    "surface-container-highest": "#e3e2df",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-variant": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "label-caps": ["Karla"],
+                    "button": ["Karla"],
+                    "body-lg": ["Karla"],
+                    "display-lg-mobile": ["Literata"],
+                    "body-md": ["Karla"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5; /* surface */
+            color: #1b1c1a; /* on-surface */
+            font-family: 'Karla', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+
+        .active-sink:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        .input-focus-border:focus-within {
+            border-bottom: 2px solid #a43716; /* primary */
+        }
+
+        /* Subtle animated background for the search box focus */
+        .search-glow {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .search-glow:focus-within {
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(164, 55, 22, 0.08);
+        }
+
+        .skill-chip {
+            background-color: rgba(80, 99, 84, 0.1); /* secondary at 10% */
+            color: #506354; /* secondary */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar Suppressed for Transactional Onboarding Flow as per Blueprint -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="w-full max-w-container-max flex flex-col md:flex-row items-center gap-gutter lg:gap-32">
+<!-- Left Column: Context & Intent -->
+<div class="w-full md:w-1/2 space-y-stack-md order-2 md:order-1">
+<div class="space-y-unit">
+<span class="text-label-caps font-label-caps text-primary tracking-widest">STEP 2 OF 4</span>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">What do you want to learn?</h1>
+</div>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-lg">
+                    SkillSwap is built on precise semantic matching. Tell us exactly what's on your mind—the more specific you are, the better we can find your ideal mentor.
+                </p>
+<!-- Recommendation Preview (Asymmetric Layout) -->
+<div class="pt-stack-lg space-y-stack-md hidden md:block">
+<span class="text-label-caps font-label-caps text-outline">POPULAR RIGHT NOW</span>
+<div class="flex flex-wrap gap-stack-sm">
+<span class="skill-chip px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors">Generative AI</span>
+<span class="skill-chip px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors">Bread Baking</span>
+<span class="skill-chip px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors">Rust Programming</span>
+<span class="skill-chip px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors">Negotiation Tactics</span>
+</div>
+</div>
+</div>
+<!-- Right Column: The Search Canvas -->
+<div class="w-full md:w-1/2 order-1 md:order-2">
+<div class="relative group">
+<!-- Atmospheric Glow Effect -->
+<div class="absolute -inset-4 bg-primary/5 rounded-[32px] blur-3xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-700"></div>
+<div class="relative bg-surface-container-lowest border border-outline-variant/30 rounded-[24px] p-stack-lg whisper-shadow search-glow transition-all active-sink">
+<div class="flex items-start gap-stack-md mb-stack-md">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="flex-grow">
+<label class="text-label-caps font-label-caps text-outline mb-unit block" for="skill-search">SMART SEARCH</label>
+<textarea class="w-full bg-transparent border-0 p-0 text-headline-md font-headline-md text-on-surface placeholder:text-outline-variant focus:ring-0 resize-none overflow-hidden" id="skill-search" placeholder="I want to get better at explaining my DSA solutions in interviews" rows="4"></textarea>
+</div>
+</div>
+<!-- Match Feedback UI -->
+<div class="flex items-center gap-stack-sm py-stack-sm border-t border-outline-variant/10 opacity-0 transition-opacity duration-300" id="match-feedback">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="text-label-caps font-label-caps text-secondary">WE'VE FOUND 14 MENTORS MATCHING THIS DESCRIPTION</span>
+</div>
+<div class="flex justify-between items-center mt-stack-md">
+<div class="flex -space-x-2">
+<!-- Editorial Meta: Avatars of potential matches -->
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="A warm, professional portrait of a tech mentor with a friendly smile, shot in a softly lit modern home office with warm wooden accents and lush green plants in the background. Editorial photography style, minimalist and authentic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLkVPoZ7UCqps8Fj03OSzk0X_2fy_gIGaXbtnyF3YjKF9CPNEy-OdQPQqqJvAA7-XqpaYMrRaY6i6IFcVkqB9BfhSR1TIHqCiL8_XIU4dRnGByHaI_fAdhlwAROO15K9j8Szzd7s2or70u4EuOzHE8s7V64XbnemAGVqOxlL_GANjHxsE7FTQ6t0hYlUjHU9Wwwb6dMfjwOHRAYN6d5QrPAI4w_BG-gwgtcw7gF6xA1kqNdKigvP2N8ezUBydly3vkFqPZkkptYhb3"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="A close-up shot of a creative professional with glasses, looking thoughtfully at a screen, illuminated by natural afternoon light filtering through a window. The aesthetic is clean, modern, and human-centric with a palette of soft creams and greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoq9DNj4Np0eg-UBuqKN94jpF4YOXjuC_yp_lcL3dj4rv-0bPjGbSL5HFQD-aKB5fgIj7LVY02nYq4FCue7nwFKptGopPglmlsrBsw5c2o_rDDXrB32FEb2JpjJKT_FpgiO_8W4zgO9OhIKeEXyR_jrc1pDAgqYUAnslyGkXF49TkFdqPxKROtPdvCjqjGtresZFqy_zTIshXJJeHR3ZZzXfL-osZKeGRmGhjRwrWUGqcoZkpmlr3KABQ3dMsBk18HFDij_OkEbvIv"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold text-on-tertiary-fixed">+12</div>
+</div>
+<button class="bg-primary text-on-primary px-stack-lg py-3 rounded-lg font-button text-button whisper-shadow hover:brightness-110 transition-all active-sink flex items-center gap-stack-sm">
+                                Continue
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Floating Credit Badge -->
+<div class="absolute -top-4 -right-4 bg-tertiary-container text-on-tertiary-container w-16 h-16 rounded-full flex flex-col items-center justify-center whisper-shadow border border-tertiary/20 transform rotate-12">
+<span class="text-label-caps font-label-caps text-[10px]">GET</span>
+<span class="font-bold text-lg leading-none">12</span>
+<span class="text-label-caps font-label-caps text-[8px]">CREDITS</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer: Shared Component -->
+<footer class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter bg-inverse-surface text-surface-variant">
+<div class="text-headline-md font-headline-md font-bold text-primary-fixed-dim">SkillSwap</div>
+<div class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Community Guidelines</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-label-caps font-label-caps hover:text-primary-fixed transition-colors duration-200" href="#">Support</a>
+</div>
+<p class="text-body-md font-body-md text-outline-variant">© 2024 SkillSwap. Built for the community.</p>
+</footer>
+<script>
+        // Micro-interaction for the search box
+        const searchBox = document.getElementById('skill-search');
+        const feedback = document.getElementById('match-feedback');
+
+        searchBox.addEventListener('input', (e) => {
+            // Auto-resize textarea
+            searchBox.style.height = 'auto';
+            searchBox.style.height = searchBox.scrollHeight + 'px';
+
+            // Show matching feedback when user starts typing
+            if (e.target.value.length > 5) {
+                feedback.classList.remove('opacity-0');
+                feedback.classList.add('opacity-100');
+            } else {
+                feedback.classList.add('opacity-0');
+                feedback.classList.remove('opacity-100');
+            }
+        });
+
+        // Initialize height
+        searchBox.style.height = searchBox.scrollHeight + 'px';
+    </script>
+</body></html>

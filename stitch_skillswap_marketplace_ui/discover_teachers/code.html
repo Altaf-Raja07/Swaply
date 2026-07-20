@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Discover Teachers | SkillSwap</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Karla:wght@400;500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@100..900&family=Literata:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .whisper-shadow {
+            box-shadow: 0 4px 12px rgba(45, 45, 45, 0.05);
+        }
+        .active-press:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+        .stamped-badge {
+            box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .glow-search:focus-within {
+            box-shadow: 0 0 20px rgba(217, 93, 57, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "tertiary": "#735c00",
+                        "primary-fixed": "#ffdbd1",
+                        "surface": "#faf9f5",
+                        "surface-container-low": "#f4f4f0",
+                        "surface-bright": "#faf9f5",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#a73918",
+                        "outline-variant": "#dfc0b7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#8b716a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-secondary-fixed-variant": "#394b3d",
+                        "tertiary-container": "#c7a84a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-fixed": "#0e1f13",
+                        "surface-container-high": "#e9e8e4",
+                        "secondary-fixed-dim": "#b7ccb9",
+                        "on-primary-fixed": "#3b0900",
+                        "on-surface-variant": "#58423c",
+                        "surface-dim": "#dbdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#546758",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#c54f2c",
+                        "background": "#faf9f5",
+                        "secondary": "#506354",
+                        "tertiary-fixed": "#ffe089",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "tertiary-fixed-dim": "#e4c363",
+                        "inverse-primary": "#ffb5a0",
+                        "secondary-fixed": "#d3e8d5",
+                        "inverse-surface": "#2f312e",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#862201",
+                        "on-surface": "#1b1c1a",
+                        "primary": "#a43716",
+                        "surface-container": "#efeeea",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#d0e5d2",
+                        "surface-container-highest": "#e3e2df",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-variant": "#e3e2df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1200px",
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Literata"],
+                        "display-lg": ["Literata"],
+                        "label-caps": ["Karla"],
+                        "button": ["Karla"],
+                        "body-lg": ["Karla"],
+                        "display-lg-mobile": ["Literata"],
+                        "body-md": ["Karla"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "button": ["16px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant/30 shadow-sm fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-stack-lg">
+<a class="text-headline-md font-headline-md font-bold text-primary" href="#">SkillSwap</a>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps" href="#">Discover</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-caps text-label-caps" href="#">Messages</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden sm:flex items-center bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge">
+                    12 Credits
+                </div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors duration-200">notifications</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling person in a brightly lit, modern home office setting. The lighting is warm and natural, reflecting the humanist-editorial style of the brand. The background is softly blurred, showing hints of bookshelves and green plants, emphasizing a lived-in yet clean and professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYzqqXyXNLVy8HMhtXx9rA83dVnrctVSNaIlUoBdqmhq5G4enzYf5VAGG6tWrZsvvow4Mlae6QgyW0ZVCYn2kLvfXIE0ruvMTS4c4GwUKBi_mIRuMCGskY-bviJp2XzCmqeM0TbsOTQ-cZUqCpGLU6I6PGp9q13FW6PYLkKBA_jJoeFAxeHtJfd_mhtYx4Uu5-Cx0hncRJzoZyNmZOSltew09ugYB8pLdsj2Xfd9sriJg0R5XYxaIo45nmh6y6-3peM3KziGW6S711"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Search Section -->
+<section class="mb-stack-lg">
+<div class="max-w-3xl mx-auto text-center mb-stack-lg">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg mb-4 text-on-surface">Find your next mentor</h1>
+<p class="text-body-lg text-on-surface-variant">Connect with community experts to learn skills through direct, human interaction.</p>
+</div>
+<!-- Semantic Search Bar -->
+<div class="max-w-2xl mx-auto relative glow-search transition-all duration-300">
+<div class="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary px-3" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md py-3 placeholder:text-outline" placeholder="I want to learn sourdough baking..." type="text"/>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-button active-press whisper-shadow">Search</button>
+</div>
+</div>
+</section>
+<!-- Filters and View Toggle -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter mb-stack-lg border-b border-outline-variant/20 pb-stack-md">
+<div class="flex flex-wrap gap-stack-sm items-center">
+<span class="text-label-caps text-outline uppercase mr-2">Filter by:</span>
+<button class="px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container text-label-caps flex items-center gap-1 active-press">
+                    Skill: All <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps flex items-center gap-1 active-press">
+                    Rating <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps flex items-center gap-1 active-press">
+                    Credits <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-label-caps flex items-center gap-1 active-press">
+                    Availability <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant/30 self-end md:self-auto">
+<button class="p-2 rounded-md bg-white shadow-sm text-primary material-symbols-outlined" id="grid-view-btn">grid_view</button>
+<button class="p-2 rounded-md text-on-surface-variant material-symbols-outlined" id="list-view-btn">view_list</button>
+</div>
+</section>
+<!-- Teacher Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="teachers-container">
+<!-- Card 1 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A warm, editorial-style portrait of a woman in her 40s wearing a comfortable linen shirt, standing in a sun-drenched pottery studio. The lighting is soft and golden, highlighting ceramic vessels in the background. The aesthetic is clean, organic, and minimalist, emphasizing craftsmanship and personal connection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwirdZdRUF64eboiLgsVtZdv0n_DWCIevLFBTQJjPLCC4VHfq33JsV0JCL0KwRqPvsbd7kMtYfA3DUsI9RTaj6h16JiBbrYIROPVsaSoYe9f9nxcNZgNVjAgK7Bkic7ek7xA7JcIgHi5_08_KQrIthT-FlvLVfUUfRfX1VKUk3kB4TuRifL5u6CQwKSNh-dNccOzzxBIK5j5aBOty0csUVhPzJymy1Gju59A66uV-AEW9yUasZivAMf5GsAa_HC6kJ032SKmPiw7nF"/>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">Elena Moretti</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-md font-bold">4.9</span>
+<span class="text-label-caps text-outline ml-1">(128 reviews)</span>
+</div>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
+                        3 <span class="text-[10px]">CR</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Pottery</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Sculpting</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Glazing</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20">
+<p class="text-body-md italic text-on-surface-variant">
+                        "Match for your interest in **Hand-built Ceramics**. Elena specializes in the rustic aesthetic you mentioned in your profile."
+                    </p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-primary text-white py-3 rounded-lg font-button active-press whisper-shadow">Book Session</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-secondary text-secondary hover:bg-secondary/5 transition-colors active-press material-symbols-outlined">favorite</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A detailed headshot of a young man with a friendly, intellectual expression, wearing glasses. He is seated in a library with soft, out-of-focus wooden shelves and books behind him. The lighting is cool and natural, fitting a scholarly yet approachable persona in a modern-organic minimal UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJxn7mrFQn8WoReOnMkDYWEpEC01zUNCDwdo0-7WVaj7LzZZMwMf5voGYaM6eJ7QFEqDi_nHxlrBOvPWw-S1qONIEoQNL9qlUPLYXOU_V-eu5cqlknRAOla_64CclLXCpaeiynyOCtwe5DjHUOK67ZeADBksvlWh9XGs3k91ICqEU4hsLkwumV6KncmVUtO97DpLkcE2N8ic1kRBI476HaShw51SKz5x0aYpBaN5JrwjgWSPXUik_mkV660WrO-KvgTsFIKPhR08_8"/>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">Julian Chen</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-md font-bold">5.0</span>
+<span class="text-label-caps text-outline ml-1">(42 reviews)</span>
+</div>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
+                        5 <span class="text-[10px]">CR</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Python</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Data Science</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20">
+<p class="text-body-md italic text-on-surface-variant">
+                        "Match for your **Recent Search**. Julian focuses on beginner-friendly automation, perfect for your career transition."
+                    </p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-primary text-white py-3 rounded-lg font-button active-press whisper-shadow">Book Session</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-secondary text-secondary hover:bg-secondary/5 transition-colors active-press material-symbols-outlined">favorite</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A portrait of a woman in her late 20s with an artistic flair, wearing a colorful scarf. She is in a bright, white-walled garden filled with lush plants and blooming flowers. The photograph has an editorial, high-quality magazine feel with soft shadows and rich, natural colors, perfectly matching a community-focused learning platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB97BwDV9afC8ucQ_k4a41Ks8UGSo3ggSMLJjTOYm-_DvJoa7R1UXk1Gelvjso6YLtD_kdfdRtI7vA1zUV6082EUlTtyPfFPSFmvhcFOgDcaL1go_8mMehAbxKfwL5GHBmp3SW1dtqo-5OdOZ7JzLv4ZE2JiOJ-8I7wBorjYpy88h5kmH0oCSjvUYOZLV52X-m9UsIp2AgtH-Ad9-mORHsDXQ8Ajwj0v7ov64nPK4tnQKY3Pi-JwCRJl82sFnH08XQpfMmHgI20gYyA"/>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">Sarah Jenkins</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-md font-bold">4.8</span>
+<span class="text-label-caps text-outline ml-1">(95 reviews)</span>
+</div>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
+                        2 <span class="text-[10px]">CR</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Gardening</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Herbalism</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Composting</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20">
+<p class="text-body-md italic text-on-surface-variant">
+                        "Match for your **Location**. Sarah lives only 2 miles away and hosts weekend workshops at the community garden."
+                    </p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-primary text-white py-3 rounded-lg font-button active-press whisper-shadow">Book Session</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-secondary text-secondary hover:bg-secondary/5 transition-colors active-press material-symbols-outlined">favorite</button>
+</div>
+</div>
+<!-- Card 4 (Visible in Grid) -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="An editorial style photo of a man in his 50s with grey hair and a warm smile, wearing an apron over a casual shirt. He is in a rustic kitchen with bags of flour and a wooden table. The lighting is soft and ambient, reflecting a peaceful, homey, and communal atmosphere characteristic of a local skill-sharing marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ6-OkqDdCZdcAJyY5ucbJsUCqqEhah0liycLZXis-ThyT-FRHR2EVoYdoN2KpRBiMVUOTGPz3dESnyaGJ2K4RKjwk6OfemjWfgY-3obhWLG-9sKpst_j29qEdYis054UOB94BE6AbOOD96Kp_oVRPZdUMgXS2nRCkHAbJbOhZ5JeghqZM-1ZWS0YTlefvRspWRWG9MLUWnYIXUMy6gA2Z7oOe8U1_JmyN4THokBE9_S2EOKxYXmcVcsajN0BNMmW6WTDiTkh16KRh"/>
+</div>
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">Marco Rossi</h3>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-md font-bold">4.9</span>
+<span class="text-label-caps text-outline ml-1">(210 reviews)</span>
+</div>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
+                        4 <span class="text-[10px]">CR</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Bread Making</span>
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-caps">Pasta</span>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20">
+<p class="text-body-md italic text-on-surface-variant">
+                        "Match for **Sourdough Search**. Marco is highly rated for teaching the 'No-Knead' method you were looking for."
+                    </p>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-primary text-white py-3 rounded-lg font-button active-press whisper-shadow">Book Session</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg border border-secondary text-secondary hover:bg-secondary/5 transition-colors active-press material-symbols-outlined">favorite</button>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-stack-lg flex justify-center">
+<button class="px-8 py-3 rounded-lg border border-secondary text-secondary font-button active-press hover:bg-secondary/5 transition-colors">
+                Load More Mentors
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-black w-full mt-stack-lg">
+<div class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col items-center md:items-start gap-stack-sm">
+<span class="text-headline-md font-headline-md text-primary-fixed">SkillSwap</span>
+<p class="text-surface-variant text-body-md">© 2024 SkillSwap. Built for the community.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-surface-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps" href="#">Community Guidelines</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps" href="#">Terms of Service</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps" href="#">Privacy Policy</a>
+<a class="text-surface-variant hover:text-primary-fixed transition-colors duration-200 text-label-caps" href="#">Support</a>
+</nav>
+</div>
+</footer>
+<script>
+        const gridViewBtn = document.getElementById('grid-view-btn');
+        const listViewBtn = document.getElementById('list-view-btn');
+        const container = document.getElementById('teachers-container');
+
+        listViewBtn.addEventListener('click', () => {
+            container.classList.remove('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+            container.classList.add('grid-cols-1');
+            listViewBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            gridViewBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+            gridViewBtn.classList.add('text-on-surface-variant');
+            
+            // Adjust card layouts for list view
+            document.querySelectorAll('#teachers-container > div').forEach(card => {
+                card.classList.add('md:flex-row', 'md:gap-gutter');
+            });
+        });
+
+        gridViewBtn.addEventListener('click', () => {
+            container.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+            container.classList.remove('grid-cols-1');
+            gridViewBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            listViewBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+            listViewBtn.classList.add('text-on-surface-variant');
+
+            // Reset card layouts for grid view
+            document.querySelectorAll('#teachers-container > div').forEach(card => {
+                card.classList.remove('md:flex-row', 'md:gap-gutter');
+            });
+        });
+    </script>
+</body></html>
