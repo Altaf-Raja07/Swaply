@@ -212,7 +212,7 @@ export default function TeacherProfilePage() {
             {reviews.map((review) => (
               <ReviewCard key={review.authorName} {...review} />
             ))}
-            <Button variant="ghost" className="w-full">
+            <Button variant="ghost" className="w-full border-b border-outline-variant/30 rounded-none">
               Read all 124 reviews
             </Button>
           </div>

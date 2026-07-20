@@ -98,7 +98,8 @@ export default function DiscoverPage() {
             </p>
           </div>
           <div className="max-w-2xl mx-auto relative transition-all duration-300">
-            <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
+            <div className="focus-within:shadow-[0_0_20px_rgba(217,93,57,0.15)] transition-shadow duration-300 rounded-xl">
+              <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
               <span
                 className="material-symbols-outlined text-primary px-3"
                 style={{ fontVariationSettings: "'FILL' 1" }}
@@ -113,6 +114,7 @@ export default function DiscoverPage() {
               <Button variant="primary">
                 Search
               </Button>
+            </div>
             </div>
           </div>
         </section>
@@ -222,7 +224,7 @@ export default function DiscoverPage() {
             <h2 className="text-headline-md font-headline-md text-on-surface">
               Recommended for you
             </h2>
-            <Button variant="secondary" size="sm" className="underline">
+            <Button variant="ghost" size="sm" className="underline text-secondary">
               View Maps
             </Button>
           </div>
@@ -230,7 +232,7 @@ export default function DiscoverPage() {
           {mobileTeachers.map((t) => (
             <div
               key={t.name}
-              className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col gap-4"
+              className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col gap-4"
             >
               <div className="flex gap-4">
                 <img src={t.avatarSrc || "/images/avatars/avatar-1.png"} alt={t.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
@@ -282,7 +284,7 @@ export default function DiscoverPage() {
           ))}
 
           {/* Featured Masterclass Card */}
-          <div className="relative bg-inverse-surface rounded-2xl p-6 text-white overflow-hidden whisper-shadow">
+          <div className="relative bg-inverse-surface rounded-xl p-6 text-white overflow-hidden whisper-shadow">
             <div className="relative z-10 space-y-4">
               <div className="flex justify-between items-start">
                 <div>
@@ -320,7 +322,7 @@ export default function DiscoverPage() {
             {popularTopics.map((topic) => (
               <div
                 key={topic.name}
-                className={`${topic.bg} h-32 rounded-2xl p-4 flex flex-col justify-between border border-outline-variant/20`}
+                className={`${topic.bg} h-32 rounded-xl p-4 flex flex-col justify-between border border-outline-variant/20`}
               >
                 <span
                   className={`material-symbols-outlined text-3xl ${topic.color}`}
@@ -337,7 +339,7 @@ export default function DiscoverPage() {
 
         {/* Load More - Desktop */}
         <div className="mt-stack-lg flex justify-center hidden md:flex">
-          <Button variant="ghost" className="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/5">
+          <Button variant="link" className="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/5">
             Load More Mentors
           </Button>
         </div>

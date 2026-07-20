@@ -150,7 +150,7 @@ export default function DashboardPage() {
                       className="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors"
                     >
                       <div className="relative">
-                        <img src="/images/avatars/avatar-21.png" alt="User" className="w-full h-full object-cover rounded-full" />
+                        <img src={chat.name === "Sarah J." ? "/images/avatars/avatar-11.png" : "/images/avatars/avatar-21.png"} alt="User" className="w-full h-full object-cover rounded-full" />
                         <div
                           className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
                             chat.online ? "bg-secondary" : "bg-outline-variant"

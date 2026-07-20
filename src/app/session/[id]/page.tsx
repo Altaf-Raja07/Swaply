@@ -62,7 +62,7 @@ export default function SessionDetailPage() {
             Session: Today at 4:00 PM
           </span>
         </div>
-        <Button variant="secondary" className="text-primary font-bold text-label-caps">RESCHEDULE</Button>
+        <button type="button" className="text-primary font-bold text-label-caps active:scale-[0.98] transition-transform">RESCHEDULE</button>
       </div>
 
       <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
@@ -190,7 +190,7 @@ export default function SessionDetailPage() {
                 <h3 className="font-bold text-on-surface">Chat with Elena</h3>
               </div>
               <div className="flex gap-stack-sm">
-                <Button variant="secondary" className="p-2 hover:bg-white rounded-full transition-colors">
+                <Button variant="ghost" className="p-2 rounded-full hover:bg-white">
                   <span className="material-symbols-outlined">videocam</span>
                 </Button>
                 <Button variant="ghost" className="p-2 hover:bg-white rounded-full transition-colors">
@@ -210,7 +210,7 @@ export default function SessionDetailPage() {
                 <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 overflow-hidden">
                   <img src="/images/avatars/avatar-8.png" alt="Avatar" className="w-full h-full object-cover rounded-full" />
                 </div>
-                <div className="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+                <div className="bg-surface-container-high p-4 rounded-xl rounded-tl-none">
                   <p className="text-body-md text-on-surface">
                     Hi! I just confirmed our session. Really looking forward to
                     learning some digital marketing from you.
@@ -222,10 +222,10 @@ export default function SessionDetailPage() {
               </div>
               {/* Outgoing */}
               <div className="flex flex-row-reverse gap-stack-md max-w-[80%] self-end">
-                <div className="bg-primary p-4 rounded-2xl rounded-tr-none text-on-primary">
+                <div className="bg-primary p-4 rounded-xl rounded-tr-none text-on-primary">
                   <p className="text-body-md">
                     Me too! I&apos;ve prepped a few slides to walk you through
-                    the basics. Should I bring a laptop?
+                    the                     basics. Should I bring a laptop or do you have one available?
                   </p>
                   <span className="text-[10px] text-white/70 mt-1 block">
                     10:45 AM
@@ -237,7 +237,7 @@ export default function SessionDetailPage() {
                 <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 overflow-hidden">
                   <img src="/images/avatars/avatar-22.png" alt="Elena" className="w-full h-full object-cover rounded-full" />
                 </div>
-                <div className="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
+                <div className="bg-surface-container-high p-4 rounded-xl rounded-tl-none">
                   <p className="text-body-md text-on-surface">
                     A laptop would be great. I have a projector we can use if
                     that helps!
@@ -265,9 +265,9 @@ export default function SessionDetailPage() {
                   placeholder="Type a message..."
                   rows={1}
                 />
-                <Button variant="ghost" className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center hover:opacity-90">
+                <button type="button" className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center whisper-shadow active:scale-[0.98] transition-all">
                   <span className="material-symbols-outlined">send</span>
-                </Button>
+                </button>
               </div>
             </div>
           </div>
@@ -352,7 +352,7 @@ export default function SessionDetailPage() {
             </div>
 
             {/* Reminder Card */}
-            <div className="bg-surface-container-lowest border-2 border-dashed border-tertiary/30 rounded-2xl p-5 text-center flex flex-col items-center gap-3">
+            <div className="bg-surface-container-lowest border-2 border-dashed border-tertiary/30 rounded-xl p-5 text-center flex flex-col items-center gap-3">
               <div className="w-10 h-10 bg-tertiary/10 rounded-full flex items-center justify-center">
                 <span className="material-symbols-outlined text-tertiary">timer</span>
               </div>
@@ -379,7 +379,7 @@ export default function SessionDetailPage() {
             <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
               <span className="material-symbols-outlined">add_circle</span>
             </Button>
-            <div className="flex-1 bg-surface-container-low border border-outline-variant/40 rounded-2xl min-h-[48px] py-2 px-4 flex items-center">
+            <div className="flex-1 bg-surface-container-low border border-outline-variant/40 rounded-xl min-h-[48px] py-2 px-4 flex items-center">
               <textarea
                 className="w-full bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50 resize-none max-h-32 overflow-y-auto"
                 placeholder="Type a message..."

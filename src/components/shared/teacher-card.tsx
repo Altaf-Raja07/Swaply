@@ -24,10 +24,10 @@ export function TeacherCard({
   matchNote,
 }: TeacherCardProps) {
   return (
-    <div className="bg-white border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+    <div className="bg-white border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-4">
-          <div className="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
+          <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-high">
             <img src={avatarSrc || "/images/avatars/avatar-2.png"} alt={name} className="w-full h-full object-cover" />
           </div>
           <div>
@@ -42,7 +42,7 @@ export function TeacherCard({
             />
           </div>
         </div>
-        <div className="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
+        <div className="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
           {credits} <span className="text-[10px]">CR</span>
         </div>
       </div>

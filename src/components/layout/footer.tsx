@@ -9,7 +9,7 @@ export function Footer() {
             SkillSwap
           </span>
           <p className="text-body-md font-body-md text-surface-variant opacity-80 text-center md:text-left">
-            &copy; 2024 SkillSwap. Built for the community.
+            &copy; 2024 SkillSwap. Built for the community. A tactile space for human knowledge.
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-stack-lg">

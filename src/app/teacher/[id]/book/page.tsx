@@ -80,10 +80,10 @@ export default function BookSessionPage() {
                       Select Date &amp; Time
                     </h3>
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="secondary" size="sm" className="!border-outline-variant">
                         <span className="material-symbols-outlined">chevron_left</span>
                       </Button>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="secondary" size="sm" className="!border-outline-variant">
                         <span className="material-symbols-outlined">chevron_right</span>
                       </Button>
                     </div>
@@ -97,7 +97,7 @@ export default function BookSessionPage() {
                           {day}
                         </p>
                         {day === "SAT" || day === "SUN" ? (
-                          <Button variant="ghost" className="w-full opacity-40" disabled>
+                          <Button variant="ghost" disabled className="opacity-40 cursor-not-allowed bg-surface-container-high">
                             {dates[i]}
                           </Button>
                         ) : (
@@ -222,7 +222,7 @@ export default function BookSessionPage() {
         {/* Step 3: Success */}
         {step === 3 && (
           <section className="max-w-lg mx-auto text-center">
-            <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-lg whisper-shadow overflow-hidden relative">
+            <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-lg whisper-shadow overflow-hidden relative">
               <div className="absolute top-0 left-0 w-full h-2 bg-secondary" />
               <div className="w-20 h-20 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-stack-lg">
                 <span
@@ -232,7 +232,7 @@ export default function BookSessionPage() {
                   check_circle
                 </span>
               </div>
-              <h3 className="text-display-lg-mobile md:text-display-lg font-headline-md mb-stack-sm">
+              <h3 className="text-display-lg-mobile md:text-headline-md font-headline-md mb-stack-sm">
                 Booking Confirmed!
               </h3>
               <p className="text-body-lg text-on-surface-variant mb-stack-lg">
