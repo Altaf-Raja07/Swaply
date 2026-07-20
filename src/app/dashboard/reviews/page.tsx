@@ -52,6 +52,20 @@ export default function ReviewsPage() {
             </p>
           </section>
 
+          {pastSessions.length === 0 && (
+            <div className="text-center py-16 px-4">
+              <span className="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-stack-md block">
+                rate_review
+              </span>
+              <h2 className="text-headline-md font-headline-md text-on-surface mb-2">
+                No exchanges yet
+              </h2>
+              <p className="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto">
+                You haven&apos;t completed any sessions yet. Book your first session and come back here to share your experience.
+              </p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             {/* Session Card 1 */}
             <div className="md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg">

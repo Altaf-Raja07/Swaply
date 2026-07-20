@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { TerracottaGrain } from "@/components/ui/terracotta-grain";
 
 export default function Home() {
   return (

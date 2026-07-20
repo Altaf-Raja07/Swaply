@@ -7,6 +7,18 @@ import { SessionCard } from "@/components/shared/session-card";
 import { Button } from "@/components/ui/button";
 
 export default function DashboardPage() {
+  const quickMessages = [
+    { name: "Liam K.", msg: '"See you at the wheel tomorrow!"', time: "2m", online: true },
+    { name: "Sarah J.", msg: '"Did you get the React repo?"', time: "1h", online: false },
+  ];
+  const creditActivityItems = [
+    { label: "Teaching: Clay Basics", date: "Oct 20, 2024", amount: "+3.0", color: "text-secondary" },
+    { label: "Booked: React Hooks", date: "Oct 18, 2024", amount: "-2.0", color: "text-primary" },
+    { label: "Teaching: Wheel Throwing", date: "Oct 15, 2024", amount: "+3.0", color: "text-secondary" },
+    { label: "Referral Bonus", date: "Oct 12, 2024", amount: "+5.0", color: "text-tertiary" },
+  ];
+  const interestItems = ["Pottery", "UI Design", "Urban Gardening", "Coffee Roasting", "+ Add New"];
+
   return (
     <>
       <Navbar activeTab="dashboard" />
@@ -140,10 +152,13 @@ export default function DashboardPage() {
               </h2>
               <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow">
                 <div className="divide-y divide-outline-variant/30">
-                  {[
-                    { name: "Liam K.", msg: '"See you at the wheel tomorrow!"', time: "2m", online: true },
-                    { name: "Sarah J.", msg: '"Did you get the React repo?"', time: "1h", online: false },
-                  ].map((chat) => (
+                  {quickMessages.length === 0 ? (
+                    <div className="text-center py-8 px-4">
+                      <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">chat</span>
+                      <p className="text-body-md font-body-md text-on-surface-variant">No messages yet. Start a conversation with a mentor.</p>
+                    </div>
+                  ) : (
+                    quickMessages.map((chat) => (
                     <a
                       key={chat.name}
                       href="#"
@@ -167,7 +182,7 @@ export default function DashboardPage() {
                         {chat.time}
                       </span>
                     </a>
-                  ))}
+                  )))}
                 </div>
                 <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">
                   VIEW ALL MESSAGES
@@ -182,12 +197,13 @@ export default function DashboardPage() {
               </h2>
               <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow">
                 <div className="space-y-4">
-                  {[
-                    { label: "Teaching: Clay Basics", date: "Oct 20, 2024", amount: "+3.0", color: "text-secondary" },
-                    { label: "Booked: React Hooks", date: "Oct 18, 2024", amount: "-2.0", color: "text-primary" },
-                    { label: "Teaching: Wheel Throwing", date: "Oct 15, 2024", amount: "+3.0", color: "text-secondary" },
-                    { label: "Referral Bonus", date: "Oct 12, 2024", amount: "+5.0", color: "text-tertiary" },
-                  ].map((item) => (
+                  {creditActivityItems.length === 0 ? (
+                    <div className="text-center py-8 px-4">
+                      <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">receipt_long</span>
+                      <p className="text-body-md font-body-md text-on-surface-variant">No credit activity yet. Start teaching to earn your first credits.</p>
+                    </div>
+                  ) : (
+                    creditActivityItems.map((item) => (
                     <div key={item.label} className="flex justify-between items-start">
                       <div>
                         <p className="font-bold text-on-surface">{item.label}</p>
@@ -195,7 +211,7 @@ export default function DashboardPage() {
                       </div>
                       <span className={`font-bold ${item.color}`}>{item.amount}</span>
                     </div>
-                  ))}
+                  )))}
                 </div>
                 <div className="mt-6 pt-4 border-t border-outline-variant/30">
                   <Button variant="secondary" className="w-full">
@@ -324,13 +340,13 @@ export default function DashboardPage() {
           <section className="space-y-stack-md">
             <h2 className="text-headline-md font-headline-md">Interests</h2>
             <div className="flex flex-wrap gap-2">
-              {[
-                "Pottery",
-                "UI Design",
-                "Urban Gardening",
-                "Coffee Roasting",
-                "+ Add New",
-              ].map((interest) => (
+              {interestItems.length === 0 ? (
+                <div className="text-center py-8 px-4 col-span-full">
+                  <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">interests</span>
+                  <p className="text-body-md font-body-md text-on-surface-variant">No interests selected yet. Explore sessions to find what inspires you.</p>
+                </div>
+              ) : (
+                interestItems.map((interest) => (
                 <span
                   key={interest}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium ${
@@ -341,7 +357,7 @@ export default function DashboardPage() {
                 >
                   {interest}
                 </span>
-              ))}
+              )))}
             </div>
           </section>
         </div>
