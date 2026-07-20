@@ -69,7 +69,7 @@ export default function ReviewsPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             {/* Session Card 1 */}
             <div className="md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg">
-              <img src="/images/illustrations/illustration-9.png" alt="Terracotta clay" className="w-full h-full object-cover rounded-lg" />
+              <img src="/images/illustrations/illustration-9.png" alt="Terracotta clay" className="w-full h-48 object-cover rounded-lg" />
               <div className="flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-unit mb-2">
@@ -112,7 +112,7 @@ export default function ReviewsPage() {
 
             {/* Session Card 2 */}
             <div className="md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row-reverse gap-stack-lg">
-              <img src="/images/illustrations/illustration-2.png" alt="Pasta ingredients" className="w-full h-full object-cover rounded-lg" />
+              <img src="/images/illustrations/illustration-2.png" alt="Pasta ingredients" className="w-full h-48 object-cover rounded-lg" />
               <div className="flex flex-col justify-center flex-1">
                 <div className="flex items-center gap-unit mb-2">
                   <span className="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-caps font-label-caps">

@@ -300,7 +300,9 @@ export default function DashboardPage() {
 
               {/* Session 2 */}
               <div className="bg-surface border border-outline-variant/30 rounded-xl p-gutter whisper-shadow flex items-center gap-4">
-                <img src="/images/illustrations/illustration-13.png" alt="Session" className="w-full h-full object-cover rounded-xl" />
+                <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                  <img src="/images/illustrations/illustration-13.png" alt="Session" className="w-full h-full object-cover rounded-xl" />
+                </div>
                 <div className="flex-grow">
                   <h3 className="font-bold text-md leading-tight">Sourdough Mastery</h3>
                   <p className="text-on-surface-variant text-xs">Tomorrow at 10:00 AM</p>

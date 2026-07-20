@@ -13,7 +13,7 @@ export default function LoginPage() {
           SkillSwap
         </Link>
       </header>
-      <main className="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile max-w-container-max mx-auto">
+      <main className="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         <div className="w-full max-w-[480px] space-y-stack-lg">
           {/* Branding/Illustration Section */}
           <div className="text-center space-y-stack-sm">
