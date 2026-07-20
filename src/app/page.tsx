@@ -34,10 +34,7 @@ export default function Home() {
             <div className="relative flex justify-center items-center h-[400px] md:h-[500px]">
               <div className="absolute inset-0 terracotta-grain opacity-30 pointer-events-none" />
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* TODO: Replace with actual illustration */}
-                <div className="w-full h-full bg-surface-container-high rounded-2xl flex items-center justify-center text-on-surface-variant text-label-caps">
-                  Illustration: The Exchange Loop
-                </div>
+                <img src="/images/avatars/avatar-26.png" alt="The Exchange Loop" className="w-full h-full object-contain drop-shadow-xl" />
               </div>
             </div>
           </div>
@@ -68,8 +65,7 @@ export default function Home() {
             {/* Coding: Big Card */}
             <div className="col-span-2 row-span-1 md:row-span-2 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-48 md:h-80 relative overflow-hidden">
-                {/* TODO: Replace with actual image */}
-                <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/illustrations/illustration-3.png" alt="Code and design workspace" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <div className="bg-secondary/80 text-white text-[10px] px-2 py-0.5 rounded-full font-label-caps inline-block mb-2">
@@ -91,8 +87,7 @@ export default function Home() {
             {/* Music */}
             <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-32 relative overflow-hidden">
-                {/* TODO: Replace with actual image */}
-                <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/illustrations/illustration-5.png" alt="Acoustic guitar strings" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <h3 className="text-body-lg font-headline-md mb-2">Music</h3>
@@ -110,8 +105,7 @@ export default function Home() {
             {/* Languages */}
             <div className="col-span-2 md:col-span-1 group cursor-pointer bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow active-press">
               <div className="h-32 relative overflow-hidden">
-                {/* TODO: Replace with actual image */}
-                <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/illustrations/illustration-10.png" alt="Hand-bound notebooks" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6">
                 <h3 className="text-body-lg font-headline-md mb-2">

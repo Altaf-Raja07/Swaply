@@ -82,9 +82,8 @@ export default function OnboardingLearnPage() {
 
                 <div className="flex justify-between items-center mt-stack-md">
                   <div className="flex -space-x-2">
-                    {/* TODO: Replace with actual mentor avatars */}
-                    <div className="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high" />
-                    <div className="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-high" />
+                    <img src="/images/avatars/avatar-25.png" alt="Mentor" className="w-8 h-8 rounded-full border-2 border-surface object-cover" />
+                    <img src="/images/avatars/avatar-7.png" alt="Mentor" className="w-8 h-8 rounded-full border-2 border-surface object-cover" />
                     <div className="w-8 h-8 rounded-full border-2 border-surface bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold text-on-tertiary-fixed">
                       +12
                     </div>

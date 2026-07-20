@@ -52,7 +52,9 @@ export default function BookSessionPage() {
               {/* Expert Quick Card */}
               <div className="md:col-span-4">
                 <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow sticky top-24">
-                  <div className="aspect-square rounded-lg overflow-hidden mb-stack-md bg-surface-container-high" />
+                  <div className="aspect-square rounded-lg overflow-hidden mb-stack-md">
+                    <img src="/images/illustrations/illustration-1.png" alt="Pottery hands" className="w-full h-full object-cover rounded-lg" />
+                  </div>
                   <h2 className="text-headline-md font-headline-md mb-1">
                     Wheel Throwing
                   </h2>
@@ -159,7 +161,9 @@ export default function BookSessionPage() {
               </h3>
               <div className="space-y-gutter">
                 <div className="flex items-start gap-gutter p-4 rounded-lg bg-surface-container">
-                  <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-high" />
+                  <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+                    <img src="/images/illustrations/illustration-15.png" alt="Pottery tools" className="w-full h-full object-cover rounded-lg" />
+                  </div>
                   <div>
                     <p className="text-label-caps text-primary font-bold uppercase mb-1">
                       Workshop

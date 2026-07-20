@@ -88,7 +88,7 @@ export default function SettingsPage() {
               <div className="flex flex-col items-center mb-stack-lg">
                 <div className="relative group cursor-pointer">
                   <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-primary-fixed-dim">
-                    <div className="w-full h-full bg-surface-container-high group-hover:scale-105 transition-transform duration-500" />
+                    <img src="/images/avatars/avatar-12.png" alt="Profile photo" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="absolute inset-0 bg-black/20 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                     <span className="material-symbols-outlined text-white">

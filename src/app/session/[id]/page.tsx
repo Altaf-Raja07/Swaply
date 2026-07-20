@@ -24,7 +24,9 @@ export default function SessionDetailPage() {
             </Link>
           </Button>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-surface-container" />
+            <div className="w-10 h-10 rounded-full overflow-hidden">
+              <img src="/images/avatars/avatar-24.png" alt="Mentor" className="w-full h-full object-cover" />
+            </div>
             <div>
               <h1 className="text-body-md font-bold text-on-surface leading-none">
                 Elena Woodworking
@@ -108,7 +110,9 @@ export default function SessionDetailPage() {
               </h2>
               <div className="space-y-stack-md">
                 <div className="flex items-start gap-stack-md p-3 rounded-lg bg-surface">
-                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high" />
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                    <img src="/images/illustrations/illustration-4.png" alt="Wheel throwing" className="w-full h-full object-cover rounded-lg" />
+                  </div>
                   <div>
                     <p className="text-label-caps font-label-caps text-on-surface-variant">
                       Skill Offered
@@ -148,7 +152,9 @@ export default function SessionDetailPage() {
             {/* Instructor Card */}
             <div className="bg-surface-container-lowest p-stack-lg rounded-xl editorial-border whisper-shadow">
               <div className="flex items-center gap-stack-md mb-stack-md">
-                <div className="w-12 h-12 rounded-full bg-surface-container-high" />
+                <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <img src="/images/avatars/avatar-13.png" alt="Elena" className="w-full h-full object-cover rounded-full" />
+                </div>
                 <div>
                   <p className="font-bold text-on-surface">Elena Moretti</p>
                   <StarRating rating={4.9} size="sm" reviewCount={124} />
@@ -201,7 +207,9 @@ export default function SessionDetailPage() {
               </div>
               {/* Incoming */}
               <div className="flex gap-stack-md max-w-[80%]">
-                <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 bg-surface-container-high" />
+                <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 overflow-hidden">
+                  <img src="/images/avatars/avatar-8.png" alt="Avatar" className="w-full h-full object-cover rounded-full" />
+                </div>
                 <div className="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
                   <p className="text-body-md text-on-surface">
                     Hi! I just confirmed our session. Really looking forward to
@@ -226,7 +234,9 @@ export default function SessionDetailPage() {
               </div>
               {/* Incoming */}
               <div className="flex gap-stack-md max-w-[80%]">
-                <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 bg-surface-container-high" />
+                <div className="w-8 h-8 rounded-full flex-shrink-0 mt-1 overflow-hidden">
+                  <img src="/images/avatars/avatar-22.png" alt="Elena" className="w-full h-full object-cover rounded-full" />
+                </div>
                 <div className="bg-surface-container-high p-4 rounded-2xl rounded-tl-none">
                   <p className="text-body-md text-on-surface">
                     A laptop would be great. I have a projector we can use if

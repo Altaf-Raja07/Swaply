@@ -63,7 +63,7 @@ export function Navbar({ activeTab }: NavbarProps) {
             <span className="material-symbols-outlined">notifications</span>
           </button>
           <div className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
-            <div className="w-full h-full bg-surface-container-high" />
+            <img src="/images/avatars/avatar-3.png" alt="User avatar" className="w-full h-full object-cover" />
           </div>
         </div>
       </nav>

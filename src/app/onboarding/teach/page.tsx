@@ -134,8 +134,7 @@ export default function OnboardingTeachPage() {
 
             {/* Decorative Asset */}
             <div className="mt-stack-lg w-full aspect-[21/9] rounded-[16px] overflow-hidden grayscale-[50%] hover:grayscale-0 transition-all duration-1000">
-              {/* TODO: Replace with actual image */}
-              <div className="w-full h-full bg-surface-container-high" />
+              <img src="/images/illustrations/illustration-11.png" alt="Communal workshop" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

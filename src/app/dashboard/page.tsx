@@ -150,7 +150,7 @@ export default function DashboardPage() {
                       className="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors"
                     >
                       <div className="relative">
-                        <div className="w-12 h-12 rounded-full bg-surface-variant" />
+                        <img src="/images/avatars/avatar-21.png" alt="User" className="w-full h-full object-cover rounded-full" />
                         <div
                           className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
                             chat.online ? "bg-secondary" : "bg-outline-variant"
@@ -284,7 +284,7 @@ export default function DashboardPage() {
 
               {/* Session 2 */}
               <div className="bg-surface border border-outline-variant/30 rounded-xl p-gutter whisper-shadow flex items-center gap-4">
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface-container-high" />
+                <img src="/images/illustrations/illustration-13.png" alt="Session" className="w-full h-full object-cover rounded-xl" />
                 <div className="flex-grow">
                   <h3 className="font-bold text-md leading-tight">Sourdough Mastery</h3>
                   <p className="text-on-surface-variant text-xs">Tomorrow at 10:00 AM</p>

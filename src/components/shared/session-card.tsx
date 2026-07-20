@@ -9,7 +9,7 @@ interface SessionCardProps {
   subtitle: string;
   with: string;
   dateTime: string;
-  imageUrl?: string;
+  imageSrc?: string;
   actionLabel: string;
   actionVariant?: "primary" | "secondary";
 }
@@ -20,7 +20,7 @@ export function SessionCard({
   subtitle,
   with: mentor,
   dateTime,
-  imageUrl,
+  imageSrc,
   actionLabel,
   actionVariant = "primary",
 }: SessionCardProps) {
@@ -37,15 +37,7 @@ export function SessionCard({
       )}
     >
       <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-surface-container overflow-hidden">
-        {imageUrl ? (
-          <img
-            className="w-full h-full object-cover"
-            src={imageUrl}
-            alt={title}
-          />
-        ) : (
-          <div className="w-full h-full bg-surface-container" />
-        )}
+        <img src={imageSrc || "/images/illustrations/illustration-13.png"} alt={title} className="w-full h-full object-cover" />
       </div>
       <div className="flex-grow text-center md:text-left">
         <div className="flex items-center justify-center md:justify-start gap-2 mb-1">

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 interface TeacherCardProps {
   name: string;
   imageUrl?: string;
+  avatarSrc?: string;
   rating: number;
   reviewCount: number;
   credits: number;
@@ -15,6 +16,7 @@ interface TeacherCardProps {
 export function TeacherCard({
   name,
   imageUrl,
+  avatarSrc,
   rating,
   reviewCount,
   credits,
@@ -26,15 +28,7 @@ export function TeacherCard({
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-4">
           <div className="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container-high">
-            {imageUrl ? (
-              <img
-                className="w-full h-full object-cover"
-                src={imageUrl}
-                alt={name}
-              />
-            ) : (
-              <div className="w-full h-full bg-surface-container-high" />
-            )}
+            <img src={avatarSrc || "/images/avatars/avatar-2.png"} alt={name} className="w-full h-full object-cover" />
           </div>
           <div>
             <h3 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">

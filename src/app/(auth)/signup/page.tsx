@@ -118,8 +118,7 @@ export default function SignupPage() {
           {/* Illustrated Concepts */}
           <div className="grid grid-cols-2 gap-gutter pt-stack-lg">
             <div className="bg-surface-container-low p-stack-md rounded-xl space-y-stack-sm border border-outline-variant/20">
-              {/* TODO: Replace with actual image */}
-              <div className="w-full h-32 object-cover rounded-lg bg-surface-container-high" />
+              <img src="/images/illustrations/illustration-12.png" alt="Pottery hands" className="w-full h-32 object-cover rounded-lg" />
               <div className="space-y-unit">
                 <p className="font-label-caps text-label-caps text-secondary uppercase">
                   Learn
@@ -130,8 +129,7 @@ export default function SignupPage() {
               </div>
             </div>
             <div className="bg-surface-container-low p-stack-md rounded-xl space-y-stack-sm border border-outline-variant/20">
-              {/* TODO: Replace with actual image */}
-              <div className="w-full h-32 object-cover rounded-lg bg-surface-container-high" />
+              <img src="/images/illustrations/illustration-16.png" alt="Architectural sketching" className="w-full h-32 object-cover rounded-lg" />
               <div className="space-y-unit">
                 <p className="font-label-caps text-label-caps text-secondary uppercase">
                   Teach

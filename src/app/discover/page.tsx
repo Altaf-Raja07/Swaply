@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 const teachers = [
   {
     name: "Elena Moretti",
+    avatarSrc: "/images/avatars/avatar-2.png",
     rating: 4.9,
     reviewCount: 128,
     credits: 3,
@@ -20,6 +21,7 @@ const teachers = [
   },
   {
     name: "Julian Chen",
+    avatarSrc: "/images/avatars/avatar-23.png",
     rating: 5.0,
     reviewCount: 42,
     credits: 5,
@@ -29,6 +31,7 @@ const teachers = [
   },
   {
     name: "Sarah Jenkins",
+    avatarSrc: "/images/avatars/avatar-9.png",
     rating: 4.8,
     reviewCount: 95,
     credits: 2,
@@ -38,6 +41,7 @@ const teachers = [
   },
   {
     name: "Marco Rossi",
+    avatarSrc: "/images/avatars/avatar-17.png",
     rating: 4.9,
     reviewCount: 210,
     credits: 4,
@@ -50,6 +54,7 @@ const teachers = [
 const mobileTeachers = [
   {
     name: "Elena Moretti",
+    avatarSrc: "/images/avatars/avatar-1.png",
     subtitle: "Master Potter & Ceramicist",
     rating: 4.9,
     skills: ["Pottery", "Sculpting"],
@@ -58,6 +63,7 @@ const mobileTeachers = [
   },
   {
     name: "Arthur Vance",
+    avatarSrc: "/images/avatars/avatar-23.png",
     subtitle: "Creative Writing & Philology",
     rating: 5.0,
     skills: ["Writing", "Latin"],
@@ -227,7 +233,7 @@ export default function DiscoverPage() {
               className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-stack-md whisper-shadow flex flex-col gap-4"
             >
               <div className="flex gap-4">
-                <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-surface-container-high" />
+                <img src={t.avatarSrc || "/images/avatars/avatar-1.png"} alt={t.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
                     <h3 className="text-headline-md font-headline-md text-on-surface leading-tight">

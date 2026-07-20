@@ -56,7 +56,9 @@ export default function TeacherProfilePage() {
         {/* Header / Bio Section */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
           <div className="md:col-span-8 flex flex-col md:flex-row gap-stack-lg items-start">
-            <div className="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden editorial-border whisper-shadow flex-shrink-0 bg-surface-container-high" />
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-xl overflow-hidden editorial-border whisper-shadow flex-shrink-0">
+              <img src="/images/avatars/avatar-15.png" alt="Elena Vance" className="w-full h-full object-cover rounded-xl" />
+            </div>
             <div className="flex flex-col gap-unit">
               <div className="flex items-center gap-stack-sm mb-unit">
                 <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">
