@@ -1,9 +1,13 @@
+"use client";
+
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { StarRating } from "@/components/shared/star-rating";
 import { SkillChip } from "@/components/shared/skill-chip";
 import { ReviewCard } from "@/components/shared/review-card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const skillsToLearn = [
   {
@@ -49,6 +53,8 @@ const reviews = [
 ];
 
 export default function TeacherProfilePage() {
+  const params = useParams();
+  const id = params.id as string;
   return (
     <>
       <Navbar activeTab="discover" />
@@ -88,10 +94,10 @@ export default function TeacherProfilePage() {
             </div>
           </div>
           <div className="md:col-span-4 flex flex-col gap-stack-md items-end justify-start">
-            <Button variant="primary" className="w-full md:w-auto">
-              Book a session
+            <Button variant="primary" className="w-full md:w-auto" asChild>
+              <Link href={`/teacher/${id}/book`}>Book a session</Link>
             </Button>
-            <Button variant="secondary" className="w-full md:w-auto">
+            <Button variant="secondary" className="w-full md:w-auto" onClick={() => console.log("Message mentor")}>
               Message Elena
             </Button>
           </div>
@@ -103,15 +109,16 @@ export default function TeacherProfilePage() {
             <h2 className="text-headline-md font-headline-md text-on-surface">
               Skills to Learn
             </h2>
-            <span className="text-label-caps text-primary cursor-pointer hover:underline">
+            <button type="button" className="text-label-caps text-primary cursor-pointer hover:underline focus-visible:ring-2 focus-visible:ring-primary" onClick={() => console.log("View all curriculum")}>
               View All Curriculum
-            </span>
+            </button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
             {skillsToLearn.map((skill) => (
               <div
                 key={skill.title}
                 className="group p-stack-lg bg-surface-container-low rounded-xl editorial-border whisper-shadow cursor-pointer transition-all hover:bg-surface-container duration-300"
+                onClick={() => console.log("View skill details")}
               >
                 <div className="flex justify-between items-start mb-stack-md">
                   <div
@@ -152,10 +159,10 @@ export default function TeacherProfilePage() {
                 Weekly Availability
               </h2>
               <div className="flex gap-2">
-                <Button variant="ghost" size="sm" className="rounded-full">
+                <Button variant="ghost" size="sm" className="rounded-full" aria-label="Previous week" onClick={() => console.log("Previous week")}>
                   <span className="material-symbols-outlined">chevron_left</span>
                 </Button>
-                <Button variant="ghost" size="sm" className="rounded-full">
+                <Button variant="ghost" size="sm" className="rounded-full" aria-label="Next week" onClick={() => console.log("Next week")}>
                   <span className="material-symbols-outlined">chevron_right</span>
                 </Button>
               </div>
@@ -212,7 +219,7 @@ export default function TeacherProfilePage() {
             {reviews.map((review) => (
               <ReviewCard key={review.authorName} {...review} />
             ))}
-            <Button variant="ghost" className="w-full border-b border-outline-variant/30 rounded-none">
+            <Button variant="ghost" className="w-full border-b border-outline-variant/30 rounded-none" onClick={() => console.log("Read all reviews")}>
               Read all 124 reviews
             </Button>
           </div>

@@ -26,9 +26,13 @@ export function ReviewModal({
   const [rating, setRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [comment, setComment] = useState("");
+  const [ratingError, setRatingError] = useState("");
 
   const handleSubmit = () => {
-    if (rating === 0) return;
+    if (rating === 0) {
+      setRatingError("Please select a star rating");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -57,7 +61,8 @@ export function ReviewModal({
                   </DialogDescription>
                 </div>
                 <button
-                  className="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors"
+                  aria-label="Close review dialog"
+                  className="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-2"
                   onClick={handleClose}
                 >
                   close
@@ -69,10 +74,12 @@ export function ReviewModal({
               <Label className="block mb-stack-sm">Rating</Label>
               <div className="flex gap-stack-md">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <span
+                  <button
                     key={star}
+                    type="button"
+                    aria-label={`Rate ${star} stars`}
                     className={cn(
-                      "material-symbols-outlined text-4xl cursor-pointer hover:scale-110 transition-all",
+                      "material-symbols-outlined text-4xl hover:scale-110 transition-all",
                       star <= rating
                         ? "text-tertiary-container"
                         : "text-outline-variant"
@@ -80,12 +87,18 @@ export function ReviewModal({
                     style={{
                       fontVariationSettings: `'FILL' ${star <= rating ? 1 : 0}`,
                     }}
-                    onClick={() => setRating(star)}
+                    onClick={() => {
+                      setRating(star);
+                      setRatingError("");
+                    }}
                   >
                     star
-                  </span>
+                  </button>
                 ))}
               </div>
+              {ratingError && (
+                <p className="text-error text-body-sm mt-2">{ratingError}</p>
+              )}
             </div>
 
             <div className="my-6">
@@ -94,9 +107,13 @@ export function ReviewModal({
                 className="w-full bg-surface-container-low border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md font-body-md placeholder:text-outline transition-all resize-none p-stack-sm"
                 placeholder="Tell the community what made this exchange special..."
                 rows={4}
+                maxLength={500}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               />
+              <div className="text-right text-body-sm text-on-surface-variant mt-1">
+                {comment.length}/500
+              </div>
             </div>
 
             <div className="flex items-center gap-stack-md mt-6">

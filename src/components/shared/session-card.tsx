@@ -30,7 +30,7 @@ export function SessionCard({
     role === "teaching" ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary";
 
   return (
-    <div
+    <article
       className={cn(
         "group bg-surface-container-lowest border-l-4 border-t border-r border-b border-outline-variant/20 rounded-lg p-stack-md flex flex-col md:flex-row items-center gap-stack-md whisper-shadow hover:bg-surface-container-low transition-all duration-200 cursor-pointer",
         borderColor
@@ -70,10 +70,14 @@ export function SessionCard({
             {actionLabel}
           </Button>
         )}
-        <button className="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors">
+        <button
+          className="p-2 border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors focus-visible:ring-2"
+          aria-label="More options"
+          onClick={() => console.log("More options")}
+        >
           <span className="material-symbols-outlined">more_vert</span>
         </button>
       </div>
-    </div>
+    </article>
   );
 }

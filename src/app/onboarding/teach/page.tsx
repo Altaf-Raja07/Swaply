@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 
 export default function OnboardingTeachPage() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
       <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
@@ -59,7 +64,28 @@ export default function OnboardingTeachPage() {
 
           {/* Right Content Canvas */}
           <div className="md:col-span-8 w-full">
-            <form className="bg-white p-stack-lg rounded-[16px] border border-outline-variant/30 whisper-shadow flex flex-col gap-stack-lg">
+            <form
+              className="bg-white p-stack-lg rounded-[16px] border border-outline-variant/30 whisper-shadow flex flex-col gap-stack-lg"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const newErrors: Record<string, string> = {};
+                const skillName = (
+                  document.getElementById("skill-name") as HTMLInputElement
+                )?.value;
+                const description = (
+                  document.getElementById("skill-description") as HTMLTextAreaElement
+                )?.value;
+                if (!skillName || skillName.length < 2)
+                  newErrors.skillName =
+                    "Skill name must be at least 2 characters";
+                if (!description || description.length < 10)
+                  newErrors.description =
+                    "Description must be at least 10 characters";
+                setErrors(newErrors);
+                if (Object.keys(newErrors).length === 0)
+                  console.log("Skill submitted");
+              }}
+            >
               {/* Mobile Header */}
               <div className="md:hidden">
                 <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-stack-sm">
@@ -69,14 +95,23 @@ export default function OnboardingTeachPage() {
 
               {/* Input: Skill Name */}
               <div className="flex flex-col gap-unit">
-                <label className="text-label-caps font-label-caps text-on-surface-variant">
+                <label
+                  htmlFor="skill-name"
+                  className="text-label-caps font-label-caps text-on-surface-variant"
+                >
                   SKILL NAME
                 </label>
                 <input
+                  id="skill-name"
                   className="w-full bg-transparent border-0 border-b-2 border-outline-variant py-stack-sm px-0 text-headline-md font-headline-md focus:ring-0 focus:border-primary transition-colors placeholder:text-surface-variant"
                   placeholder="e.g., Landscape Photography"
                   type="text"
+                  required
+                  minLength={2}
                 />
+                {errors.skillName && (
+                  <p className="text-xs text-red-500">{errors.skillName}</p>
+                )}
               </div>
 
               {/* Segmented Control: Proficiency */}
@@ -97,7 +132,7 @@ export default function OnboardingTeachPage() {
                           type="radio"
                           defaultChecked={level === "Beginner"}
                         />
-                        <div className="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">
+                        <div className="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-primary">
                           {level}
                         </div>
                       </label>
@@ -108,19 +143,28 @@ export default function OnboardingTeachPage() {
 
               {/* Free Text Description */}
               <div className="flex flex-col gap-unit">
-                <label className="text-label-caps font-label-caps text-on-surface-variant">
+                <label
+                  htmlFor="skill-description"
+                  className="text-label-caps font-label-caps text-on-surface-variant"
+                >
                   TELL US MORE
                 </label>
                 <textarea
+                  id="skill-description"
                   className="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-stack-md text-body-md font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:italic placeholder:opacity-50"
                   placeholder="Example: I've been a nature photographer for 10 years. I can teach you how to master manual settings..."
                   rows={5}
+                  required
+                  minLength={10}
                 />
+                {errors.description && (
+                  <p className="text-xs text-red-500">{errors.description}</p>
+                )}
               </div>
 
               {/* Call to Action Footer */}
               <div className="flex items-center justify-between mt-stack-md border-t border-outline-variant/20 pt-stack-lg">
-                <Button type="button" variant="ghost">
+                <Button type="button" variant="ghost" onClick={() => console.log("Go back")}>
                   Back
                 </Button>
                 <Button type="submit">

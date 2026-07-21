@@ -24,7 +24,7 @@ export function TeacherCard({
   matchNote,
 }: TeacherCardProps) {
   return (
-    <div className="bg-white border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
+    <article className="bg-white border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col hover:border-primary/30 transition-colors duration-300 group">
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-4">
           <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-high">
@@ -68,6 +68,6 @@ export function TeacherCard({
           favorite
         </Button>
       </div>
-    </div>
+    </article>
   );
 }

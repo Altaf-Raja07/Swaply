@@ -1,3 +1,5 @@
+"use client";
+
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 
@@ -27,21 +29,24 @@ export default function OnboardingLearnPage() {
               <span className="text-label-caps font-label-caps text-outline">
                 POPULAR RIGHT NOW
               </span>
-              <div className="flex flex-wrap gap-stack-sm">
+              <ul className="flex flex-wrap gap-stack-sm">
                 {[
                   "Generative AI",
                   "Bread Baking",
                   "Rust Programming",
                   "Negotiation Tactics",
                 ].map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-secondary/10 text-secondary px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors"
-                  >
-                    {skill}
-                  </span>
+                  <li key={skill}>
+                    <button
+                      type="button"
+                      className="bg-secondary/10 text-secondary px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors"
+                      onClick={() => console.log("Skill selected")}
+                    >
+                      {skill}
+                    </button>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
@@ -88,7 +93,7 @@ export default function OnboardingLearnPage() {
                       +12
                     </div>
                   </div>
-                  <Button>
+                  <Button onClick={() => console.log("Continue")}>
                     Continue
                     <span className="material-symbols-outlined text-sm">
                       arrow_forward

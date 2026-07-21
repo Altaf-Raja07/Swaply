@@ -15,25 +15,25 @@ export function Footer() {
         <div className="flex flex-wrap justify-center gap-stack-lg">
           <Link
             href="#"
-            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
+            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary"
           >
             Community Guidelines
           </Link>
           <Link
             href="#"
-            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
+            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary"
           >
             Terms of Service
           </Link>
           <Link
             href="#"
-            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
+            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary"
           >
             Privacy Policy
           </Link>
           <Link
             href="#"
-            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200"
+            className="text-label-caps font-label-caps text-surface-variant hover:text-primary-fixed transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary"
           >
             Support
           </Link>

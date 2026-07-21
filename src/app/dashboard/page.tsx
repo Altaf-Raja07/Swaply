@@ -108,7 +108,7 @@ export default function DashboardPage() {
                   Upcoming Sessions
                 </h2>
               </div>
-              <Button variant="ghost" className="text-label-caps font-label-caps text-secondary hover:underline transition-all">
+              <Button variant="ghost" className="text-label-caps font-label-caps text-secondary hover:underline transition-all" onClick={() => console.log("Calendar view")}>
                 VIEW CALENDAR
               </Button>
             </header>
@@ -151,20 +151,21 @@ export default function DashboardPage() {
                 QUICK MESSAGES
               </h2>
               <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden whisper-shadow">
-                <div className="divide-y divide-outline-variant/30">
-                  {quickMessages.length === 0 ? (
-                    <div className="text-center py-8 px-4">
-                      <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">chat</span>
-                      <p className="text-body-md font-body-md text-on-surface-variant">No messages yet. Start a conversation with a mentor.</p>
-                    </div>
-                  ) : (
-                    quickMessages.map((chat) => (
+                {quickMessages.length === 0 ? (
+                  <div className="text-center py-8 px-4">
+                    <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">chat</span>
+                    <p className="text-body-md font-body-md text-on-surface-variant">No messages yet. Start a conversation with a mentor.</p>
+                  </div>
+                ) : (
+                  <ul className="divide-y divide-outline-variant/30">
+                    {quickMessages.map((chat) => (
+                    <li key={chat.name}>
                     <a
-                      key={chat.name}
                       href="#"
                       className="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors"
+                      onClick={(e) => { e.preventDefault(); console.log("Chat with", chat.name); }}
                     >
-                      <div className="relative">
+                      <div className="relative w-12 h-12">
                         <img src={chat.name === "Sarah J." ? "/images/avatars/avatar-11.png" : "/images/avatars/avatar-21.png"} alt="User" className="w-full h-full object-cover rounded-full" />
                         <div
                           className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
@@ -182,9 +183,11 @@ export default function DashboardPage() {
                         {chat.time}
                       </span>
                     </a>
-                  )))}
-                </div>
-                <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">
+                    </li>
+                  ))}
+                  </ul>
+                )}
+                <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" onClick={() => console.log("View all messages")}>
                   VIEW ALL MESSAGES
                 </Button>
               </div>
@@ -214,7 +217,7 @@ export default function DashboardPage() {
                   )))}
                 </div>
                 <div className="mt-6 pt-4 border-t border-outline-variant/30">
-                  <Button variant="secondary" className="w-full">
+                  <Button variant="secondary" className="w-full" onClick={() => console.log("Top up credits")}>
                     TOP UP CREDITS
                   </Button>
                 </div>
@@ -247,7 +250,7 @@ export default function DashboardPage() {
                   </span>
                 </div>
               </div>
-              <Button variant="primary" className="w-full bg-surface-bright text-primary font-button py-3 rounded-lg hover:opacity-90 transition-all">
+              <Button variant="primary" className="w-full bg-surface-bright text-primary font-button py-3 rounded-lg hover:opacity-90 transition-all" onClick={() => console.log("Top up credits")}>
                 Top Up Credits
               </Button>
             </div>
@@ -258,7 +261,7 @@ export default function DashboardPage() {
           <section className="space-y-stack-md">
             <div className="flex justify-between items-center">
               <h2 className="text-headline-md font-headline-md">Next Sessions</h2>
-              <a href="#" className="text-label-caps font-label-caps text-primary">
+              <a href="#" onClick={(e) => { e.preventDefault(); console.log("View all"); }} className="text-label-caps font-label-caps text-primary">
                 VIEW ALL
               </a>
             </div>
@@ -366,7 +369,7 @@ export default function DashboardPage() {
       </main>
 
       {/* Mobile FAB */}
-      <Button variant="primary" className="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40 md:bottom-8">
+      <Button variant="primary" className="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40 md:bottom-8" onClick={() => console.log("Quick action")}>
         <span className="material-symbols-outlined text-2xl">add</span>
       </Button>
 

@@ -33,8 +33,9 @@ function SkillChip({ label, variant, onRemove }: SkillChipProps) {
       {label}
       <button
         type="button"
+        aria-label={`Remove ${label}`}
         onClick={onRemove}
-        className="material-symbols-outlined text-[16px] leading-none hover:opacity-70"
+        className="material-symbols-outlined text-[16px] leading-none hover:opacity-70 p-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       >
         close
       </button>
@@ -75,8 +76,8 @@ export default function SettingsPage() {
             </p>
           </div>
           <div className="flex gap-stack-sm">
-            <Button variant="secondary">Cancel</Button>
-            <Button variant="primary">Save Changes</Button>
+            <Button variant="secondary" onClick={() => console.log("Settings cancelled")}>Cancel</Button>
+            <Button variant="primary" onClick={() => console.log("Settings saved")}>Save Changes</Button>
           </div>
         </div>
 
@@ -106,10 +107,11 @@ export default function SettingsPage() {
 
               <div className="space-y-stack-md">
                 <div>
-                  <label className="block text-label-caps font-label-caps text-on-surface-variant mb-2">
+                  <label htmlFor="user-bio" className="block text-label-caps font-label-caps text-on-surface-variant mb-2">
                     BIO
                   </label>
                   <textarea
+                    id="user-bio"
                     className="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md transition-colors resize-none py-2 outline-none"
                     placeholder="Tell the community about yourself..."
                     rows={4}
@@ -117,10 +119,12 @@ export default function SettingsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-label-caps font-label-caps text-on-surface-variant mb-2">
+                  <label htmlFor="user-timezone" className="block text-label-caps font-label-caps text-on-surface-variant mb-2">
                     TIMEZONE
                   </label>
-                  <select className="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md py-2 outline-none cursor-pointer">
+                  <select
+                    id="user-timezone"
+                    className="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-body-md py-2 outline-none cursor-pointer">
                     <option>Europe/Rome (GMT+1)</option>
                     <option>Europe/London (GMT+0)</option>
                     <option>America/New_York (GMT-5)</option>
@@ -146,7 +150,9 @@ export default function SettingsPage() {
                   </h3>
                   <button
                     type="button"
-                    className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
+                    aria-label="Add skill"
+                    onClick={() => console.log("Add skill/goal")}
+                    className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                     add_circle
                   </button>
@@ -174,7 +180,9 @@ export default function SettingsPage() {
                   </h3>
                   <button
                     type="button"
-                    className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
+                    aria-label="Add learning goal"
+                    onClick={() => console.log("Add skill/goal")}
+                    className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                     add_circle
                   </button>
@@ -233,17 +241,23 @@ export default function SettingsPage() {
                     ))}
 
                     <div className="col-span-7 grid grid-cols-7 auto-rows-[40px] gap-1">
-                      {grid.map((isActive, i) => (
-                        <div
-                          key={i}
-                          onClick={() => toggleSlot(i)}
-                          className={`h-10 rounded-sm cursor-pointer transition-all active:scale-[0.97] border border-outline-variant/10 ${
-                            isActive
-                              ? "bg-primary"
-                              : "bg-surface-container-high"
-                          }`}
-                        />
-                      ))}
+                      {grid.map((isActive, i) => {
+                        const day = dayHeaders[i % 7];
+                        const time = timeLabels[Math.floor(i / 7)];
+                        return (
+                          <button
+                            key={i}
+                            type="button"
+                            aria-label={`Toggle ${day} at ${time}`}
+                            onClick={() => toggleSlot(i)}
+                            className={`h-10 rounded-sm transition-all active:scale-[0.97] border border-outline-variant/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                              isActive
+                                ? "bg-primary"
+                                : "bg-surface-container-high"
+                            }`}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -266,7 +280,7 @@ export default function SettingsPage() {
                   Your profile is currently public. You can switch to private
                   mode to hide your profile from search.
                 </p>
-                <Button variant="danger">Deactivate Account</Button>
+                <Button variant="danger" onClick={() => console.log("Account deactivation requested")}>Deactivate Account</Button>
               </div>
             </section>
           </div>

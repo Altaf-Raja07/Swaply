@@ -80,10 +80,10 @@ export default function BookSessionPage() {
                       Select Date &amp; Time
                     </h3>
                     <div className="flex gap-2">
-                      <Button variant="secondary" size="sm" className="!border-outline-variant">
+                      <Button variant="secondary" size="sm" className="!border-outline-variant" aria-label="Previous week" onClick={() => console.log("Previous week")}>
                         <span className="material-symbols-outlined">chevron_left</span>
                       </Button>
-                      <Button variant="secondary" size="sm" className="!border-outline-variant">
+                      <Button variant="secondary" size="sm" className="!border-outline-variant" aria-label="Next week" onClick={() => console.log("Next week")}>
                         <span className="material-symbols-outlined">chevron_right</span>
                       </Button>
                     </div>
@@ -243,24 +243,26 @@ export default function BookSessionPage() {
                 <h4 className="text-label-caps font-bold text-on-surface mb-2">
                   NEXT STEPS
                 </h4>
-                {[
-                  "Check your Messages for the studio access code.",
-                  "Complete the Safety Intro video in your dashboard.",
-                  "Bring comfortable clothes that you don't mind getting a bit of clay on!",
-                ].map((stepText, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">
-                      {i + 1}
-                    </div>
-                    <p className="text-body-md">{stepText}</p>
-                  </div>
-                ))}
+                <ol className="space-y-stack-md">
+                  {[
+                    "Check your Messages for the studio access code.",
+                    "Complete the Safety Intro video in your dashboard.",
+                    "Bring comfortable clothes that you don't mind getting a bit of clay on!",
+                  ].map((stepText, i) => (
+                    <li key={i} className="flex gap-4">
+                      <span className="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">
+                        {i + 1}
+                      </span>
+                      <p className="text-body-md">{stepText}</p>
+                    </li>
+                  ))}
+                </ol>
               </div>
               <div className="space-y-3">
-                <Button variant="primary" className="w-full">
+                <Button variant="primary" className="w-full" onClick={() => console.log("Go to dashboard")}>
                   Go to Dashboard
                 </Button>
-                <Button variant="secondary" className="w-full">
+                <Button variant="secondary" className="w-full" onClick={() => console.log("Add to calendar")}>
                   Add to Calendar
                 </Button>
               </div>

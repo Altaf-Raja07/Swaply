@@ -13,7 +13,7 @@ function NavLink({ href, label, active }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`text-body-md font-medium transition-colors duration-200 ${
+      className={`text-body-md font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary ${
         active
           ? "text-primary border-b-2 border-primary pb-1"
           : "text-on-surface-variant hover:text-primary"
@@ -35,7 +35,7 @@ export function Navbar({ activeTab }: NavbarProps) {
         <div className="flex items-center gap-stack-lg">
           <Link
             href="/"
-            className="text-headline-md font-headline-md font-bold text-primary"
+            className="text-headline-md font-headline-md font-bold text-primary focus-visible:ring-2 focus-visible:ring-primary"
           >
             SkillSwap
           </Link>
@@ -59,7 +59,7 @@ export function Navbar({ activeTab }: NavbarProps) {
         </div>
         <div className="flex items-center gap-stack-md">
           <CreditBadge credits={12} />
-          <button className="text-on-surface-variant hover:text-primary transition-colors duration-200 p-2 rounded-full">
+          <button className="text-on-surface-variant hover:text-primary transition-colors duration-200 p-2 rounded-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" aria-label="Notifications">
             <span className="material-symbols-outlined">notifications</span>
           </button>
           <div className="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">

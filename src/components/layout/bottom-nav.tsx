@@ -13,11 +13,12 @@ function BottomNavItem({ href, icon, label, active }: BottomNavItemProps) {
   return (
     <Link
       href={href}
-      className={`flex flex-col items-center gap-1 ${
+      className={`flex flex-col items-center gap-1 focus-visible:ring-2 focus-visible:ring-primary ${
         active
           ? "text-primary"
           : "text-on-surface-variant hover:text-primary transition-colors"
       }`}
+      aria-label={label}
     >
       <span
         className="material-symbols-outlined"

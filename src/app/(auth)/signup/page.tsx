@@ -1,8 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 
 export default function SignupPage() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
       <header className="w-full h-16 flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
@@ -36,7 +41,7 @@ export default function SignupPage() {
           {/* Sign Up Card */}
           <div className="bg-surface border-[0.5px] border-outline-variant/40 rounded-xl p-8 whisper-shadow space-y-stack-lg">
             {/* Social Auth */}
-            <Button variant="secondary" className="w-full">
+            <Button variant="secondary" className="w-full" onClick={() => console.log("Google sign-up")}>
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -67,36 +72,88 @@ export default function SignupPage() {
             </div>
 
             {/* Form */}
-            <form className="space-y-stack-md">
+            <form
+              className="space-y-stack-md"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const newErrors: Record<string, string> = {};
+                const name = (
+                  document.getElementById("signup-name") as HTMLInputElement
+                )?.value;
+                const email = (
+                  document.getElementById("signup-email") as HTMLInputElement
+                )?.value;
+                const password = (
+                  document.getElementById("signup-password") as HTMLInputElement
+                )?.value;
+                if (!name || name.length < 2)
+                  newErrors.name = "Name must be at least 2 characters";
+                if (!email || email.length < 3)
+                  newErrors.email = "Please enter your email";
+                if (!password || password.length < 8)
+                  newErrors.password =
+                    "Password must be at least 8 characters";
+                setErrors(newErrors);
+                if (Object.keys(newErrors).length === 0)
+                  console.log("Signup attempted");
+              }}
+            >
               <div className="space-y-unit">
-                <label className="block text-label-caps font-label-caps text-on-surface-variant">
+                <label
+                  htmlFor="signup-name"
+                  className="block text-label-caps font-label-caps text-on-surface-variant"
+                >
                   FULL NAME
                 </label>
                 <input
+                  id="signup-name"
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-2 font-body-md focus:outline-none focus:border-primary transition-all"
                   placeholder="Your name"
                   type="text"
+                  required
+                  minLength={2}
                 />
+                {errors.name && (
+                  <p className="text-xs text-red-500">{errors.name}</p>
+                )}
               </div>
               <div className="space-y-unit">
-                <label className="block text-label-caps font-label-caps text-on-surface-variant">
+                <label
+                  htmlFor="signup-email"
+                  className="block text-label-caps font-label-caps text-on-surface-variant"
+                >
                   EMAIL ADDRESS
                 </label>
                 <input
+                  id="signup-email"
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-2 font-body-md focus:outline-none focus:border-primary transition-all"
                   placeholder="name@domain.com"
                   type="email"
+                  required
+                  minLength={3}
                 />
+                {errors.email && (
+                  <p className="text-xs text-red-500">{errors.email}</p>
+                )}
               </div>
               <div className="space-y-unit">
-                <label className="block text-label-caps font-label-caps text-on-surface-variant">
+                <label
+                  htmlFor="signup-password"
+                  className="block text-label-caps font-label-caps text-on-surface-variant"
+                >
                   PASSWORD
                 </label>
                 <input
+                  id="signup-password"
                   className="w-full bg-transparent border-0 border-b border-outline-variant py-2 font-body-md focus:outline-none focus:border-primary transition-all"
                   placeholder="Create a strong password"
                   type="password"
+                  required
+                  minLength={8}
                 />
+                {errors.password && (
+                  <p className="text-xs text-red-500">{errors.password}</p>
+                )}
               </div>
               <Button variant="primary" type="submit" className="w-full mt-stack-lg">
                 Create Account

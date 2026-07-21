@@ -18,19 +18,17 @@ export default function SessionDetailPage() {
       {/* Mobile Header */}
       <header className="md:hidden flex items-center justify-between h-16 px-4 bg-surface border-b border-outline-variant/30 z-20">
         <div className="flex items-center gap-3">
-          <Button variant="ghost" className="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
-            <Link href="/dashboard">
-              <span className="material-symbols-outlined">arrow_back</span>
-            </Link>
-          </Button>
+          <Link href="/dashboard" className="p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-primary">
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden">
               <img src="/images/avatars/avatar-24.png" alt="Mentor" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h2 className="text-body-md font-bold text-on-surface leading-none">
+              <h1 className="text-body-md font-bold text-on-surface leading-none">
                 Elena Woodworking
-              </h2>
+              </h1>
               <span className="text-label-caps text-secondary font-label-caps mt-1 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-secondary" /> Online
               </span>
@@ -62,7 +60,7 @@ export default function SessionDetailPage() {
             Session: Today at 4:00 PM
           </span>
         </div>
-        <button type="button" className="text-primary font-bold text-label-caps active:scale-[0.98] transition-transform">RESCHEDULE</button>
+        <button type="button" className="text-primary font-bold text-label-caps active:scale-[0.98] transition-transform focus-visible:ring-2 focus-visible:ring-primary" onClick={() => console.log("Reschedule session")}>RESCHEDULE</button>
       </div>
 
       <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
@@ -92,8 +90,8 @@ export default function SessionDetailPage() {
                 <span className="text-label-caps font-label-caps">Confirmed</span>
               </div>
               <div className="flex gap-stack-sm">
-                <Button variant="secondary">Reschedule</Button>
-                <Button variant="primary">Join Call</Button>
+                <Button variant="secondary" onClick={() => console.log("Reschedule session")}>Reschedule</Button>
+                <Button variant="primary" onClick={() => console.log("Join call")}>Join Call</Button>
               </div>
             </div>
           </section>
@@ -164,18 +162,18 @@ export default function SessionDetailPage() {
                 &ldquo;Excited to show you the ropes! Please bring an apron or
                 clothes you don&apos;t mind getting a bit dusty.&rdquo;
               </p>
-              <Button variant="secondary" className="w-full">
-                View Profile
+              <Button variant="secondary" className="w-full" asChild>
+                <Link href="/teacher/1">View Profile</Link>
               </Button>
             </div>
 
             {/* Action List */}
             <div className="flex flex-col gap-2">
-              <Button variant="danger" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-error-container/10 transition-all text-error w-full">
+              <Button variant="danger" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-error-container/10 transition-all text-error w-full" onClick={() => console.log("Cancel session")}>
                 <span className="font-bold text-label-caps">Cancel Session</span>
                 <span className="material-symbols-outlined">block</span>
               </Button>
-              <Button variant="ghost" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-surface-container-high transition-all text-on-surface-variant w-full">
+              <Button variant="ghost" className="flex items-center justify-between p-4 rounded-xl editorial-border bg-white hover:bg-surface-container-high transition-all text-on-surface-variant w-full" onClick={() => console.log("Report issue")}>
                 <span className="font-bold text-label-caps">Report an Issue</span>
                 <span className="material-symbols-outlined">flag</span>
               </Button>
@@ -190,10 +188,10 @@ export default function SessionDetailPage() {
                 <h3 className="font-bold text-on-surface">Chat with Elena</h3>
               </div>
               <div className="flex gap-stack-sm">
-                <Button variant="ghost" className="p-2 rounded-full hover:bg-white">
+                <Button variant="ghost" className="p-2 rounded-full hover:bg-white" aria-label="Start video call" onClick={() => console.log("Start video call")}>
                   <span className="material-symbols-outlined">videocam</span>
                 </Button>
-                <Button variant="ghost" className="p-2 hover:bg-white rounded-full transition-colors">
+                <Button variant="ghost" className="p-2 hover:bg-white rounded-full transition-colors" aria-label="More options" onClick={() => console.log("More options")}>
                   <span className="material-symbols-outlined">more_vert</span>
                 </Button>
               </div>
@@ -215,7 +213,7 @@ export default function SessionDetailPage() {
                     Hi! I just confirmed our session. Really looking forward to
                     learning some digital marketing from you.
                   </p>
-                  <span className="text-[10px] text-on-surface-variant/70 mt-1 block">
+                  <span className="text-[10px] text-on-surface-variant mt-1 block">
                     10:42 AM
                   </span>
                 </div>
@@ -227,7 +225,7 @@ export default function SessionDetailPage() {
                     Me too! I&apos;ve prepped a few slides to walk you through
                     the                     basics. Should I bring a laptop or do you have one available?
                   </p>
-                  <span className="text-[10px] text-white/70 mt-1 block">
+                  <span className="text-[10px] text-on-primary mt-1 block">
                     10:45 AM
                   </span>
                 </div>
@@ -242,7 +240,7 @@ export default function SessionDetailPage() {
                     A laptop would be great. I have a projector we can use if
                     that helps!
                   </p>
-                  <span className="text-[10px] text-on-surface-variant/70 mt-1 block">
+                  <span className="text-[10px] text-on-surface-variant mt-1 block">
                     10:47 AM
                   </span>
                 </div>
@@ -257,15 +255,17 @@ export default function SessionDetailPage() {
 
             <div className="p-stack-lg border-t border-outline-variant/30 bg-white">
               <div className="flex items-end gap-stack-md bg-surface rounded-xl p-2 border border-outline-variant/20 focus-within:border-primary transition-all">
-                <Button variant="ghost" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+                <Button variant="ghost" className="p-2 text-on-surface-variant hover:text-primary transition-colors" aria-label="Add attachment" onClick={() => console.log("Add attachment")}>
                   <span className="material-symbols-outlined">add_circle</span>
                 </Button>
+                <label htmlFor="chat-input" className="sr-only">Type a message</label>
                 <textarea
+                  id="chat-input"
                   className="flex-grow bg-transparent border-none focus:ring-0 resize-none py-2 px-1 text-body-md"
                   placeholder="Type a message..."
                   rows={1}
                 />
-                <button type="button" className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center whisper-shadow active:scale-[0.98] transition-all">
+                <button type="button" className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center whisper-shadow active:scale-[0.98] transition-all focus-visible:ring-2 focus-visible:ring-primary" aria-label="Send message" onClick={() => console.log("Send message")}>
                   <span className="material-symbols-outlined">send</span>
                 </button>
               </div>
@@ -277,7 +277,7 @@ export default function SessionDetailPage() {
         <div className="md:hidden flex-1 flex flex-col -mx-margin-mobile px-margin-mobile">
           <div className="flex-1 overflow-y-auto py-6 flex flex-col gap-6 bg-surface" id="chat-container">
             <div className="flex justify-center">
-              <span className="px-4 py-1 rounded-full bg-surface-container-high text-label-caps text-on-surface-variant/70 uppercase tracking-widest">
+              <span className="px-4 py-1 rounded-full bg-surface-container-high text-label-caps text-on-surface-variant uppercase tracking-widest">
                 Today
               </span>
             </div>
@@ -291,7 +291,7 @@ export default function SessionDetailPage() {
                   move to basic joinery techniques.
                 </p>
               </div>
-              <span className="text-[10px] text-on-surface-variant/60 font-medium ml-1">
+              <span className="text-[10px] text-on-surface-variant font-medium ml-1">
                 09:42 AM
               </span>
             </div>
@@ -329,7 +329,7 @@ export default function SessionDetailPage() {
                 </p>
               </div>
               <div className="flex items-center justify-end gap-1 mt-0.5 mr-1">
-                <span className="text-[10px] text-on-surface-variant/60 font-medium">
+                <span className="text-[10px] text-on-surface-variant font-medium">
                   10:15 AM
                 </span>
                 <span className="material-symbols-outlined text-[14px] text-primary">
@@ -346,7 +346,7 @@ export default function SessionDetailPage() {
                   its softness. I&apos;m looking forward to it!
                 </p>
               </div>
-              <span className="text-[10px] text-on-surface-variant/60 font-medium ml-1">
+              <span className="text-[10px] text-on-surface-variant font-medium ml-1">
                 10:18 AM
               </span>
             </div>
@@ -365,7 +365,7 @@ export default function SessionDetailPage() {
                   set up.
                 </p>
               </div>
-              <Button variant="primary" className="w-full h-12">
+              <Button variant="primary" className="w-full h-12" onClick={() => console.log("Join virtual room")}>
                 JOIN VIRTUAL ROOM
               </Button>
             </div>
@@ -376,17 +376,19 @@ export default function SessionDetailPage() {
         {/* Mobile Chat Input */}
         <div className="md:hidden p-4 bg-surface border-t border-outline-variant/20">
           <div className="flex items-end gap-2">
-            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors" aria-label="Add attachment" onClick={() => console.log("Add attachment")}>
               <span className="material-symbols-outlined">add_circle</span>
             </Button>
             <div className="flex-1 bg-surface-container-low border border-outline-variant/40 rounded-xl min-h-[48px] py-2 px-4 flex items-center">
+              <label htmlFor="chat-input-mobile" className="sr-only">Type a message</label>
               <textarea
+                id="chat-input-mobile"
                 className="w-full bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50 resize-none max-h-32 overflow-y-auto"
                 placeholder="Type a message..."
                 rows={1}
               />
             </div>
-            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-lg transition-transform">
+            <Button variant="ghost" className="mb-1 w-10 h-10 shrink-0 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-lg transition-transform" aria-label="Send message" onClick={() => console.log("Send message")}>
               <span className="material-symbols-outlined">send</span>
             </Button>
           </div>

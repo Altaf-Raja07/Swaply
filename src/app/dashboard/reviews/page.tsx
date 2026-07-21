@@ -52,7 +52,7 @@ export default function ReviewsPage() {
             </p>
           </section>
 
-          {pastSessions.length === 0 && (
+          {pastSessions.length === 0 ? (
             <div className="text-center py-16 px-4">
               <span className="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-stack-md block">
                 rate_review
@@ -64,11 +64,10 @@ export default function ReviewsPage() {
                 You haven&apos;t completed any sessions yet. Book your first session and come back here to share your experience.
               </p>
             </div>
-          )}
-
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             {/* Session Card 1 */}
-            <div className="md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg">
+            <article className="md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg">
               <img src="/images/illustrations/illustration-9.png" alt="Terracotta clay" className="w-full h-48 object-cover rounded-lg" />
               <div className="flex flex-col justify-between">
                 <div>
@@ -92,7 +91,7 @@ export default function ReviewsPage() {
                   Review Session
                 </Button>
               </div>
-            </div>
+            </article>
 
             {/* Sidebar Card */}
             <div className="md:col-span-4 bg-tertiary-container/10 rounded-xl p-stack-lg border border-tertiary-container/30 flex flex-col justify-center items-center text-center">
@@ -102,16 +101,16 @@ export default function ReviewsPage() {
               >
                 volunteer_activism
               </span>
-              <h4 className="text-headline-md font-headline-md text-on-tertiary-container">
+              <h3 className="text-headline-md font-headline-md text-on-tertiary-container">
                 Community Impact
-              </h4>
+              </h3>
               <p className="text-body-md font-body-md text-on-tertiary-container/80 mt-2">
                 You&apos;ve shared 48 hours of knowledge this year.
               </p>
             </div>
 
             {/* Session Card 2 */}
-            <div className="md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row-reverse gap-stack-lg">
+            <article className="md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row-reverse gap-stack-lg">
               <img src="/images/illustrations/illustration-2.png" alt="Pasta ingredients" className="w-full h-48 object-cover rounded-lg" />
               <div className="flex flex-col justify-center flex-1">
                 <div className="flex items-center gap-unit mb-2">
@@ -133,8 +132,9 @@ export default function ReviewsPage() {
                   Review Session
                 </Button>
               </div>
-            </div>
+            </article>
           </div>
+          )}
         </div>
       </main>
 

@@ -112,7 +112,7 @@ export default function DiscoverPage() {
                 placeholder="I want to learn sourdough baking..."
                 type="text"
               />
-              <Button variant="primary">
+              <Button variant="primary" onClick={() => console.log("Search")}>
                 Search
               </Button>
             </div>
@@ -122,10 +122,10 @@ export default function DiscoverPage() {
 
         {/* Mobile Search Header */}
         <section className="md:hidden mb-stack-lg space-y-4">
-          <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-surface">
+          <h1 className="text-display-lg-mobile font-display-lg-mobile text-on-surface">
             Find your next <br />
             <span className="text-primary italic">breakthrough</span>.
-          </h2>
+          </h1>
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
               <span className="material-symbols-outlined text-primary">search</span>
@@ -136,7 +136,7 @@ export default function DiscoverPage() {
               placeholder="I want to learn acoustic guitar theory..."
               type="text"
             />
-            <Button variant="secondary" size="sm" className="absolute right-2 top-2">
+            <Button variant="secondary" size="sm" className="absolute right-2 top-2" onClick={() => console.log("Ask AI")}>
               ASK AI
             </Button>
           </div>
@@ -152,6 +152,7 @@ export default function DiscoverPage() {
                       ? "border-secondary/10"
                       : "border-outline-variant/30 bg-surface-container-high"
                   }`}
+                  onClick={() => console.log(`Filter by ${chip}`)}
                 >
                   {chip}
                 </Button>
@@ -176,6 +177,7 @@ export default function DiscoverPage() {
                       ? ""
                       : "bg-surface-container-high"
                   }`}
+                  onClick={() => console.log(`Filter by ${filter}`)}
                 >
                   {filter}{" "}
                   <span className="material-symbols-outlined text-[16px]">
@@ -208,17 +210,23 @@ export default function DiscoverPage() {
         </section>
 
         {/* Teacher Grid - Desktop */}
-        <div
-          className={`hidden md:grid gap-gutter ${
-            gridView
-              ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-              : "grid-cols-1"
-          }`}
-        >
-          {teachers.map((teacher) => (
-            <TeacherCard key={teacher.name} {...teacher} />
-          ))}
-        </div>
+        {teachers.length > 0 ? (
+          <ul
+            className={`hidden md:grid gap-gutter list-none ${
+              gridView
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-1"
+            }`}
+          >
+            {teachers.map((teacher) => (
+              <li key={teacher.name}>
+                <TeacherCard {...teacher} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="hidden md:block text-center text-on-surface-variant py-8">No mentors found. Try adjusting your search.</p>
+        )}
 
         {/* Mobile Teacher List */}
         <section className="md:hidden space-y-stack-md">
@@ -226,64 +234,69 @@ export default function DiscoverPage() {
             <h2 className="text-headline-md font-headline-md text-on-surface">
               Recommended for you
             </h2>
-            <Button variant="ghost" size="sm" className="underline text-secondary">
+            <Button variant="ghost" size="sm" className="underline text-secondary" onClick={() => console.log("View map")}>
               View Maps
             </Button>
           </div>
 
-          {mobileTeachers.map((t) => (
-            <div
-              key={t.name}
-              className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col gap-4"
-            >
-              <div className="flex gap-4">
-                <img src={t.avatarSrc || "/images/avatars/avatar-1.png"} alt={t.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
-                <div className="flex-1">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-headline-md font-headline-md text-on-surface leading-tight">
-                      {t.name}
-                    </h3>
-                    <div className="flex items-center gap-1 text-tertiary">
-                      <span
-                        className="material-symbols-outlined text-[16px]"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        star
-                      </span>
-                      <span className="text-label-caps font-label-caps">
-                        {t.rating}
-                      </span>
+          {mobileTeachers.length > 0 ? (
+            <ul className="space-y-stack-md">
+              {mobileTeachers.map((t) => (
+                <li key={t.name}>
+                  <article className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow flex flex-col gap-4">
+                    <div className="flex gap-4">
+                      <img src={t.avatarSrc || "/images/avatars/avatar-1.png"} alt={t.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start">
+                          <h3 className="text-headline-md font-headline-md text-on-surface leading-tight">
+                            {t.name}
+                          </h3>
+                          <div className="flex items-center gap-1 text-tertiary">
+                            <span
+                              className="material-symbols-outlined text-[16px]"
+                              style={{ fontVariationSettings: "'FILL' 1" }}
+                            >
+                              star
+                            </span>
+                            <span className="text-label-caps font-label-caps">
+                              {t.rating}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-body-md font-body-md text-on-surface-variant">
+                          {t.subtitle}
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {t.skills.map((s) => (
+                            <span
+                              key={s}
+                              className="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-body-md font-body-md text-on-surface-variant">
-                    {t.subtitle}
-                  </p>
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {t.skills.map((s) => (
-                      <span
-                        key={s}
-                        className="px-2 py-0.5 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold uppercase tracking-wider"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="border-t border-outline-variant/20 pt-4 flex justify-between items-center">
-                <div className="flex items-center gap-1 text-on-surface-variant">
-                  <span className="material-symbols-outlined text-lg">location_on</span>
-                  <span className="text-label-caps font-label-caps">{t.location}</span>
-                </div>
-                <div className="text-right">
-                  <span className="block text-label-caps font-label-caps text-on-surface-variant">
-                    Exchange Rate
-                  </span>
-                  <span className="text-primary font-bold">{t.rate}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+                    <div className="border-t border-outline-variant/20 pt-4 flex justify-between items-center">
+                      <div className="flex items-center gap-1 text-on-surface-variant">
+                        <span className="material-symbols-outlined text-lg">location_on</span>
+                        <span className="text-label-caps font-label-caps">{t.location}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="block text-label-caps font-label-caps text-on-surface-variant">
+                          Exchange Rate
+                        </span>
+                        <span className="text-primary font-bold">{t.rate}</span>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center text-on-surface-variant py-8">No mentors found.</p>
+          )}
 
           {/* Featured Masterclass Card */}
           <div className="relative bg-inverse-surface rounded-xl p-6 text-white overflow-hidden whisper-shadow">
@@ -305,7 +318,7 @@ export default function DiscoverPage() {
                 Learn the secrets of soil health and seasonal rotations in this
                 intensive 1-on-1 series.
               </p>
-              <Button variant="primary" className="w-full shadow-lg">
+              <Button variant="primary" className="w-full shadow-lg" onClick={() => console.log("Request session")}>
                 Request Session
               </Button>
             </div>
@@ -320,28 +333,31 @@ export default function DiscoverPage() {
           <h2 className="text-headline-md font-headline-md text-on-surface">
             Popular Topics
           </h2>
-          <div className="grid grid-cols-2 gap-3">
-            {popularTopics.map((topic) => (
-              <div
-                key={topic.name}
-                className={`${topic.bg} h-32 rounded-xl p-4 flex flex-col justify-between border border-outline-variant/20`}
-              >
-                <span
-                  className={`material-symbols-outlined text-3xl ${topic.color}`}
-                >
-                  {topic.icon}
-                </span>
-                <span className="text-label-caps font-label-caps text-on-surface">
-                  {topic.name}
-                </span>
-              </div>
-            ))}
-          </div>
+          {popularTopics.length > 0 ? (
+            <ul className="grid grid-cols-2 gap-3">
+              {popularTopics.map((topic) => (
+                <li key={topic.name}>
+                  <article className={`${topic.bg} h-32 rounded-xl p-4 flex flex-col justify-between border border-outline-variant/20`}>
+                    <span
+                      className={`material-symbols-outlined text-3xl ${topic.color}`}
+                    >
+                      {topic.icon}
+                    </span>
+                    <span className="text-label-caps font-label-caps text-on-surface">
+                      {topic.name}
+                    </span>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center text-on-surface-variant py-8">No topics available.</p>
+          )}
         </section>
 
         {/* Load More - Desktop */}
         <div className="mt-stack-lg flex justify-center hidden md:flex">
-          <Button variant="link" className="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/5">
+          <Button variant="link" className="px-8 py-3 border border-secondary text-secondary hover:bg-secondary/5" onClick={() => console.log("Load more")}>
             Load More Mentors
           </Button>
         </div>
