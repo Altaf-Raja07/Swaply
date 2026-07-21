@@ -7,7 +7,6 @@ import { SessionCard } from "@/components/shared/session-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
 export default function DashboardPage() {
   const router = useRouter();
   const quickMessages = [

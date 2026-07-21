@@ -1,0 +1,166 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  COMPLETED
+  DECLINED
+  CANCELLED
+}
+
+enum LedgerEntryType {
+  SIGNUP_BONUS
+  HOLD
+  RELEASE
+  SETTLE_DEBIT
+  SETTLE_CREDIT
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String?
+  image     String?
+  bio       String?
+  timezone  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teachSkills      TeachSkill[]
+  learnGoals       LearnGoal[]
+  availabilitySlots AvailabilitySlot[]
+  bookingsAsLearner Booking[]         @relation("LearnerBookings")
+  bookingsAsTeacher Booking[]         @relation("TeacherBookings")
+  ledgerEntries    CreditLedgerEntry[]
+  sentMessages     Message[]          @relation("SentMessages")
+  reviewsGiven     Review[]           @relation("ReviewerReviews")
+  reviewsReceived  Review[]           @relation("RevieweeReviews")
+}
+
+model TeachSkill {
+  id          String   @id @default(cuid())
+  userId      String
+  skillName   String
+  description String
+  proficiency String   @default("Beginner")
+  creditCost  Int      @default(1)
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+
+  @@index([userId])
+}
+
+model LearnGoal {
+  id        String   @id @default(cuid())
+  userId    String
+  skillName String
+  goalText  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model AvailabilitySlot {
+  id            String    @id @default(cuid())
+  userId        String
+  dayOfWeek     Int
+  startTime     String
+  endTime       String
+  specificDate  DateTime?
+  isRecurring   Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, dayOfWeek])
+}
+
+model Booking {
+  id           String        @id @default(cuid())
+  teachSkillId String
+  learnerId    String
+  teacherId    String
+  slotStart    DateTime
+  slotEnd      DateTime
+  status       BookingStatus @default(REQUESTED)
+  creditCost   Int
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  teachSkill    TeachSkill         @relation(fields: [teachSkillId], references: [id])
+  learner       User               @relation("LearnerBookings", fields: [learnerId], references: [id])
+  teacher       User               @relation("TeacherBookings", fields: [teacherId], references: [id])
+  ledgerEntries CreditLedgerEntry[]
+  messages      Message[]
+  review        Review?
+
+  @@index([learnerId])
+  @@index([teacherId])
+  @@index([teachSkillId])
+  @@index([status])
+}
+
+model CreditLedgerEntry {
+  id          String          @id @default(cuid())
+  userId      String
+  bookingId   String?
+  type        LedgerEntryType
+  amount      Int
+  description String?
+  createdAt   DateTime        @default(now())
+
+  user    User     @relation(fields: [userId], references: [id])
+  booking Booking? @relation(fields: [bookingId], references: [id])
+
+  @@index([userId])
+  @@index([bookingId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  bookingId String
+  senderId  String
+  content   String
+  createdAt DateTime @default(now())
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  sender  User    @relation("SentMessages", fields: [senderId], references: [id])
+
+  @@index([bookingId])
+  @@index([senderId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  bookingId   String   @unique
+  reviewerId  String
+  revieweeId  String
+  rating      Int
+  comment     String?
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime @default(now())
+
+  booking  Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  reviewer User    @relation("ReviewerReviews", fields: [reviewerId], references: [id])
+  reviewee User    @relation("RevieweeReviews", fields: [revieweeId], references: [id])
+
+  @@index([revieweeId])
+  @@index([reviewerId])
+}

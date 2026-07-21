@@ -3,6 +3,7 @@ import "./globals.css";
 import { ToastProvider } from "@/lib/toast";
 import { Toaster } from "@/components/ui/toaster";
 import { CommandPalette } from "@/components/ui/command-palette";
+import { TRPCProvider } from "@/lib/trpc/provider";
 
 export const metadata: Metadata = {
   title: "SkillSwap | Teach & Learn Community",
@@ -23,11 +24,13 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <ToastProvider>
-          {children}
-          <Toaster />
-          <CommandPalette />
-        </ToastProvider>
+        <TRPCProvider>
+          <ToastProvider>
+            {children}
+            <Toaster />
+            <CommandPalette />
+          </ToastProvider>
+        </TRPCProvider>
       </body>
     </html>
   );
