@@ -1,9 +1,40 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc/client";
 
 export default function OnboardingLearnPage() {
+  const router = useRouter();
+  const [goalText, setGoalText] = useState("");
+  const [skillName, setSkillName] = useState("");
+
+  const addGoal = trpc.learnGoal.add.useMutation({
+    onSuccess: () => router.push("/dashboard"),
+  });
+
+  const popularTopics = [
+    "Generative AI",
+    "Bread Baking",
+    "Rust Programming",
+    "Negotiation Tactics",
+  ];
+
+  const handleTopicClick = (topic: string) => {
+    setSkillName(topic);
+    if (!goalText) {
+      setGoalText(`I want to learn ${topic.toLowerCase()}`);
+    }
+  };
+
+  const handleContinue = () => {
+    const name = skillName || goalText.slice(0, 50).trim();
+    if (!name || name.length < 2) return;
+    addGoal.mutate({ skillName: name, goalText });
+  };
+
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
       <main className="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
@@ -12,7 +43,7 @@ export default function OnboardingLearnPage() {
           <div className="w-full md:w-1/2 space-y-stack-md order-2 md:order-1">
             <div className="space-y-unit">
               <span className="text-label-caps font-label-caps text-primary tracking-widest">
-                STEP 2 OF 4
+                STEP 2 OF 2
               </span>
               <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">
                 What do you want to learn?
@@ -30,17 +61,16 @@ export default function OnboardingLearnPage() {
                 POPULAR RIGHT NOW
               </span>
               <ul className="flex flex-wrap gap-stack-sm">
-                {[
-                  "Generative AI",
-                  "Bread Baking",
-                  "Rust Programming",
-                  "Negotiation Tactics",
-                ].map((skill) => (
+                {popularTopics.map((skill) => (
                   <li key={skill}>
                     <button
                       type="button"
-                      className="bg-secondary/10 text-secondary px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors"
-                      onClick={() => console.log("Skill selected")}
+                      className={`bg-secondary/10 text-secondary px-stack-md py-unit rounded-full text-label-caps font-label-caps cursor-pointer hover:bg-secondary-container transition-colors ${
+                        skillName === skill
+                          ? "ring-2 ring-secondary bg-secondary-container"
+                          : ""
+                      }`}
+                      onClick={() => handleTopicClick(skill)}
                     >
                       {skill}
                     </button>
@@ -71,6 +101,8 @@ export default function OnboardingLearnPage() {
                       className="w-full bg-transparent border-0 p-0 text-headline-md font-headline-md text-on-surface placeholder:text-outline-variant focus:ring-0 resize-none overflow-hidden"
                       placeholder="I want to get better at explaining my DSA solutions in interviews"
                       rows={4}
+                      value={goalText}
+                      onChange={(e) => setGoalText(e.target.value)}
                     />
                   </div>
                 </div>
@@ -93,8 +125,11 @@ export default function OnboardingLearnPage() {
                       +12
                     </div>
                   </div>
-                  <Button onClick={() => console.log("Continue")}>
-                    Continue
+                  <Button
+                    onClick={handleContinue}
+                    disabled={addGoal.isPending || (!skillName && goalText.length < 2)}
+                  >
+                    {addGoal.isPending ? "Saving..." : "Continue"}
                     <span className="material-symbols-outlined text-sm">
                       arrow_forward
                     </span>
@@ -113,6 +148,12 @@ export default function OnboardingLearnPage() {
                 </span>
               </div>
             </div>
+
+            {addGoal.isError && (
+              <p className="text-xs text-red-500 mt-2 text-center">
+                {addGoal.error.message}
+              </p>
+            )}
           </div>
         </div>
       </main>

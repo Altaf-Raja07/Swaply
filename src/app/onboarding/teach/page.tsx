@@ -1,11 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc/client";
 
 export default function OnboardingTeachPage() {
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const addSkill = trpc.teachSkill.add.useMutation({
+    onSuccess: () => router.push("/onboarding/learn"),
+  });
 
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -27,10 +34,10 @@ export default function OnboardingTeachPage() {
               </span>
             </div>
             <div className="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
-              <div className="h-full bg-primary w-1/4 transition-all duration-700 ease-out" />
+              <div className="h-full bg-primary w-1/2 transition-all duration-700 ease-out" />
             </div>
             <p className="mt-stack-sm text-label-caps font-label-caps text-on-surface-variant">
-              Step 1 of 4: The Teacher&apos;s Journey
+              Step 1 of 2: The Teacher&apos;s Journey
             </p>
           </div>
 
@@ -71,10 +78,14 @@ export default function OnboardingTeachPage() {
                 const newErrors: Record<string, string> = {};
                 const skillName = (
                   document.getElementById("skill-name") as HTMLInputElement
-                )?.value;
+                )?.value.trim();
                 const description = (
                   document.getElementById("skill-description") as HTMLTextAreaElement
-                )?.value;
+                )?.value.trim();
+                const proficiencyInput = document.querySelector(
+                  'input[name="proficiency"]:checked'
+                ) as HTMLInputElement;
+                const proficiency = proficiencyInput?.value || "Beginner";
                 if (!skillName || skillName.length < 2)
                   newErrors.skillName =
                     "Skill name must be at least 2 characters";
@@ -82,8 +93,13 @@ export default function OnboardingTeachPage() {
                   newErrors.description =
                     "Description must be at least 10 characters";
                 setErrors(newErrors);
-                if (Object.keys(newErrors).length === 0)
-                  console.log("Skill submitted");
+                if (Object.keys(newErrors).length > 0) return;
+
+                addSkill.mutate({
+                  skillName,
+                  description,
+                  proficiency: proficiency as "Beginner" | "Intermediate" | "Advanced" | "Expert",
+                });
               }}
             >
               {/* Mobile Header */}
@@ -130,6 +146,7 @@ export default function OnboardingTeachPage() {
                           className="peer sr-only"
                           name="proficiency"
                           type="radio"
+                          value={level}
                           defaultChecked={level === "Beginner"}
                         />
                         <div className="w-full py-stack-sm px-stack-md rounded-lg text-center font-medium text-on-surface-variant peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200 peer-focus-visible:ring-2 peer-focus-visible:ring-primary">
@@ -162,13 +179,19 @@ export default function OnboardingTeachPage() {
                 )}
               </div>
 
+              {addSkill.isError && (
+                <p className="text-xs text-red-500">
+                  {addSkill.error.message}
+                </p>
+              )}
+
               {/* Call to Action Footer */}
               <div className="flex items-center justify-between mt-stack-md border-t border-outline-variant/20 pt-stack-lg">
-                <Button type="button" variant="ghost" onClick={() => console.log("Go back")}>
+                <Button type="button" variant="ghost" onClick={() => router.push("/login")}>
                   Back
                 </Button>
-                <Button type="submit">
-                  Next Step
+                <Button type="submit" disabled={addSkill.isPending}>
+                  {addSkill.isPending ? "Saving..." : "Next Step"}
                   <span className="material-symbols-outlined text-[18px]">
                     arrow_forward
                   </span>
