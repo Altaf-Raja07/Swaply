@@ -1,7 +1,11 @@
 import { router, publicProcedure } from "../trpc";
+import { authRouter } from "./auth";
 
 export const appRouter = router({
-  ping: publicProcedure.query(() => "pong"),
+  auth: authRouter,
+  ping: router({
+    ping: publicProcedure.query(() => "pong"),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

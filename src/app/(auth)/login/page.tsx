@@ -2,11 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc/client";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const signInMutation = trpc.auth.signIn.useMutation({
+    onSuccess() {
+      router.push("/dashboard");
+    },
+  });
 
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
@@ -41,7 +51,7 @@ export default function LoginPage() {
           {/* Login Card */}
           <div className="bg-surface border-[0.5px] border-outline-variant/40 rounded-xl p-8 whisper-shadow space-y-stack-lg">
             {/* Social Auth */}
-            <Button variant="secondary" className="w-full" onClick={() => console.log("Google sign-in")}>
+            <Button variant="secondary" className="w-full" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -89,8 +99,9 @@ export default function LoginPage() {
                   newErrors.password =
                     "Password must be at least 6 characters";
                 setErrors(newErrors);
-                if (Object.keys(newErrors).length === 0)
-                  console.log("Login attempted");
+                if (Object.keys(newErrors).length === 0) {
+                  signInMutation.mutate({ email, password });
+                }
               }}
             >
               <div className="space-y-unit">
@@ -131,6 +142,11 @@ export default function LoginPage() {
                   <p className="text-xs text-red-500">{errors.password}</p>
                 )}
               </div>
+              {signInMutation.error && (
+                <p className="text-xs text-red-500">
+                  {signInMutation.error.message}
+                </p>
+              )}
               <div className="flex items-center justify-between pt-stack-sm">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -149,8 +165,8 @@ export default function LoginPage() {
                   Forgot?
                 </button>
               </div>
-              <Button variant="primary" type="submit" className="w-full mt-stack-lg">
-                Sign In
+              <Button variant="primary" type="submit" className="w-full mt-stack-lg" disabled={signInMutation.isPending}>
+                {signInMutation.isPending ? "Signing in..." : "Sign In"}
               </Button>
             </form>
           </div>

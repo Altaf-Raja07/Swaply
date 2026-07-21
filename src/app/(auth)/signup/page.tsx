@@ -2,11 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc/client";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const signUpMutation = trpc.auth.signUp.useMutation({
+    onSuccess() {
+      router.push("/dashboard");
+    },
+  });
 
   return (
     <div className="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
@@ -41,7 +51,7 @@ export default function SignupPage() {
           {/* Sign Up Card */}
           <div className="bg-surface border-[0.5px] border-outline-variant/40 rounded-xl p-8 whisper-shadow space-y-stack-lg">
             {/* Social Auth */}
-            <Button variant="secondary" className="w-full" onClick={() => console.log("Google sign-up")}>
+            <Button variant="secondary" className="w-full" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -94,8 +104,9 @@ export default function SignupPage() {
                   newErrors.password =
                     "Password must be at least 8 characters";
                 setErrors(newErrors);
-                if (Object.keys(newErrors).length === 0)
-                  console.log("Signup attempted");
+                if (Object.keys(newErrors).length === 0) {
+                  signUpMutation.mutate({ name, email, password });
+                }
               }}
             >
               <div className="space-y-unit">
@@ -155,8 +166,13 @@ export default function SignupPage() {
                   <p className="text-xs text-red-500">{errors.password}</p>
                 )}
               </div>
-              <Button variant="primary" type="submit" className="w-full mt-stack-lg">
-                Create Account
+              {signUpMutation.error && (
+                <p className="text-xs text-red-500">
+                  {signUpMutation.error.message}
+                </p>
+              )}
+              <Button variant="primary" type="submit" className="w-full mt-stack-lg" disabled={signUpMutation.isPending}>
+                {signUpMutation.isPending ? "Creating account..." : "Create Account"}
               </Button>
             </form>
           </div>
