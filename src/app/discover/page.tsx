@@ -97,9 +97,8 @@ export default function DiscoverPage() {
               human interaction.
             </p>
           </div>
-          <div className="max-w-2xl mx-auto relative transition-all duration-300">
-            <div className="focus-within:shadow-[0_0_20px_rgba(217,93,57,0.15)] transition-shadow duration-300 rounded-xl">
-              <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
+          <div className="max-w-2xl mx-auto relative">
+            <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
               <span
                 className="material-symbols-outlined text-primary px-3"
                 style={{ fontVariationSettings: "'FILL' 1" }}
@@ -111,11 +110,11 @@ export default function DiscoverPage() {
                 className="w-full bg-transparent border-none focus:ring-0 text-body-md py-3 placeholder:text-outline"
                 placeholder="I want to learn sourdough baking..."
                 type="text"
+                autoComplete="off"
               />
               <Button variant="primary" onClick={() => console.log("Search")}>
                 Search
               </Button>
-            </div>
             </div>
           </div>
         </section>
@@ -135,6 +134,7 @@ export default function DiscoverPage() {
               className="w-full h-14 pl-12 pr-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all text-body-lg font-body-lg placeholder-on-surface-variant/40 rounded-t-lg"
               placeholder="I want to learn acoustic guitar theory..."
               type="text"
+              autoComplete="off"
             />
             <Button variant="secondary" size="sm" className="absolute right-2 top-2" onClick={() => console.log("Ask AI")}>
               ASK AI
