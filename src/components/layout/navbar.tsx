@@ -51,7 +51,7 @@ export function Navbar({ activeTab }: NavbarProps) {
               active={activeTab === "dashboard"}
             />
             <NavLink
-              href="#"
+              href="/messages"
               label="Messages"
               active={activeTab === "messages"}
             />

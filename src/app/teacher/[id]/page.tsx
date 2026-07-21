@@ -97,8 +97,8 @@ export default function TeacherProfilePage() {
             <Button variant="primary" className="w-full md:w-auto" asChild>
               <Link href={`/teacher/${id}/book`}>Book a session</Link>
             </Button>
-            <Button variant="secondary" className="w-full md:w-auto" onClick={() => console.log("Message mentor")}>
-              Message Elena
+            <Button variant="secondary" className="w-full md:w-auto" asChild>
+              <Link href="/messages">Message Elena</Link>
             </Button>
           </div>
         </section>

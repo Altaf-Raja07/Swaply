@@ -5,8 +5,11 @@ import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { SessionCard } from "@/components/shared/session-card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
+  const router = useRouter();
   const quickMessages = [
     { name: "Liam K.", msg: '"See you at the wheel tomorrow!"', time: "2m", online: true },
     { name: "Sarah J.", msg: '"Did you get the React repo?"', time: "1h", online: false },
@@ -160,10 +163,9 @@ export default function DashboardPage() {
                   <ul className="divide-y divide-outline-variant/30">
                     {quickMessages.map((chat) => (
                     <li key={chat.name}>
-                    <a
-                      href="#"
+                    <Link
+                      href="/messages"
                       className="flex items-center gap-stack-md p-stack-md hover:bg-surface-container-low transition-colors"
-                      onClick={(e) => { e.preventDefault(); console.log("Chat with", chat.name); }}
                     >
                       <div className="relative w-12 h-12">
                         <img src={chat.name === "Sarah J." ? "/images/avatars/avatar-11.png" : "/images/avatars/avatar-21.png"} alt="User" className="w-full h-full object-cover rounded-full" />
@@ -182,12 +184,12 @@ export default function DashboardPage() {
                       <span className="text-[10px] text-on-surface-variant">
                         {chat.time}
                       </span>
-                    </a>
+                    </Link>
                     </li>
                   ))}
                   </ul>
                 )}
-                <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" onClick={() => console.log("View all messages")}>
+                <Button variant="ghost" className="w-full py-3 bg-surface-container text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors" onClick={() => router.push("/messages")}>
                   VIEW ALL MESSAGES
                 </Button>
               </div>

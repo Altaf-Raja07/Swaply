@@ -46,7 +46,7 @@ export function CommandPalette() {
       case "settings":
         return { ...cmd, action: () => navigate("/settings") };
       case "messages":
-        return { ...cmd, action: () => console.log("Navigate to messages") };
+        return { ...cmd, action: () => navigate("/messages") };
       case "profile":
         return { ...cmd, action: () => console.log("View profile") };
       default:

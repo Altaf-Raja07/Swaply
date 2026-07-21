@@ -57,7 +57,7 @@ export function BottomNav({ activeTab }: BottomNavProps) {
         active={activeTab === "dashboard"}
       />
       <BottomNavItem
-        href="#"
+        href="/messages"
         icon="chat_bubble"
         label="Messages"
         active={activeTab === "messages"}
