@@ -98,7 +98,7 @@ export default function DiscoverPage() {
             </p>
           </div>
           <div className="max-w-2xl mx-auto relative">
-            <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 shadow-sm focus-within:border-primary transition-colors">
+            <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 focus-within:border-primary transition-colors">
               <span
                 className="material-symbols-outlined text-primary px-3"
                 style={{ fontVariationSettings: "'FILL' 1" }}

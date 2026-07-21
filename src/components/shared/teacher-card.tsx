@@ -49,15 +49,20 @@ export function TeacherCard({
           <span className="material-symbols-outlined text-[20px]">favorite</span>
         </Button>
       </div>
-      <div className="flex justify-between items-start mb-4">
+      <div className="mb-4">
         <div className="flex gap-4">
-          <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-high">
+          <div className="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-high shrink-0">
             <img src={avatarSrc || "/images/avatars/avatar-2.png"} alt={name} className="w-full h-full object-cover" />
           </div>
-          <div>
-            <h3 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors">
-              {name}
-            </h3>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors truncate">
+                {name}
+              </h3>
+              <div className="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full text-[11px] font-bold shrink-0">
+                {credits} CR
+              </div>
+            </div>
             <StarRating
               rating={rating}
               size="sm"
@@ -66,17 +71,14 @@ export function TeacherCard({
             />
           </div>
         </div>
-        <div className="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-label-caps font-bold stamped-badge flex items-center gap-1">
-          {credits} <span className="text-[10px]">CR</span>
-        </div>
       </div>
       <div className="flex flex-wrap gap-2 mb-4">
         {skills.map((skill) => (
           <SkillChip key={skill} label={skill} />
         ))}
       </div>
-      <div className="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20">
-        <p className="text-body-md italic text-on-surface-variant">
+      <div className="bg-surface-container-low rounded-xl p-4 mb-6 border-l-4 border-primary/20 overflow-hidden">
+        <p className="text-body-md italic text-on-surface-variant line-clamp-3">
           {renderBoldMarkdown(matchNote)}
         </p>
       </div>
