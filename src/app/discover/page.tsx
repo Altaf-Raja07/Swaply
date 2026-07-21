@@ -14,7 +14,6 @@ const teachers = [
     avatarSrc: "/images/avatars/avatar-2.png",
     rating: 4.9,
     reviewCount: 128,
-    credits: 3,
     skills: ["Pottery", "Sculpting", "Glazing"],
     matchNote:
       "\"Match for your interest in **Hand-built Ceramics**. Elena specializes in the rustic aesthetic you mentioned in your profile.\"",
@@ -24,7 +23,6 @@ const teachers = [
     avatarSrc: "/images/avatars/avatar-23.png",
     rating: 5.0,
     reviewCount: 42,
-    credits: 5,
     skills: ["Python", "Data Science"],
     matchNote:
       "\"Match for your **Recent Search**. Julian focuses on beginner-friendly automation, perfect for your career transition.\"",
@@ -34,7 +32,6 @@ const teachers = [
     avatarSrc: "/images/avatars/avatar-9.png",
     rating: 4.8,
     reviewCount: 95,
-    credits: 2,
     skills: ["Gardening", "Herbalism", "Composting"],
     matchNote:
       "\"Match for your **Location**. Sarah lives only 2 miles away and hosts weekend workshops at the community garden.\"",
@@ -44,7 +41,6 @@ const teachers = [
     avatarSrc: "/images/avatars/avatar-17.png",
     rating: 4.9,
     reviewCount: 210,
-    credits: 4,
     skills: ["Bread Making", "Pasta"],
     matchNote:
       "\"Match for **Sourdough Search**. Marco is highly rated for teaching the 'No-Knead' method you were looking for.\"",
@@ -97,25 +93,20 @@ export default function DiscoverPage() {
               human interaction.
             </p>
           </div>
-          <div className="max-w-2xl mx-auto relative">
-            <div className="flex items-center bg-white border border-outline-variant/50 rounded-xl p-2 focus-within:border-primary transition-colors">
-              <span
-                className="material-symbols-outlined text-primary px-3"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                auto_awesome
-              </span>
-              <label className="sr-only">Search mentors</label>
-              <input
-                className="w-full bg-transparent border-none focus:ring-0 text-body-md py-3 placeholder:text-outline"
-                placeholder="I want to learn sourdough baking..."
-                type="text"
-                autoComplete="off"
-              />
-              <Button variant="primary" onClick={() => console.log("Search")}>
-                Search
-              </Button>
-            </div>
+          <div className="max-w-2xl mx-auto relative flex items-center gap-3">
+            <span className="material-symbols-outlined text-primary/60 shrink-0">
+              auto_awesome
+            </span>
+            <label className="sr-only">Search mentors</label>
+            <input
+              className="w-full bg-transparent focus:ring-0 text-body-md py-3 placeholder:text-outline/60 border-b border-outline-variant/20 focus:border-primary/60 transition-colors"
+              placeholder="I want to learn sourdough baking..."
+              type="text"
+              autoComplete="off"
+            />
+            <Button variant="primary" onClick={() => console.log("Search")}>
+              Search
+            </Button>
           </div>
         </section>
 

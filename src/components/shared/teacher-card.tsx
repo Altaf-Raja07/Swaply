@@ -8,7 +8,7 @@ interface TeacherCardProps {
   avatarSrc?: string;
   rating: number;
   reviewCount: number;
-  credits: number;
+
   skills: string[];
   matchNote: string;
 }
@@ -33,7 +33,6 @@ export function TeacherCard({
   avatarSrc,
   rating,
   reviewCount,
-  credits,
   skills,
   matchNote,
 }: TeacherCardProps) {
@@ -55,14 +54,9 @@ export function TeacherCard({
             <img src={avatarSrc || "/images/avatars/avatar-2.png"} alt={name} className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors truncate">
-                {name}
-              </h3>
-              <div className="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full text-[11px] font-bold shrink-0">
-                {credits} CR
-              </div>
-            </div>
+            <h3 className="text-headline-md font-headline-md text-on-surface group-hover:text-primary transition-colors truncate">
+              {name}
+            </h3>
             <StarRating
               rating={rating}
               size="sm"
