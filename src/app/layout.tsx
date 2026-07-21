@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ToastProvider } from "@/lib/toast";
 import { Toaster } from "@/components/ui/toaster";
+import { CommandPalette } from "@/components/ui/command-palette";
 
 export const metadata: Metadata = {
   title: "SkillSwap | Teach & Learn Community",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <ToastProvider>
           {children}
           <Toaster />
+          <CommandPalette />
         </ToastProvider>
       </body>
     </html>
