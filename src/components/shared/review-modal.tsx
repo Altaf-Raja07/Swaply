@@ -16,24 +16,39 @@ interface ReviewModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   mentorName: string;
+  onSubmit: (data: { rating: number; comment: string }) => Promise<void>;
 }
 
 export function ReviewModal({
   open,
   onOpenChange,
   mentorName,
+  onSubmit,
 }: ReviewModalProps) {
   const [rating, setRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [comment, setComment] = useState("");
   const [ratingError, setRatingError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (rating === 0) {
       setRatingError("Please select a star rating");
       return;
     }
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      await onSubmit({ rating, comment });
+      setSubmitted(true);
+    } catch (e) {
+      setSubmitError(
+        e instanceof Error ? e.message : "Failed to submit review",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -42,6 +57,8 @@ export function ReviewModal({
       setSubmitted(false);
       setRating(0);
       setComment("");
+      setRatingError("");
+      setSubmitError("");
     }, 300);
   };
 
@@ -116,13 +133,18 @@ export function ReviewModal({
               </div>
             </div>
 
+            {submitError && (
+              <p className="text-error text-body-sm mb-2">{submitError}</p>
+            )}
+
             <div className="flex items-center gap-stack-md mt-6">
               <Button
                 variant="primary"
                 className="flex-1"
                 onClick={handleSubmit}
+                disabled={submitting}
               >
-                Post Review
+                {submitting ? "Submitting..." : "Post Review"}
                 <span className="material-symbols-outlined text-[18px]">
                   send
                 </span>

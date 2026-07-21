@@ -9,15 +9,22 @@ import { trpc } from "@/lib/trpc/client";
 
 const timeLabels = ["08:00", "10:00", "12:00", "14:00", "16:00"];
 const dayHeaders = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-const preselected = [0, 1, 2, 8, 15, 16, 23, 30, 31, 32];
 
-const initialGrid = Array.from({ length: 7 * 5 }, (_, i) =>
-  preselected.includes(i)
-);
+const timeToEnd: Record<string, string> = {
+  "08:00": "10:00",
+  "10:00": "12:00",
+  "12:00": "14:00",
+  "14:00": "16:00",
+  "16:00": "18:00",
+};
+
+function emptyGrid(): boolean[] {
+  return Array.from({ length: 7 * 5 }, () => false);
+}
 
 export default function SettingsPage() {
   const utils = trpc.useUtils();
-  const [grid, setGrid] = useState<boolean[]>(initialGrid);
+  const [grid, setGrid] = useState<boolean[]>(emptyGrid);
   const [bio, setBio] = useState("");
   const [timezone, setTimezone] = useState("");
   const [showAddSkill, setShowAddSkill] = useState(false);
@@ -32,9 +39,13 @@ export default function SettingsPage() {
 
   const { data: profile } = trpc.profile.get.useQuery();
   const { data: session } = trpc.auth.getSession.useQuery();
+  const { data: mySlots } = trpc.availability.getMyAvailability.useQuery();
 
   const updateProfile = trpc.profile.update.useMutation({
     onSuccess: () => utils.profile.get.invalidate(),
+  });
+  const setSlots = trpc.availability.setSlots.useMutation({
+    onSuccess: () => utils.availability.getMyAvailability.invalidate(),
   });
 
   const addSkill = trpc.teachSkill.add.useMutation({
@@ -46,11 +57,9 @@ export default function SettingsPage() {
       setNewSkillProficiency("Beginner");
     },
   });
-
   const deleteSkill = trpc.teachSkill.delete.useMutation({
     onSuccess: () => utils.profile.get.invalidate(),
   });
-
   const addGoal = trpc.learnGoal.add.useMutation({
     onSuccess: () => {
       utils.profile.get.invalidate();
@@ -59,7 +68,6 @@ export default function SettingsPage() {
       setNewGoalText("");
     },
   });
-
   const deleteGoal = trpc.learnGoal.delete.useMutation({
     onSuccess: () => utils.profile.get.invalidate(),
   });
@@ -71,12 +79,55 @@ export default function SettingsPage() {
     }
   }, [profile]);
 
+  useEffect(() => {
+    if (mySlots && mySlots.length > 0) {
+      const newGrid = emptyGrid();
+      for (const slot of mySlots) {
+        if (!slot.isRecurring) continue;
+        const day = slot.dayOfWeek;
+        const hourIndex = timeLabels.indexOf(slot.startTime);
+        if (hourIndex === -1) continue;
+        const idx = hourIndex * 7 + day;
+        if (idx >= 0 && idx < newGrid.length) {
+          newGrid[idx] = true;
+        }
+      }
+      setGrid(newGrid);
+    }
+  }, [mySlots]);
+
   const toggleSlot = (index: number) => {
     setGrid((prev) => {
       const next = [...prev];
       next[index] = !next[index];
       return next;
     });
+  };
+
+  const handleSave = () => {
+    const slots: {
+      dayOfWeek: number;
+      startTime: string;
+      endTime: string;
+      isRecurring: boolean;
+    }[] = [];
+    for (let h = 0; h < 5; h++) {
+      for (let d = 0; d < 7; d++) {
+        const idx = h * 7 + d;
+        if (grid[idx]) {
+          slots.push({
+            dayOfWeek: d,
+            startTime: timeLabels[h],
+            endTime: timeToEnd[timeLabels[h]],
+            isRecurring: true,
+          });
+        }
+      }
+    }
+    updateProfile.mutate({ bio, timezone });
+    if (slots.length > 0 || mySlots?.length) {
+      setSlots.mutate({ slots });
+    }
   };
 
   const teachSkills = profile?.teachSkills ?? [];
@@ -105,25 +156,35 @@ export default function SettingsPage() {
                   setBio(profile.bio || "");
                   setTimezone(profile.timezone || "");
                 }
+                if (mySlots) {
+                  const newGrid = emptyGrid();
+                  for (const slot of mySlots) {
+                    if (!slot.isRecurring) continue;
+                    const day = slot.dayOfWeek;
+                    const hourIndex = timeLabels.indexOf(slot.startTime);
+                    if (hourIndex === -1) continue;
+                    const idx = hourIndex * 7 + day;
+                    if (idx >= 0 && idx < newGrid.length) newGrid[idx] = true;
+                  }
+                  setGrid(newGrid);
+                }
               }}
             >
               Cancel
             </Button>
             <Button
               variant="primary"
-              disabled={updateProfile.isPending}
-              onClick={() =>
-                updateProfile.mutate({ bio, timezone })
-              }
+              disabled={updateProfile.isPending || setSlots.isPending}
+              onClick={handleSave}
             >
-              {updateProfile.isPending ? "Saving..." : "Save Changes"}
+              {updateProfile.isPending || setSlots.isPending ? "Saving..." : "Save Changes"}
             </Button>
           </div>
         </div>
 
-        {updateProfile.isError && (
+        {(updateProfile.isError || setSlots.isError) && (
           <p className="text-xs text-red-500 mb-stack-md">
-            {updateProfile.error.message}
+            {updateProfile.error?.message || setSlots.error?.message}
           </p>
         )}
 

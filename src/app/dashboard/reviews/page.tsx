@@ -6,35 +6,39 @@ import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { Button } from "@/components/ui/button";
 import { ReviewModal } from "@/components/shared/review-modal";
-
-const pastSessions = [
-  {
-    id: 1,
-    title: "Morning Wheel Session",
-    category: "Pottery Basics",
-    mentor: "Clara M.",
-    description:
-      "Guided by Clara M. in her East Side studio. You spent 2 hours learning centering techniques.",
-    imagePosition: "left",
-  },
-  {
-    id: 2,
-    title: "Handmade Pasta Workshop",
-    category: "Culinary Arts",
-    mentor: "Marco Rossi",
-    description:
-      "A 3-hour deep dive into semolina flour and egg-based doughs. You mastered the tajarin cut.",
-    imagePosition: "right",
-  },
-];
+import { trpc } from "@/lib/trpc/client";
 
 export default function ReviewsPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedMentor, setSelectedMentor] = useState("");
+  const utils = trpc.useUtils();
+  const { data: reviewableBookings, isLoading } =
+    trpc.review.getReviewableBookings.useQuery();
+  const reviewMutation = trpc.review.create.useMutation({
+    onSuccess: () => {
+      utils.review.getReviewableBookings.invalidate();
+    },
+  });
 
-  const openReview = (mentor: string) => {
-    setSelectedMentor(mentor);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<{
+    id: string;
+    mentorName: string;
+  } | null>(null);
+
+  const openReview = (bookingId: string, mentorName: string) => {
+    setSelectedBooking({ id: bookingId, mentorName });
     setModalOpen(true);
+  };
+
+  const handleSubmitReview = async (data: {
+    rating: number;
+    comment: string;
+  }) => {
+    if (!selectedBooking) return;
+    await reviewMutation.mutateAsync({
+      bookingId: selectedBooking.id,
+      rating: data.rating,
+      comment: data.comment,
+    });
   };
 
   return (
@@ -52,96 +56,110 @@ export default function ReviewsPage() {
             </p>
           </section>
 
-          {pastSessions.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center py-16">
+              <p className="text-body-md text-on-surface-variant">
+                Loading...
+              </p>
+            </div>
+          ) : !reviewableBookings || reviewableBookings.length === 0 ? (
             <div className="text-center py-16 px-4">
               <span className="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-stack-md block">
                 rate_review
               </span>
               <h2 className="text-headline-md font-headline-md text-on-surface mb-2">
-                No exchanges yet
+                No exchanges to review yet
               </h2>
               <p className="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto">
-                You haven&apos;t completed any sessions yet. Book your first session and come back here to share your experience.
+                You haven&apos;t completed any sessions yet. Book your first
+                session and come back here to share your experience.
               </p>
             </div>
           ) : (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-            {/* Session Card 1 */}
-            <article className="md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg">
-              <img src="/images/illustrations/illustration-9.png" alt="Terracotta clay" className="w-full h-48 object-cover rounded-lg" />
-              <div className="flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-unit mb-2">
-                    <span className="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-caps font-label-caps">
-                      {pastSessions[0].category}
-                    </span>
-                  </div>
-                  <h3 className="text-headline-md font-headline-md text-on-surface mb-2">
-                    {pastSessions[0].title}
-                  </h3>
-                  <p className="text-body-md font-body-md text-on-surface-variant">
-                    {pastSessions[0].description}
-                  </p>
-                </div>
-                <Button
-                  variant="primary"
-                  className="mt-stack-md w-fit"
-                  onClick={() => openReview(pastSessions[0].mentor)}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+              {reviewableBookings.map((booking, i) => {
+                const isLeftImage = i % 2 === 0;
+                return (
+                  <article
+                    key={booking.id}
+                    className={
+                      isLeftImage
+                        ? "md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row gap-stack-lg"
+                        : "md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row-reverse gap-stack-lg"
+                    }
+                  >
+                    <img
+                      src={`/images/illustrations/illustration-${(i % 12) + 1}.png`}
+                      alt={booking.teachSkill.skillName}
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                    <div
+                      className={
+                        isLeftImage
+                          ? "flex flex-col justify-between"
+                          : "flex flex-col justify-center flex-1"
+                      }
+                    >
+                      <div>
+                        <div className="flex items-center gap-unit mb-2">
+                          <span className="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-caps font-label-caps">
+                            {booking.teachSkill.proficiency ?? "Skill"}
+                          </span>
+                        </div>
+                        <h3 className="text-headline-md font-headline-md text-on-surface mb-2">
+                          {booking.teachSkill.skillName}
+                        </h3>
+                        <p className="text-body-md font-body-md text-on-surface-variant">
+                          Session with{" "}
+                          <span className="font-semibold">
+                            {booking.teacher.name ?? "your mentor"}
+                          </span>
+                        </p>
+                      </div>
+                      <Button
+                        variant={isLeftImage ? "primary" : "secondary"}
+                        className="mt-stack-md w-fit"
+                        onClick={() =>
+                          openReview(
+                            booking.id,
+                            booking.teacher.name ?? "your mentor",
+                          )
+                        }
+                      >
+                        Review Session
+                      </Button>
+                    </div>
+                  </article>
+                );
+              })}
+
+              <div className="md:col-span-4 bg-tertiary-container/10 rounded-xl p-stack-lg border border-tertiary-container/30 flex flex-col justify-center items-center text-center">
+                <span
+                  className="material-symbols-outlined text-tertiary text-5xl mb-stack-md"
+                  style={{ fontVariationSettings: "'FILL' 1" }}
                 >
-                  Review Session
-                </Button>
-              </div>
-            </article>
-
-            {/* Sidebar Card */}
-            <div className="md:col-span-4 bg-tertiary-container/10 rounded-xl p-stack-lg border border-tertiary-container/30 flex flex-col justify-center items-center text-center">
-              <span
-                className="material-symbols-outlined text-tertiary text-5xl mb-stack-md"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                volunteer_activism
-              </span>
-              <h3 className="text-headline-md font-headline-md text-on-tertiary-container">
-                Community Impact
-              </h3>
-              <p className="text-body-md font-body-md text-on-tertiary-container/80 mt-2">
-                You&apos;ve shared 48 hours of knowledge this year.
-              </p>
-            </div>
-
-            {/* Session Card 2 */}
-            <article className="md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg border border-outline-variant/20 whisper-shadow flex flex-col md:flex-row-reverse gap-stack-lg">
-              <img src="/images/illustrations/illustration-2.png" alt="Pasta ingredients" className="w-full h-48 object-cover rounded-lg" />
-              <div className="flex flex-col justify-center flex-1">
-                <div className="flex items-center gap-unit mb-2">
-                  <span className="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-caps font-label-caps">
-                    {pastSessions[1].category}
-                  </span>
-                </div>
-                <h3 className="text-headline-md font-headline-md text-on-surface mb-2">
-                  {pastSessions[1].title}
+                  volunteer_activism
+                </span>
+                <h3 className="text-headline-md font-headline-md text-on-tertiary-container">
+                  Community Impact
                 </h3>
-                <p className="text-body-md font-body-md text-on-surface-variant">
-                  {pastSessions[1].description}
+                <p className="text-body-md font-body-md text-on-tertiary-container/80 mt-2">
+                  You&apos;ve shared knowledge and grown together.
                 </p>
-                <Button
-                  variant="secondary"
-                  className="mt-stack-md w-fit"
-                  onClick={() => openReview(pastSessions[1].mentor)}
-                >
-                  Review Session
-                </Button>
               </div>
-            </article>
-          </div>
+            </div>
           )}
         </div>
       </main>
 
       <ReviewModal
         open={modalOpen}
-        onOpenChange={setModalOpen}
-        mentorName={selectedMentor}
+        onOpenChange={(open) => {
+          setModalOpen(open);
+          if (!open) setSelectedBooking(null);
+        }}
+        mentorName={selectedBooking?.mentorName ?? ""}
+        onSubmit={handleSubmitReview}
       />
 
       <BottomNav activeTab="dashboard" />

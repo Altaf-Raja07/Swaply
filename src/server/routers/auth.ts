@@ -25,12 +25,22 @@ export const authRouter = router({
 
       const hashedPassword = await bcrypt.hash(input.password, 12);
 
-      await prisma.user.create({
-        data: {
-          name: input.name,
-          email: input.email,
-          password: hashedPassword,
-        },
+      await prisma.$transaction(async (tx) => {
+        const user = await tx.user.create({
+          data: {
+            name: input.name,
+            email: input.email,
+            password: hashedPassword,
+          },
+        });
+        await tx.creditLedgerEntry.create({
+          data: {
+            userId: user.id,
+            type: "SIGNUP_BONUS",
+            amount: 2,
+            description: "Welcome to Swaply — 2 bonus credits",
+          },
+        });
       });
 
       await signIn("credentials", {

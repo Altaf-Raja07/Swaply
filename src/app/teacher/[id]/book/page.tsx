@@ -1,27 +1,113 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useRouter, useParams } from "next/navigation";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/lib/trpc/client";
 
-const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-const dates = [14, 15, 16, 17, 18, 19, 20];
-const timeSlots = [
-  "09:00 AM",
-  "10:30 AM",
-  "01:00 PM",
-  "02:30 PM",
-  "04:00 PM",
-  "05:30 PM",
-];
+const timeToEnd: Record<string, string> = {
+  "08:00": "10:00",
+  "10:00": "12:00",
+  "12:00": "14:00",
+  "14:00": "16:00",
+  "16:00": "18:00",
+};
+
+const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function BookSessionPage() {
-  const [step, setStep] = useState(1);
-  const [selectedDate, setSelectedDate] = useState(15);
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const router = useRouter();
+  const params = useParams();
+  const teacherId = params.id as string;
 
-  const progress = (step / 3) * 100;
+  const [step, setStep] = useState(1);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [selectedSkillId, setSelectedSkillId] = useState<string | null>(null);
+
+  const { data: teacher } = trpc.profile.getByUserId.useQuery(
+    { userId: teacherId },
+    { enabled: !!teacherId }
+  );
+
+  const { data: availability, isLoading: loadingAvailability } =
+    trpc.availability.getForTeacher.useQuery(
+      { teacherId },
+      { enabled: !!teacherId }
+    );
+
+  const createBooking = trpc.booking.create.useMutation();
+
+  const weekDays = useMemo(() => {
+    const days = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() + i);
+      days.push(d);
+    }
+    return days;
+  }, []);
+
+  const dateAvailability = useMemo(() => {
+    if (!availability) return [];
+    const { slots, activeBookings } = availability;
+    return weekDays.map((date) => {
+      const dayOfWeek = date.getDay();
+      const dateStr = date.toISOString().split("T")[0];
+      const specificSlots = slots.filter(
+        (s) =>
+          !s.isRecurring &&
+          s.specificDate &&
+          new Date(s.specificDate).toISOString().split("T")[0] === dateStr
+      );
+      const daySlots = specificSlots.length > 0 ? specificSlots : slots.filter((s) => s.isRecurring && s.dayOfWeek === dayOfWeek);
+
+      const availableStarts = daySlots
+        .map((slot) => {
+          const slotStart = new Date(`${dateStr}T${slot.startTime}:00`);
+          const slotEnd = new Date(`${dateStr}T${slot.endTime}:00`);
+          const isBooked = activeBookings.some((b) => {
+            const bStart = new Date(b.slotStart);
+            const bEnd = new Date(b.slotEnd);
+            return bStart < slotEnd && bEnd > slotStart;
+          });
+          return { start: slot.startTime, end: slot.endTime, available: !isBooked };
+        })
+        .filter((s) => s.available);
+
+      return { date, slots: availableStarts, count: availableStarts.length };
+    });
+  }, [availability, weekDays]);
+
+  const selectedDateData = dateAvailability.find(
+    (d) => d.date.toISOString().split("T")[0] === selectedDate
+  );
+
+  const selectedSkill = teacher?.teachSkills.find((s) => s.id === selectedSkillId);
+
+  const progress = Math.round((step / 3) * 100);
+
+  const handleConfirm = () => {
+    if (!selectedDate || !selectedSlot || !selectedSkillId || !teacher) return;
+
+    const slotEnd = timeToEnd[selectedSlot] || (() => {
+      const [h, m] = selectedSlot.split(":").map(Number);
+      return `${String(h + 1).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    })();
+
+    createBooking.mutate(
+      {
+        teachSkillId: selectedSkillId,
+        teacherId,
+        slotStart: `${selectedDate}T${selectedSlot}:00.000Z`,
+        slotEnd: `${selectedDate}T${slotEnd}:00.000Z`,
+      },
+      { onSuccess: () => setStep(3) }
+    );
+  };
 
   return (
     <>
@@ -49,98 +135,114 @@ export default function BookSessionPage() {
         {step === 1 && (
           <section className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-              {/* Expert Quick Card */}
               <div className="md:col-span-4">
                 <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow sticky top-24">
                   <div className="aspect-square rounded-lg overflow-hidden mb-stack-md">
-                    <img src="/images/illustrations/illustration-1.png" alt="Pottery hands" className="w-full h-full object-cover rounded-lg" />
+                    <img
+                      src={teacher?.image || "/images/illustrations/illustration-1.png"}
+                      alt="Teacher"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                   <h2 className="text-headline-md font-headline-md mb-1">
-                    Wheel Throwing
+                    {teacher?.name || "Teacher"}
                   </h2>
                   <p className="text-label-caps text-secondary font-bold uppercase mb-4">
-                    With Elias Thorne
+                    {teacher?.teachSkills?.length ? `${teacher.teachSkills.length} skills available` : "No skills listed"}
                   </p>
-                  <div className="flex items-center gap-2 text-body-md text-on-surface-variant">
-                    <span className="material-symbols-outlined text-[20px]">timer</span>
-                    <span>60 Minute Session</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-body-md text-on-surface-variant mt-2">
-                    <span className="material-symbols-outlined text-[20px]">payments</span>
-                    <span>3 Credits</span>
-                  </div>
                 </div>
               </div>
 
-              {/* Calendar Content */}
               <div className="md:col-span-8">
                 <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-lg whisper-shadow">
-                  <div className="flex items-center justify-between mb-stack-lg">
-                    <h3 className="text-body-lg font-bold">
-                      Select Date &amp; Time
-                    </h3>
-                    <div className="flex gap-2">
-                      <Button variant="secondary" size="sm" className="!border-outline-variant" aria-label="Previous week" onClick={() => console.log("Previous week")}>
-                        <span className="material-symbols-outlined">chevron_left</span>
-                      </Button>
-                      <Button variant="secondary" size="sm" className="!border-outline-variant" aria-label="Next week" onClick={() => console.log("Next week")}>
-                        <span className="material-symbols-outlined">chevron_right</span>
-                      </Button>
-                    </div>
-                  </div>
+                  <h3 className="text-body-lg font-bold mb-stack-lg">
+                    Select Date &amp; Time
+                  </h3>
 
-                  {/* Weekly Strip */}
-                  <div className="grid grid-cols-7 gap-2 mb-stack-lg">
-                    {days.map((day, i) => (
-                      <div key={day} className="text-center">
-                        <p className="text-label-caps text-on-surface-variant mb-2">
-                          {day}
-                        </p>
-                        {day === "SAT" || day === "SUN" ? (
-                          <Button variant="ghost" disabled className="opacity-40 cursor-not-allowed bg-surface-container-high">
-                            {dates[i]}
-                          </Button>
-                        ) : (
-                          <Button
-                            variant={selectedDate === dates[i] ? "primary" : "ghost"}
-                            className="w-full"
-                            onClick={() => setSelectedDate(dates[i])}
-                          >
-                            {dates[i]}
-                          </Button>
-                        )}
+                  {loadingAvailability ? (
+                    <p className="text-on-surface-variant">Loading availability...</p>
+                  ) : availability && dateAvailability.every((d) => d.count === 0) ? (
+                    <p className="text-on-surface-variant">This teacher has no availability set.</p>
+                  ) : (
+                    <>
+                      {/* Weekly Strip */}
+                      <div className="grid grid-cols-7 gap-2 mb-stack-lg">
+                        {dateAvailability.map(({ date, count }) => {
+                          const dateStr = date.toISOString().split("T")[0];
+                          const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+                          return (
+                            <div key={dateStr} className="text-center">
+                              <p className="text-label-caps text-on-surface-variant mb-2">
+                                {dayNames[date.getDay()]}
+                              </p>
+                              <Button
+                                variant={selectedDate === dateStr ? "primary" : "ghost"}
+                                className="w-full"
+                                disabled={count === 0 || isWeekend}
+                                onClick={() => {
+                                  setSelectedDate(dateStr);
+                                  setSelectedSlot(null);
+                                }}
+                              >
+                                {date.getDate()}
+                              </Button>
+                            </div>
+                          );
+                        })}
                       </div>
-                    ))}
-                  </div>
 
-                  {/* Slot Grid */}
-                  <div className="space-y-stack-md">
-                    <p className="text-label-caps text-on-surface-variant uppercase tracking-widest">
-                      Available Slots (Tue, Oct 15)
-                    </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                      {timeSlots.map((slot) => {
-                        const isUnavailable = slot === "04:00 PM";
-                        return (
-                          <Button
-                            key={slot}
-                            variant={isUnavailable ? "ghost" : selectedSlot === slot ? "primary" : "ghost"}
-                            className="w-full"
-                            disabled={isUnavailable}
-                            onClick={() => !isUnavailable && setSelectedSlot(slot)}
-                          >
-                            {slot}
-                          </Button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                      {/* Slot Grid */}
+                      {selectedDate && selectedDateData && (
+                        <div className="space-y-stack-md">
+                          <p className="text-label-caps text-on-surface-variant uppercase tracking-widest">
+                            Available Slots ({dayNames[new Date(selectedDate).getDay()]}, {new Date(selectedDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })})
+                          </p>
+                          {selectedDateData.slots.length === 0 ? (
+                            <p className="text-on-surface-variant">No available slots for this date.</p>
+                          ) : (
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                              {selectedDateData.slots.map((slot) => (
+                                <Button
+                                  key={slot.start}
+                                  variant={selectedSlot === slot.start ? "primary" : "ghost"}
+                                  className="w-full"
+                                  onClick={() => setSelectedSlot(slot.start)}
+                                >
+                                  {slot.start}
+                                </Button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Skill Selector */}
+                      {selectedSlot && teacher?.teachSkills && (
+                        <div className="mt-stack-lg pt-stack-md border-t border-outline-variant/20">
+                          <p className="text-label-caps text-on-surface-variant uppercase tracking-widest mb-3">
+                            Select a Skill
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {teacher.teachSkills.map((skill) => (
+                              <Button
+                                key={skill.id}
+                                variant={selectedSkillId === skill.id ? "primary" : "secondary"}
+                                size="sm"
+                                onClick={() => setSelectedSkillId(skill.id)}
+                              >
+                                {skill.skillName} ({skill.creditCost} cr)
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
 
                   <div className="mt-stack-lg pt-stack-md border-t border-outline-variant/20 flex justify-end">
                     <Button
                       variant="primary"
-                      disabled={!selectedSlot}
-                      className={!selectedSlot ? "opacity-50 cursor-not-allowed" : ""}
+                      disabled={!selectedSlot || !selectedSkillId}
                       onClick={() => setStep(2)}
                     >
                       Continue to Confirmation
@@ -162,17 +264,23 @@ export default function BookSessionPage() {
               <div className="space-y-gutter">
                 <div className="flex items-start gap-gutter p-4 rounded-lg bg-surface-container">
                   <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">
-                    <img src="/images/illustrations/illustration-15.png" alt="Pottery tools" className="w-full h-full object-cover rounded-lg" />
+                    <img
+                      src={teacher?.image || "/images/illustrations/illustration-15.png"}
+                      alt="Skill"
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                   <div>
                     <p className="text-label-caps text-primary font-bold uppercase mb-1">
-                      Workshop
+                      {selectedSkill?.proficiency || "Session"}
                     </p>
                     <h4 className="text-body-lg font-bold">
-                      Wheel Throwing with Elias Thorne
+                      {selectedSkill?.skillName || "Skill"} with {teacher?.name || "Teacher"}
                     </h4>
                     <p className="text-on-surface-variant">
-                      Tuesday, October 15 &bull; {selectedSlot} &mdash; 1 hour
+                      {selectedDate && selectedSlot
+                        ? `${new Date(selectedDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })} at ${selectedSlot}`
+                        : ""}
                     </p>
                   </div>
                 </div>
@@ -182,18 +290,20 @@ export default function BookSessionPage() {
                     <span className="text-body-md text-on-surface-variant">
                       Session Cost
                     </span>
-                    <span className="text-body-lg font-bold">3 Credits</span>
+                    <span className="text-body-lg font-bold">
+                      {selectedSkill?.creditCost || 0} Credits
+                    </span>
                   </div>
                   <div className="flex justify-between items-center text-secondary">
                     <span className="text-body-md">Your Current Balance</span>
-                    <span className="text-body-md">12 Credits</span>
+                    <span className="text-body-md">-- Credits</span>
                   </div>
                   <div className="mt-4 p-3 bg-secondary/5 rounded-lg flex justify-between items-center">
                     <span className="text-label-caps font-bold">
                       REMAINING AFTER BOOKING
                     </span>
                     <span className="text-body-lg font-bold text-secondary">
-                      9 Credits
+                      -- Credits
                     </span>
                   </div>
                 </div>
@@ -206,12 +316,26 @@ export default function BookSessionPage() {
                   </p>
                 </div>
 
+                {createBooking.isError && (
+                  <p className="text-xs text-red-500">
+                    {createBooking.error.message}
+                  </p>
+                )}
+
                 <div className="grid grid-cols-2 gap-stack-md">
-                  <Button variant="secondary" onClick={() => setStep(1)}>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setStep(1)}
+                    disabled={createBooking.isPending}
+                  >
                     Back to Calendar
                   </Button>
-                  <Button variant="primary" onClick={() => setStep(3)}>
-                    Confirm Booking
+                  <Button
+                    variant="primary"
+                    disabled={createBooking.isPending}
+                    onClick={handleConfirm}
+                  >
+                    {createBooking.isPending ? "Booking..." : "Confirm Booking"}
                   </Button>
                 </div>
               </div>
@@ -236,34 +360,15 @@ export default function BookSessionPage() {
                 Booking Confirmed!
               </h3>
               <p className="text-body-lg text-on-surface-variant mb-stack-lg">
-                You&apos;re all set to learn Wheel Throwing with Elias.
-                We&apos;ve sent the details to your inbox.
+                You&apos;re all set to learn {selectedSkill?.skillName || "your skill"} with {teacher?.name || "your mentor"}.
               </p>
-              <div className="space-y-stack-md text-left bg-surface-container p-6 rounded-xl mb-stack-lg">
-                <h4 className="text-label-caps font-bold text-on-surface mb-2">
-                  NEXT STEPS
-                </h4>
-                <ol className="space-y-stack-md">
-                  {[
-                    "Check your Messages for the studio access code.",
-                    "Complete the Safety Intro video in your dashboard.",
-                    "Bring comfortable clothes that you don't mind getting a bit of clay on!",
-                  ].map((stepText, i) => (
-                    <li key={i} className="flex gap-4">
-                      <span className="shrink-0 w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center font-bold text-secondary">
-                        {i + 1}
-                      </span>
-                      <p className="text-body-md">{stepText}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
               <div className="space-y-3">
-                <Button variant="primary" className="w-full" onClick={() => console.log("Go to dashboard")}>
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={() => router.push("/dashboard")}
+                >
                   Go to Dashboard
-                </Button>
-                <Button variant="secondary" className="w-full" onClick={() => console.log("Add to calendar")}>
-                  Add to Calendar
                 </Button>
               </div>
             </div>

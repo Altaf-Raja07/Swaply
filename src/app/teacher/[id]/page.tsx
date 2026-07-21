@@ -1,14 +1,15 @@
 "use client";
 
+import { useMemo } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { StarRating } from "@/components/shared/star-rating";
 import { SkillChip } from "@/components/shared/skill-chip";
-import { ReviewCard } from "@/components/shared/review-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { trpc } from "@/lib/trpc/client";
+import { ReviewCard } from "@/components/shared/review-card";
 
 const iconForSkill = (skillName: string): string => {
   const name = skillName.toLowerCase();
@@ -41,6 +42,9 @@ const colorForSkill = (index: number) => {
   return variants[index % variants.length];
 };
 
+const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const dayNamesShort = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
 export default function TeacherProfilePage() {
   const params = useParams();
   const id = params.id as string;
@@ -49,6 +53,57 @@ export default function TeacherProfilePage() {
     { userId: id },
     { enabled: !!id }
   );
+
+  const { data: availability } = trpc.availability.getForTeacher.useQuery(
+    { teacherId: id },
+    { enabled: !!id }
+  );
+
+  const { data: reviewData } = trpc.review.getForTeacher.useQuery(
+    { userId: id },
+    { enabled: !!id }
+  );
+
+  const weekDays = useMemo(() => {
+    const days = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() + i);
+      days.push(d);
+    }
+    return days;
+  }, []);
+
+  const slotsForDay = useMemo(() => {
+    if (!availability) return [];
+    const { slots, activeBookings } = availability;
+    return weekDays.map((date) => {
+      const dayOfWeek = date.getDay();
+      const dateStr = date.toISOString().split("T")[0];
+
+      const specificSlots = slots.filter(
+        (s) => !s.isRecurring && s.specificDate && new Date(s.specificDate).toISOString().split("T")[0] === dateStr
+      );
+      const recurringSlots = slots.filter(
+        (s) => s.isRecurring && s.dayOfWeek === dayOfWeek
+      );
+
+      const active = specificSlots.length > 0 ? specificSlots : recurringSlots;
+
+      const available = active.filter((slot) => {
+        const slotStart = new Date(`${dateStr}T${slot.startTime}:00`);
+        const slotEnd = new Date(`${dateStr}T${slot.endTime}:00`);
+        return !activeBookings.some((b) => {
+          const bStart = new Date(b.slotStart);
+          const bEnd = new Date(b.slotEnd);
+          return bStart < slotEnd && bEnd > slotStart;
+        });
+      });
+
+      return { date, slots: available, count: available.length };
+    });
+  }, [availability, weekDays]);
 
   if (isLoading) {
     return (
@@ -112,7 +167,6 @@ export default function TeacherProfilePage() {
                     <span className="text-label-caps">{teacher.timezone}</span>
                   </div>
                 )}
-                <StarRating rating={0} size="sm" showValue reviewCount={0} />
               </div>
             </div>
           </div>
@@ -191,54 +245,102 @@ export default function TeacherProfilePage() {
 
         {/* Availability & Reviews Section */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+          {/* Calendar Preview */}
           <div className="lg:col-span-7 bg-surface-container-lowest rounded-xl editorial-border whisper-shadow p-stack-lg overflow-hidden">
             <div className="flex justify-between items-center mb-stack-lg">
               <h2 className="text-headline-md font-headline-md text-on-surface">
                 Weekly Availability
               </h2>
-              <div className="flex gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="rounded-full"
-                  aria-label="Previous week"
-                  onClick={() => console.log("Previous week")}
-                >
-                  <span className="material-symbols-outlined">chevron_left</span>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="rounded-full"
-                  aria-label="Next week"
-                  onClick={() => console.log("Next week")}
-                >
-                  <span className="material-symbols-outlined">chevron_right</span>
-                </Button>
-              </div>
             </div>
-            <div className="text-center py-stack-lg text-on-surface-variant">
-              <span className="material-symbols-outlined text-[32px]">
-                calendar_month
-              </span>
-              <p className="text-body-md mt-2">
-                Availability calendar coming soon
+            <div className="grid grid-cols-7 gap-2 text-center mb-stack-sm">
+              {dayNames.map((d) => (
+                <div key={d} className="text-label-caps text-outline">{d}</div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-2">
+              {slotsForDay.map(({ date, count }) => {
+                const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+                return (
+                  <div
+                    key={date.toISOString()}
+                    className={`h-24 rounded-lg flex flex-col items-center justify-center gap-1 ${
+                      count > 0
+                        ? "bg-primary-container/5 border border-primary/20 relative overflow-hidden"
+                        : isWeekend
+                        ? "bg-surface-container-highest/20"
+                        : "bg-surface-container rounded-lg opacity-50"
+                    }`}
+                  >
+                    {count > 0 && (
+                      <div className="absolute inset-x-0 bottom-0 h-1 bg-primary" />
+                    )}
+                    <span className="text-label-caps text-on-surface">
+                      {date.getDate()}
+                    </span>
+                    {count > 0 && (
+                      <div className="px-1 py-0.5 bg-primary text-[10px] text-on-primary rounded font-bold uppercase">
+                        {count > 1 ? `${count} Slots` : "1 Slot"}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            {slotsForDay.some((s) => s.count > 0) && (
+              <p className="mt-stack-md text-label-caps text-on-surface-variant italic text-center">
+                {(() => {
+                  const first = slotsForDay.find((s) => s.count > 0);
+                  if (!first) return "";
+                  const slot = first.slots[0];
+                  if (!slot) return "";
+                  return `Next available: ${dayNames[first.date.getDay()]} at ${slot.startTime}`;
+                })()}
               </p>
-            </div>
+            )}
+            {slotsForDay.every((s) => s.count === 0) && availability && (
+              <p className="mt-stack-md text-label-caps text-on-surface-variant italic text-center">
+                No availability in the next 7 days
+              </p>
+            )}
           </div>
 
+          {/* Reviews */}
           <div className="lg:col-span-5 flex flex-col gap-stack-md">
-            <h2 className="text-headline-md font-headline-md text-on-surface">
-              Recent Reviews
-            </h2>
-            <div className="text-center py-stack-lg text-on-surface-variant">
-              <span className="material-symbols-outlined text-[32px]">
-                rate_review
-              </span>
-              <p className="text-body-md mt-2">
-                No reviews yet
-              </p>
+            <div className="flex items-center gap-stack-sm">
+              <h2 className="text-headline-md font-headline-md text-on-surface">
+                Reviews
+              </h2>
+              {reviewData && reviewData.aggregate.count > 0 && (
+                <StarRating
+                  rating={reviewData.aggregate.average}
+                  size="md"
+                  showValue
+                  reviewCount={reviewData.aggregate.count}
+                />
+              )}
             </div>
+            {reviewData && reviewData.reviews.length > 0 ? (
+              <div className="flex flex-col gap-stack-md">
+                {reviewData.reviews.map((review) => (
+                  <ReviewCard
+                    key={review.id}
+                    authorName={review.reviewer.name ?? "Anonymous"}
+                    rating={review.rating}
+                    text={review.comment ?? ""}
+                    avatarSrc={review.reviewer.image ?? undefined}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-stack-lg text-on-surface-variant">
+                <span className="material-symbols-outlined text-[32px]">
+                  rate_review
+                </span>
+                <p className="text-body-md mt-2">
+                  No reviews yet
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </main>

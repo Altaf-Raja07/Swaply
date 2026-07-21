@@ -36,12 +36,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (email) {
           let dbUser = await prisma.user.findUnique({ where: { email } });
           if (!dbUser) {
-            dbUser = await prisma.user.create({
-              data: {
-                email,
-                name: (profile?.name as string) || email.split("@")[0],
-                image: (profile?.picture as string) || undefined,
-              },
+            dbUser = await prisma.$transaction(async (tx) => {
+              const newUser = await tx.user.create({
+                data: {
+                  email,
+                  name: (profile?.name as string) || email.split("@")[0],
+                  image: (profile?.picture as string) || undefined,
+                },
+              });
+              await tx.creditLedgerEntry.create({
+                data: {
+                  userId: newUser.id,
+                  type: "SIGNUP_BONUS",
+                  amount: 2,
+                  description: "Welcome to Swaply — 2 bonus credits",
+                },
+              });
+              return newUser;
             });
           }
           token.id = dbUser.id;

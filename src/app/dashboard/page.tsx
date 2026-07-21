@@ -7,17 +7,47 @@ import { SessionCard } from "@/components/shared/session-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { trpc } from "@/lib/trpc/client";
 export default function DashboardPage() {
   const router = useRouter();
+  const { data: balanceData } = trpc.ledger.getBalance.useQuery();
+  const { data: historyData } = trpc.ledger.getHistory.useQuery();
+  const balance = balanceData?.balance ?? 0;
+  const history = historyData ?? [];
+
+  function formatDate(d: Date) {
+    return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function formatAmount(amount: number) {
+    const sign = amount >= 0 ? "+" : "";
+    return `${sign}${amount}.0`;
+  }
+
+  function amountColor(amount: number) {
+    return amount > 0 ? "text-secondary" : amount < 0 ? "text-primary" : "text-on-surface-variant";
+  }
+
+  function entryLabel(entry: typeof history[0]) {
+    const ctx = entry.booking;
+    if (entry.type === "SIGNUP_BONUS") return "Welcome Bonus";
+    if (ctx) {
+      const skill = ctx.teachSkill?.skillName ?? "Session";
+      const other = entry.type === "SETTLE_CREDIT" ? ctx.learner?.name : ctx.teacher?.name;
+      const suffix = other ? ` — ${other}` : "";
+      switch (entry.type) {
+        case "HOLD": return `Held for ${skill}${suffix}`;
+        case "RELEASE": return `Hold released: ${skill}${suffix}`;
+        case "SETTLE_DEBIT": return `Completed: ${skill}${suffix}`;
+        case "SETTLE_CREDIT": return `Earned: ${skill}${suffix}`;
+      }
+    }
+    return entry.description ?? entry.type;
+  }
+
   const quickMessages = [
     { name: "Liam K.", msg: '"See you at the wheel tomorrow!"', time: "2m", online: true },
     { name: "Sarah J.", msg: '"Did you get the React repo?"', time: "1h", online: false },
-  ];
-  const creditActivityItems = [
-    { label: "Teaching: Clay Basics", date: "Oct 20, 2024", amount: "+3.0", color: "text-secondary" },
-    { label: "Booked: React Hooks", date: "Oct 18, 2024", amount: "-2.0", color: "text-primary" },
-    { label: "Teaching: Wheel Throwing", date: "Oct 15, 2024", amount: "+3.0", color: "text-secondary" },
-    { label: "Referral Bonus", date: "Oct 12, 2024", amount: "+5.0", color: "text-tertiary" },
   ];
   const interestItems = ["Pottery", "UI Design", "Urban Gardening", "Coffee Roasting", "+ Add New"];
 
@@ -46,7 +76,7 @@ export default function DashboardPage() {
                   CREDIT BALANCE
                 </p>
                 <p className="text-headline-md font-headline-md text-on-surface">
-                  12{" "}
+                  {balance}{" "}
                   <span className="text-body-md font-normal text-on-surface-variant">
                     Available
                   </span>
@@ -201,19 +231,19 @@ export default function DashboardPage() {
               </h2>
               <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-stack-md whisper-shadow">
                 <div className="space-y-4">
-                  {creditActivityItems.length === 0 ? (
+                  {history.length === 0 ? (
                     <div className="text-center py-8 px-4">
                       <span className="material-symbols-outlined text-4xl text-on-surface-variant/40 block mb-stack-md">receipt_long</span>
                       <p className="text-body-md font-body-md text-on-surface-variant">No credit activity yet. Start teaching to earn your first credits.</p>
                     </div>
                   ) : (
-                    creditActivityItems.map((item) => (
-                    <div key={item.label} className="flex justify-between items-start">
+                    history.map((entry, i) => (
+                    <div key={entry.id} className="flex justify-between items-start">
                       <div>
-                        <p className="font-bold text-on-surface">{item.label}</p>
-                        <p className="text-[11px] text-on-surface-variant">{item.date}</p>
+                        <p className="font-bold text-on-surface">{entryLabel(entry)}</p>
+                        <p className="text-[11px] text-on-surface-variant">{formatDate(entry.createdAt)}</p>
                       </div>
-                      <span className={`font-bold ${item.color}`}>{item.amount}</span>
+                      <span className={`font-bold ${amountColor(entry.amount)}`}>{formatAmount(entry.amount)}</span>
                     </div>
                   )))}
                 </div>
@@ -238,7 +268,7 @@ export default function DashboardPage() {
                     Current Balance
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-4xl font-bold font-headline-md">12</span>
+                    <span className="text-4xl font-bold font-headline-md">{balance}</span>
                     <span className="text-lg font-medium opacity-90">Credits</span>
                   </div>
                 </div>
