@@ -62,9 +62,9 @@ export default function OnboardingTeachPage() {
             <form className="bg-white p-stack-lg rounded-[16px] border border-outline-variant/30 whisper-shadow flex flex-col gap-stack-lg">
               {/* Mobile Header */}
               <div className="md:hidden">
-                <h1 className="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-stack-sm">
+                <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-surface mb-stack-sm">
                   What can you teach?
-                </h1>
+                </h2>
               </div>
 
               {/* Input: Skill Name */}

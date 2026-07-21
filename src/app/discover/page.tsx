@@ -106,6 +106,7 @@ export default function DiscoverPage() {
               >
                 auto_awesome
               </span>
+              <label className="sr-only">Search mentors</label>
               <input
                 className="w-full bg-transparent border-none focus:ring-0 text-body-md py-3 placeholder:text-outline"
                 placeholder="I want to learn sourdough baking..."
@@ -121,14 +122,15 @@ export default function DiscoverPage() {
 
         {/* Mobile Search Header */}
         <section className="md:hidden mb-stack-lg space-y-4">
-          <h1 className="text-display-lg-mobile font-display-lg-mobile text-on-surface">
+          <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-surface">
             Find your next <br />
             <span className="text-primary italic">breakthrough</span>.
-          </h1>
+          </h2>
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
               <span className="material-symbols-outlined text-primary">search</span>
             </div>
+            <label className="sr-only">Search mentors</label>
             <input
               className="w-full h-14 pl-12 pr-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all text-body-lg font-body-lg placeholder-on-surface-variant/40 rounded-t-lg"
               placeholder="I want to learn acoustic guitar theory..."

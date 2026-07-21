@@ -28,9 +28,9 @@ export default function SessionDetailPage() {
               <img src="/images/avatars/avatar-24.png" alt="Mentor" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h1 className="text-body-md font-bold text-on-surface leading-none">
+              <h2 className="text-body-md font-bold text-on-surface leading-none">
                 Elena Woodworking
-              </h1>
+              </h2>
               <span className="text-label-caps text-secondary font-label-caps mt-1 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-secondary" /> Online
               </span>

@@ -130,9 +130,9 @@ export default function LoginPage() {
                 <p className="font-label-caps text-label-caps text-secondary uppercase">
                   Learn
                 </p>
-                <h3 className="font-headline-md text-[18px]">
+                <h2 className="font-headline-md text-[18px]">
                   Pottery Basics
-                </h3>
+                </h2>
               </div>
             </div>
             <div className="bg-surface-container-low p-stack-md rounded-xl space-y-stack-sm border border-outline-variant/20">
@@ -141,7 +141,7 @@ export default function LoginPage() {
                 <p className="font-label-caps text-label-caps text-secondary uppercase">
                   Teach
                 </p>
-                <h3 className="font-headline-md text-[18px]">Drafting 101</h3>
+                <h2 className="font-headline-md text-[18px]">Drafting 101</h2>
               </div>
             </div>
           </div>

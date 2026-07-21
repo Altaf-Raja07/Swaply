@@ -215,7 +215,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="mt-6 pt-4 border-t border-outline-variant/30">
                   <Button variant="secondary" className="w-full">
-                    GET MORE CREDITS
+                    TOP UP CREDITS
                   </Button>
                 </div>
               </div>

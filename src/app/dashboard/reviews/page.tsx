@@ -130,7 +130,7 @@ export default function ReviewsPage() {
                   className="mt-stack-md w-fit"
                   onClick={() => openReview(pastSessions[1].mentor)}
                 >
-                  Write Review
+                  Review Session
                 </Button>
               </div>
             </div>
