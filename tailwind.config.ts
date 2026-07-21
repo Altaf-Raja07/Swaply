@@ -127,9 +127,14 @@ const config: Config = {
           "0%": { transform: "scale(1)" },
           "100%": { transform: "scale(0.98)" },
         },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "active-press": "active-press 0.1s ease-in-out",
+        "slide-up": "slide-up 0.3s ease-out",
       },
     },
   },
