@@ -48,7 +48,7 @@ full schema migrated.
 - [ ] Can sign up with email/password, row appears in `User` table with hashed password (never plaintext)
 - [ ] Can log in with Google OAuth, `User` row created/matched correctly
 - [ ] Visiting `/dashboard` while logged out redirects to `/login`
-- [ ] Session (`user.id`, `user.email`, `user.name`) accessible in a server component and in an API route — verify with a quick test log
+- [ ] Session (`user.id`, `user.email`, `user.name`) accessible via tRPC context (`ctx.session` available in every procedure) — verify with a quick test log
 - [ ] Logging out actually clears the session (test by revisiting a protected route after logout)
 
 ---
